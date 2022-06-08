@@ -21,7 +21,7 @@ public class ModBookItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pLevel.isClientSide()) {
             try {
-                openWebLink(new URI("https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button"));
+                openWebLink(new URI("https://htmlpreview.github.io/?https://github.com/ianvivi13/MinecraftMod/blob/master/webpage/index.html"));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
