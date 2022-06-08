@@ -1,6 +1,7 @@
 package com.bic.bit_o_everything.block;
 
 import com.bic.bit_o_everything.BitOEverything;
+import com.bic.bit_o_everything.item.ModCreativeModeTab;
 import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,19 +33,19 @@ public class ModBlocks {
     // Create blocks here
     public static final RegistryObject<Block> PYRITE_ORE = registerBlock("pyrite_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> DEEPSLATE_PYRITE_ORE = registerBlock("deepslate_pyrite_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> RAW_PYRITE_BLOCK = registerBlock("raw_pyrite_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> PYRITE_BLOCK = registerBlock("pyrite_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

@@ -5,5 +5,7 @@
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
   "block.bit_o_everything.pyrite_block": "Pyrite Block",
-  "block.bit_o_everything.raw_pyrite_block": "Raw Pyrite Block"
+  "block.bit_o_everything.raw_pyrite_block": "Raw Pyrite Block",
+
+  "itemGroup.modded": "Modded"
 }

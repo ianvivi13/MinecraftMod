@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "pyrite",
+  "ingredient": {
+    "item": "bit_o_everything:deepslate_pyrite_ore"
+  },
+  "result": "bit_o_everything:pyrite"
+}

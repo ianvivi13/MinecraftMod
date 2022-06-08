@@ -14,10 +14,10 @@ public class ModItems {
 
     // Create items here
     public static final RegistryObject<Item> RAW_PYRITE = ITEMS.register("raw_pyrite",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static final RegistryObject<Item> PYRITE = ITEMS.register("pyrite",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
