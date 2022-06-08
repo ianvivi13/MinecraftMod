@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "bit_o_everything:mod_book"
+  }
+}
