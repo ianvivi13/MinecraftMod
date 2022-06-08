@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "bit_o_everything:item/fools_gold"
+    "layer0": "bit_o_everything:item/pyrite"
   }
 }

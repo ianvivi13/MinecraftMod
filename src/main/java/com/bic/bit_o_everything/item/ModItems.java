@@ -13,10 +13,10 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, BitOEverything.MOD_ID);
 
     // Create items here
-    public static final RegistryObject<Item> RAW_FOOLS_GOLD = ITEMS.register("raw_fools_gold",
+    public static final RegistryObject<Item> RAW_PYRITE = ITEMS.register("raw_pyrite",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
-    public static final RegistryObject<Item> FOOLS_GOLD = ITEMS.register("fools_gold",
+    public static final RegistryObject<Item> PYRITE = ITEMS.register("pyrite",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
     public static void register(IEventBus eventBus) {

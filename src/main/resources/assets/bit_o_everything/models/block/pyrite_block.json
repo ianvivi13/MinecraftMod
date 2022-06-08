@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "bit_o_everything:block/fools_gold_ore"
+    "all": "bit_o_everything:block/pyrite_block"
   }
 }

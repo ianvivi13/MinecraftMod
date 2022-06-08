@@ -30,19 +30,19 @@ public class ModBlocks {
     }
 
     // Create blocks here
-    public static final RegistryObject<Block> FOOLS_GOLD_ORE = registerBlock("fools_gold_ore",
+    public static final RegistryObject<Block> PYRITE_ORE = registerBlock("pyrite_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
 
-    public static final RegistryObject<Block> DEEPSLATE_FOOLS_GOLD_ORE = registerBlock("deepslate_fools_gold_ore",
+    public static final RegistryObject<Block> DEEPSLATE_PYRITE_ORE = registerBlock("deepslate_pyrite_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
 
-    public static final RegistryObject<Block> RAW_FOOLS_GOLD_BLOCK = registerBlock("raw_fools_gold_block",
+    public static final RegistryObject<Block> RAW_PYRITE_BLOCK = registerBlock("raw_pyrite_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
 
-    public static final RegistryObject<Block> FOOLS_GOLD_BLOCK = registerBlock("fools_gold_block",
+    public static final RegistryObject<Block> PYRITE_BLOCK = registerBlock("pyrite_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(3f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
 
