@@ -10,6 +10,20 @@
   "block.bit_o_everything.pyrite_block": "Pyrite Block",
   "block.bit_o_everything.raw_pyrite_block": "Raw Pyrite Block",
   "block.bit_o_everything.asphalt": "Asphalt",
+  "block.bit_o_everything.cherry_log": "Cherry Log",
+  "block.bit_o_everything.cherry_planks": "Cherry Planks",
+  "block.bit_o_everything.cherry_wood": "Cherry Wood",
+  "block.bit_o_everything.stripped_cherry_log": "Stripped Cherry Log",
+  "block.bit_o_everything.stripped_cherry_wood": "Stripped Cherry Wood",
+  "block.bit_o_everything.cherry_stairs": "Cherry Stairs",
+  "block.bit_o_everything.cherry_slab": "Cherry Slab",
+  "block.bit_o_everything.cherry_fence": "Cherry Fence",
+  "block.bit_o_everything.cherry_fence_gate": "Cherry Fence Gate",
+  "block.bit_o_everything.cherry_button": "Cherry Button",
+  "block.bit_o_everything.cherry_pressure_plate": "Cherry Pressure Plate",
+  "block.bit_o_everything.cherry_door": "Cherry Door",
+  "block.bit_o_everything.cherry_trapdoor": "Cherry Trapdoor",
+
 
   "itemGroup.modded": "Modded"
 }

@@ -1,12 +1,14 @@
 package com.bic.bit_o_everything.block;
 
 import com.bic.bit_o_everything.BitOEverything;
+import com.bic.bit_o_everything.block.custom.Plank;
+import com.bic.bit_o_everything.block.custom.Wood;
 import com.bic.bit_o_everything.item.ModCreativeModeTab;
 import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,6 +52,46 @@ public class ModBlocks {
     public static final RegistryObject<Block> ASPHALT = registerBlock("asphalt",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).speedFactor(1.2F).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    // cherry wood and stuffs
+    public static final RegistryObject<Block> CHERRY_LOG = registerBlock("cherry_log",
+            () -> new Wood(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_WOOD = registerBlock("cherry_wood",
+            () -> new Wood(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = registerBlock("stripped_cherry_log",
+            () -> new Wood(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = registerBlock("stripped_cherry_wood",
+            () -> new Wood(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_PLANKS = registerBlock("cherry_planks",
+            () -> new Plank(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_STAIRS = registerBlock("cherry_stairs",
+            () -> new StairBlock(() -> ModBlocks.CHERRY_PLANKS.get().defaultBlockState(),BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_SLAB = registerBlock("cherry_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_FENCE = registerBlock("cherry_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_FENCE_GATE = registerBlock("cherry_fence_gate",
+            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_BUTTON = registerBlock("cherry_button",
+            () -> new WoodButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_PRESSURE_PLATE = registerBlock("cherry_pressure_plate",
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_DOOR = registerBlock("cherry_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_TRAPDOOR = registerBlock("cherry_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion()), ModCreativeModeTab.MODDED);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
