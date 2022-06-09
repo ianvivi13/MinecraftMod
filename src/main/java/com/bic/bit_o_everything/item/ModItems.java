@@ -23,6 +23,9 @@ public class ModItems {
     public static final RegistryObject<Item> MOD_BOOK = ITEMS.register("mod_book",
             () -> new ModBookItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
+    public static final RegistryObject<Item> SLAG = ITEMS.register("slag",
+            () -> new ModBookItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

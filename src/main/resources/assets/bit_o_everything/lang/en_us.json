@@ -2,11 +2,13 @@
   "item.bit_o_everything.raw_pyrite": "Raw Pyrite",
   "item.bit_o_everything.pyrite": "Pyrite",
   "item.bit_o_everything.mod_book": "Mod Book",
+  "item.bit_o_everything.slag": "Slag",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
   "block.bit_o_everything.pyrite_block": "Pyrite Block",
   "block.bit_o_everything.raw_pyrite_block": "Raw Pyrite Block",
+  "block.bit_o_everything.asphalt": "Asphalt",
 
   "itemGroup.modded": "Modded"
 }

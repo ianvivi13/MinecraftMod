@@ -47,6 +47,10 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
+    public static final RegistryObject<Block> ASPHALT = registerBlock("asphalt",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).speedFactor(1.2F).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
