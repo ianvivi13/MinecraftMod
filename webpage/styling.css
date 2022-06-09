@@ -1,0 +1,11 @@
+p {
+	color: green;
+}
+
+.redtext {
+	color: red;
+}
+
+#bluetext, a:hover {
+	color: blue;
+}
