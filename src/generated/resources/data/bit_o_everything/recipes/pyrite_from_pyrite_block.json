@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "pyrite",
   "ingredients": [
     {
       "item": "bit_o_everything:pyrite_block"

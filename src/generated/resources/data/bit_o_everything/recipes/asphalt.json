@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "L": {
       "item": "bit_o_everything:slag"
     },
     "S": {
-      "item": "minecraft:cobblestone"
-    },
-    "C": {
       "item": "minecraft:stone"
     }
   },
   "pattern": [
     "CSC",
-    "S#S",
+    "SLS",
     "CSC"
   ],
   "result": {
