@@ -4,11 +4,23 @@
   "item.bit_o_everything.mod_book": "Mod Book",
   "item.bit_o_everything.slag": "Slag",
   "item.bit_o_everything.fried_egg": "Fried Egg",
+  "item.bit_o_everything.raw_zinc": "Raw Zinc",
+  "item.bit_o_everything.zinc_ingot": "Zinc Ingot",
+  "item.bit_o_everything.raw_magnesium": "Raw Magnesium",
+  "item.bit_o_everything.magnesium_ingot": "Magnesium Ingot",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
   "block.bit_o_everything.pyrite_block": "Pyrite Block",
   "block.bit_o_everything.raw_pyrite_block": "Raw Pyrite Block",
+  "block.bit_o_everything.zinc_ore": "Zinc Ore",
+  "block.bit_o_everything.deepslate_zinc_ore": "Deepslate Zinc Ore",
+  "block.bit_o_everything.zinc_block": "Zinc Block",
+  "block.bit_o_everything.raw_zinc_block": "Raw Zinc Block",
+  "block.bit_o_everything.magnesium_ore": "Magnesium Ore",
+  "block.bit_o_everything.deepslate_magnesium_ore": "Deepslate Magnesium Ore",
+  "block.bit_o_everything.magnesium_block": "Magnesium Block",
+  "block.bit_o_everything.raw_magnesium_block": "Raw Magnesium Block",
   "block.bit_o_everything.asphalt": "Asphalt",
 
   "itemGroup.modded": "Modded"

@@ -12,10 +12,18 @@ public class ModBlockLootTables extends BlockLoot {
     protected void addTables() {
         this.dropSelf(ModBlocks.PYRITE_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_PYRITE_BLOCK.get());
+        this.dropSelf(ModBlocks.ZINC_BLOCK.get());
+        this.dropSelf(ModBlocks.RAW_ZINC_BLOCK.get());
+        this.dropSelf(ModBlocks.MAGNESIUM_BLOCK.get());
+        this.dropSelf(ModBlocks.RAW_MAGNESIUM_BLOCK.get());
         this.dropSelf(ModBlocks.ASPHALT.get());
 
         this.add(ModBlocks.DEEPSLATE_PYRITE_ORE.get(), (block) -> createOreDrop(ModBlocks.DEEPSLATE_PYRITE_ORE.get(), ModItems.RAW_PYRITE.get()));
         this.add(ModBlocks.PYRITE_ORE.get(), (block) -> createOreDrop(ModBlocks.PYRITE_ORE.get(), ModItems.RAW_PYRITE.get()));
+        this.add(ModBlocks.DEEPSLATE_ZINC_ORE.get(), (block) -> createOreDrop(ModBlocks.DEEPSLATE_ZINC_ORE.get(), ModItems.RAW_ZINC.get()));
+        this.add(ModBlocks.ZINC_ORE.get(), (block) -> createOreDrop(ModBlocks.ZINC_ORE.get(), ModItems.RAW_ZINC.get()));
+        this.add(ModBlocks.DEEPSLATE_MAGNESIUM_ORE.get(), (block) -> createOreDrop(ModBlocks.DEEPSLATE_MAGNESIUM_ORE.get(), ModItems.RAW_MAGNESIUM.get()));
+        this.add(ModBlocks.MAGNESIUM_ORE.get(), (block) -> createOreDrop(ModBlocks.MAGNESIUM_ORE.get(), ModItems.RAW_MAGNESIUM.get()));
     }
 
     @Override

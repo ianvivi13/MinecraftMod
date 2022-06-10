@@ -24,10 +24,22 @@ public class ModItems {
             () -> new ModBookItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static final RegistryObject<Item> SLAG = ITEMS.register("slag",
-            () -> new ModBookItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED).food(ModFoods.FRIED_EGG)));
+
+    public static final RegistryObject<Item> RAW_ZINC = ITEMS.register("raw_zinc",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> ZINC_INGOT = ITEMS.register("zinc_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> RAW_MAGNESIUM = ITEMS.register("raw_magnesium",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> MAGNESIUM_INGOT = ITEMS.register("magnesium_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -3,6 +3,14 @@
     "bit_o_everything:pyrite_ore",
     "bit_o_everything:deepslate_pyrite_ore",
     "bit_o_everything:raw_pyrite_block",
-    "bit_o_everything:pyrite_block"
+    "bit_o_everything:pyrite_block",
+    "bit_o_everything:zinc_ore",
+    "bit_o_everything:deepslate_zinc_ore",
+    "bit_o_everything:raw_zinc_block",
+    "bit_o_everything:zinc_block",
+    "bit_o_everything:deepslate_magnesium_ore",
+    "bit_o_everything:raw_magnesium_block",
+    "bit_o_everything:magnesium_block",
+    "bit_o_everything:asphalt"
   ]
 }
