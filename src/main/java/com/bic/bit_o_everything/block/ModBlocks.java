@@ -1,8 +1,11 @@
 package com.bic.bit_o_everything.block;
 
 import com.bic.bit_o_everything.BitOEverything;
+import com.bic.bit_o_everything.block.custom.ModStandingSignBlock;
+import com.bic.bit_o_everything.block.custom.ModWallSignBlock;
 import com.bic.bit_o_everything.block.custom.Plank;
 import com.bic.bit_o_everything.block.custom.Wood;
+import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.item.ModCreativeModeTab;
 import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -92,6 +95,19 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CHERRY_TRAPDOOR = registerBlock("cherry_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_WALL_SIGN = registerBlockWithoutBlockItem("cherry_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.CHERRY));
+
+    public static final RegistryObject<Block> CHERRY_SIGN = registerBlockWithoutBlockItem("cherry_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.CHERRY));
+
+
+
+
+    private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
