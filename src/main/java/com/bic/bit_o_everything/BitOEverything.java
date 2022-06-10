@@ -3,6 +3,7 @@ package com.bic.bit_o_everything;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.ModBlockEntities;
 import com.bic.bit_o_everything.block.entity.ModWoodTypes;
+import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -46,6 +47,7 @@ public class BitOEverything  {
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModBlockEntities.register(eventBus);
+        ModEntityTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

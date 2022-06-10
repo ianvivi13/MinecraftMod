@@ -18,6 +18,8 @@ public class ModBlockEntities {
                             ModBlocks.CHERRY_WALL_SIGN.get(),
                             ModBlocks.CHERRY_SIGN.get()).build(null));
 
+
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
