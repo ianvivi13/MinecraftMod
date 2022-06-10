@@ -4,12 +4,14 @@ import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
@@ -30,49 +32,50 @@ public class ModBoatItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        HitResult raytraceresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
-        if (raytraceresult.getType() == HitResult.Type.MISS) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        HitResult hitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.ANY);
+        if (hitresult.getType() == HitResult.Type.MISS) {
             return InteractionResultHolder.pass(itemstack);
-        }
-        else {
-            Vec3 vector3d = player.getViewVector(1.0F);
-            List<Entity> list = level.getEntities(player, player.getBoundingBox().expandTowards(vector3d.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
+        } else {
+            Vec3 vec3 = pPlayer.getViewVector(1.0F);
+            double d0 = 5.0D;
+            List<Entity> list = pLevel.getEntities(pPlayer, pPlayer.getBoundingBox().expandTowards(vec3.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
             if (!list.isEmpty()) {
-                Vec3 vector3d1 = player.getEyePosition(1.0F);
+                Vec3 vec31 = pPlayer.getEyePosition();
 
                 for(Entity entity : list) {
-                    AABB axisalignedbb = entity.getBoundingBox().inflate(entity.getPickRadius());
-                    if (axisalignedbb.contains(vector3d1)) {
+                    AABB aabb = entity.getBoundingBox().inflate((double)entity.getPickRadius());
+                    if (aabb.contains(vec31)) {
                         return InteractionResultHolder.pass(itemstack);
                     }
                 }
             }
 
-            if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-                ModBoatEntity boat = new ModBoatEntity(level, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+            if (hitresult.getType() == HitResult.Type.BLOCK) {
+                ModBoatEntity boat = new ModBoatEntity(pLevel, hitresult.getLocation().x(), hitresult.getLocation().y(), hitresult.getLocation().z()); //this.getBoat(pLevel, hitresult);
                 boat.setBoatType(this.type);
-                boat.setYRot(player.getYRot());
-                if (!level.noCollision(boat, boat.getBoundingBox().inflate(-0.1D))) {
+                boat.setYRot(pPlayer.getYRot());
+                if (!pLevel.noCollision(boat, boat.getBoundingBox())) {
                     return InteractionResultHolder.fail(itemstack);
-                }
-                else {
-                    if (!level.isClientSide) {
-                        level.addFreshEntity(boat);
-                        if (!player.getAbilities().instabuild) {
+                } else {
+                    if (!pLevel.isClientSide) {
+                        pLevel.addFreshEntity(boat);
+                        pLevel.gameEvent(pPlayer, GameEvent.ENTITY_PLACE, hitresult.getLocation());
+                        if (!pPlayer.getAbilities().instabuild) {
                             itemstack.shrink(1);
                         }
                     }
 
-                    player.awardStat(Stats.ITEM_USED.get(this));
-                    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                    return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
                 }
-            }
-            else {
+            } else {
                 return InteractionResultHolder.pass(itemstack);
             }
         }
     }
+
+
 
 }

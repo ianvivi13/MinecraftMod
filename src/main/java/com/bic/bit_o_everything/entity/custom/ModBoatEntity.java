@@ -5,6 +5,7 @@ import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -73,7 +74,8 @@ public class ModBoatEntity extends Boat {
 
     @Override
     public Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        //return NetworkHooks.getEntitySpawningPacket(this);
+        return new ClientboundAddEntityPacket(this);
     }
 
     public enum Type {

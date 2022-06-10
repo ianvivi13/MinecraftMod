@@ -29,8 +29,7 @@ public class ModBoatEntityRenderer extends EntityRenderer<ModBoatEntity> {
         this.shadowRadius = 0.8F;
         this.boatResources = Stream.of(ModBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((boatType) -> boatType,
                 (boatType) -> Pair.of(new ResourceLocation(BitOEverything.MOD_ID, "textures/entity/boat/" + boatType.getName() + ".png"),
-                        new BoatModel(renderContext.bakeLayer(boatLayer(boatType)), false))));
-                        // the false is for chestboat, if true, render chest also
+                        new BoatModel(renderContext.bakeLayer(boatLayer(boatType)), false)))); // the false is for chestboat, if true, render chest also
     }
 
     public static ModelLayerLocation boatLayer(ModBoatEntity.Type boatType) {
