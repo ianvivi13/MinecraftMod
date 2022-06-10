@@ -41,6 +41,12 @@ public class ModItems {
     public static final RegistryObject<Item> MAGNESIUM_INGOT = ITEMS.register("magnesium_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
+    public static final RegistryObject<Item> RUBY = ITEMS.register("ruby",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

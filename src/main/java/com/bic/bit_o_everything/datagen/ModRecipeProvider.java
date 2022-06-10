@@ -115,12 +115,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         Compact(pFinishedRecipeConsumer, ModItems.ZINC_INGOT.get(), ModBlocks.ZINC_BLOCK.get());
         Compact(pFinishedRecipeConsumer, ModItems.RAW_MAGNESIUM.get(), ModBlocks.RAW_MAGNESIUM_BLOCK.get());
         Compact(pFinishedRecipeConsumer, ModItems.MAGNESIUM_INGOT.get(), ModBlocks.MAGNESIUM_BLOCK.get());
+        Compact(pFinishedRecipeConsumer, ModItems.RUBY.get(), ModBlocks.RUBY_BLOCK.get());
+        Compact(pFinishedRecipeConsumer, ModItems.SAPPHIRE.get(), ModBlocks.SAPPHIRE_BLOCK.get());
 
         // smelting recipes (pFinishedRecipeConsumer, output, xp, input(s))
         FurnaceCampSmoke(pFinishedRecipeConsumer, ModItems.FRIED_EGG.get(), 0.35f, Items.EGG);
         FurnaceBlast(pFinishedRecipeConsumer, ModItems.PYRITE.get(),1.0f, ModBlocks.DEEPSLATE_PYRITE_ORE.get(), ModBlocks.PYRITE_ORE.get(), ModItems.RAW_PYRITE.get());
         FurnaceBlast(pFinishedRecipeConsumer, ModItems.ZINC_INGOT.get(),1.0f, ModBlocks.DEEPSLATE_ZINC_ORE.get(), ModBlocks.ZINC_ORE.get(), ModItems.RAW_ZINC.get());
         FurnaceBlast(pFinishedRecipeConsumer, ModItems.MAGNESIUM_INGOT.get(),1.0f, ModBlocks.DEEPSLATE_MAGNESIUM_ORE.get(), ModBlocks.MAGNESIUM_ORE.get(), ModItems.RAW_MAGNESIUM.get());
+        FurnaceBlast(pFinishedRecipeConsumer, ModItems.RUBY.get(),1.0f, ModBlocks.DEEPSLATE_RUBY_ORE.get(), ModBlocks.RUBY_ORE.get());
+        FurnaceBlast(pFinishedRecipeConsumer, ModItems.SAPPHIRE.get(),1.0f, ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), ModBlocks.SAPPHIRE_ORE.get());
 
 
     }

@@ -11,6 +11,12 @@
     "bit_o_everything:deepslate_magnesium_ore",
     "bit_o_everything:raw_magnesium_block",
     "bit_o_everything:magnesium_block",
+    "bit_o_everything:ruby_ore",
+    "bit_o_everything:deepslate_ruby_ore",
+    "bit_o_everything:ruby_block",
+    "bit_o_everything:sapphire_ore",
+    "bit_o_everything:deepslate_sapphire_ore",
+    "bit_o_everything:sapphire_block",
     "bit_o_everything:asphalt"
   ]
 }

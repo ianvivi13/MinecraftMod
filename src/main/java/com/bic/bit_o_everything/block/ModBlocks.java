@@ -7,6 +7,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,15 +37,15 @@ public class ModBlocks {
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> DEEPSLATE_PYRITE_ORE = registerBlock("deepslate_pyrite_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> RAW_PYRITE_BLOCK = registerBlock("raw_pyrite_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> PYRITE_BLOCK = registerBlock("pyrite_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> ZINC_ORE = registerBlock("zinc_ore",
@@ -52,15 +53,15 @@ public class ModBlocks {
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> DEEPSLATE_ZINC_ORE = registerBlock("deepslate_zinc_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> ZINC_BLOCK = registerBlock("zinc_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> RAW_ZINC_BLOCK = registerBlock("raw_zinc_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> MAGNESIUM_ORE = registerBlock("magnesium_ore",
@@ -68,15 +69,39 @@ public class ModBlocks {
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> DEEPSLATE_MAGNESIUM_ORE = registerBlock("deepslate_magnesium_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> MAGNESIUM_BLOCK = registerBlock("magnesium_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> RAW_MAGNESIUM_BLOCK = registerBlock("raw_magnesium_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> RUBY_ORE = registerBlock("ruby_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = registerBlock("deepslate_ruby_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> RUBY_BLOCK = registerBlock("ruby_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> SAPPHIRE_ORE = registerBlock("sapphire_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = registerBlock("deepslate_sapphire_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> SAPPHIRE_BLOCK = registerBlock("sapphire_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> ASPHALT = registerBlock("asphalt",

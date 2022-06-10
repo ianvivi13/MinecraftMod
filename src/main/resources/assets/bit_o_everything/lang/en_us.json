@@ -8,6 +8,8 @@
   "item.bit_o_everything.zinc_ingot": "Zinc Ingot",
   "item.bit_o_everything.raw_magnesium": "Raw Magnesium",
   "item.bit_o_everything.magnesium_ingot": "Magnesium Ingot",
+  "item.bit_o_everything.ruby": "Ruby",
+  "item.bit_o_everything.sapphire": "Sapphire",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
@@ -21,6 +23,12 @@
   "block.bit_o_everything.deepslate_magnesium_ore": "Deepslate Magnesium Ore",
   "block.bit_o_everything.magnesium_block": "Magnesium Block",
   "block.bit_o_everything.raw_magnesium_block": "Raw Magnesium Block",
+  "block.bit_o_everything.ruby_ore": "Ruby Ore",
+  "block.bit_o_everything.deepslate_ruby_ore": "Deepslate Ruby Ore",
+  "block.bit_o_everything.ruby_block": "Ruby Block",
+  "block.bit_o_everything.sapphire_ore": "Sapphire Ore",
+  "block.bit_o_everything.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
+  "block.bit_o_everything.sapphire_block": "Sapphire Block",
   "block.bit_o_everything.asphalt": "Asphalt",
 
   "itemGroup.modded": "Modded"
