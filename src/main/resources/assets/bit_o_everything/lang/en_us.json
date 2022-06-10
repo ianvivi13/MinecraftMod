@@ -5,6 +5,7 @@
   "item.bit_o_everything.slag": "Slag",
   "item.bit_o_everything.fried_egg": "Fried Egg",
   "item.bit_o_everything.cherry_boat": "Cherry Boat",
+  "item.bit_o_everything.cherry_chest_boat": "Cherry Boat with Chest",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
@@ -26,6 +27,7 @@
   "block.bit_o_everything.cherry_trapdoor": "Cherry Trapdoor",
   "block.bit_o_everything.cherry_sign": "Cherry Sign",
 
+  "entity.bit_o_everything.chest_boat": "Boat with Chest",
 
   "itemGroup.modded": "Modded"
 }

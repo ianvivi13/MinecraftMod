@@ -17,28 +17,27 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class ModBoatEntityRenderer extends EntityRenderer<ModBoatEntity> {
-    private final Map<ModBoatEntity.Type, Pair<ResourceLocation, BoatModel>> boatResources;
+public class ModChestBoatEntityRenderer extends EntityRenderer<ModChestBoatEntity> {
+    private final Map<ModChestBoatEntity.Type, Pair<ResourceLocation, BoatModel>> boatResources;
 
-    public ModBoatEntityRenderer(EntityRendererProvider.Context renderContext) {
+    public ModChestBoatEntityRenderer(EntityRendererProvider.Context renderContext) {
         super(renderContext);
         this.shadowRadius = 0.8F;
-        this.boatResources = Stream.of(ModBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((boatType) -> boatType,
-                (boatType) -> Pair.of(new ResourceLocation(BitOEverything.MOD_ID, "textures/entity/boat/" + boatType.getName() + ".png"),
-                        new BoatModel(renderContext.bakeLayer(boatLayer(boatType)), false)))); // the false is for boat, if true, render chest also
+        this.boatResources = Stream.of(ModChestBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((boatType) -> boatType,
+                (boatType) -> Pair.of(new ResourceLocation(BitOEverything.MOD_ID, "textures/entity/chest_boat/" + boatType.getName() + ".png"),
+                        new BoatModel(renderContext.bakeLayer(boatLayer(boatType)), true))));
     }
 
-    public static ModelLayerLocation boatLayer(ModBoatEntity.Type boatType) {
-        return new ModelLayerLocation(new ResourceLocation(BitOEverything.MOD_ID, "boat/" + boatType.getName()), "main");
+    public static ModelLayerLocation boatLayer(ModChestBoatEntity.Type boatType) {
+        return new ModelLayerLocation(new ResourceLocation(BitOEverything.MOD_ID, "chest_boat/" + boatType.getName()), "main");
     }
 
     @Override
-    public void render(ModBoatEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(ModChestBoatEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         pMatrixStack.pushPose();
         pMatrixStack.translate(0.0D, 0.375D, 0.0D);
         pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F - pEntityYaw));
@@ -57,7 +56,7 @@ public class ModBoatEntityRenderer extends EntityRenderer<ModBoatEntity> {
             pMatrixStack.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), pEntity.getBubbleAngle(pPartialTicks), true));
         }
 
-        Pair<ResourceLocation, BoatModel> pair = this.boatResources.get(pEntity.getModBoatEntityType());
+        Pair<ResourceLocation, BoatModel> pair = this.boatResources.get(pEntity.getModChestBoatEntityType());
         ResourceLocation resourcelocation = (ResourceLocation)pair.getFirst();
         BoatModel boatmodel = (BoatModel)pair.getSecond();
         pMatrixStack.scale(-1.0F, -1.0F, 1.0F);
@@ -75,8 +74,9 @@ public class ModBoatEntityRenderer extends EntityRenderer<ModBoatEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(ModBoatEntity boat) {
-        return this.boatResources.get(boat.getModBoatEntityType()).getFirst();
+    public ResourceLocation getTextureLocation(ModChestBoatEntity boat) {
+        return this.boatResources.get(boat.getModChestBoatEntityType()).getFirst();
     }
 
 }
+

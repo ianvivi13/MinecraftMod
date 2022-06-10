@@ -9,7 +9,6 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.ChestBoat;
@@ -17,20 +16,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 
-public class ModBoatEntity extends Boat {
+public class ModChestBoatEntity extends ChestBoat {
 
     private static final EntityDataAccessor<Integer> BOAT_TYPE =
-            SynchedEntityData.defineId(ModBoatEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(ModChestBoatEntity.class, EntityDataSerializers.INT);
 
-    public ModBoatEntity(EntityType<? extends Boat> type, Level level) {
+    public ModChestBoatEntity(EntityType<? extends Boat> type, Level level) {
         super(type, level);
         this.blocksBuilding = true;
     }
 
-    public ModBoatEntity(Level worldIn, double x, double y, double z) {
-        this(ModEntityTypes.MOD_BOAT.get(), worldIn);
+    public ModChestBoatEntity(Level worldIn, double x, double y, double z) {
+        this(ModEntityTypes.MOD_CHEST_BOAT.get(), worldIn);
         this.setPos(x, y, z);
         this.setDeltaMovement(Vec3.ZERO);
         this.xo = x;
@@ -38,20 +36,20 @@ public class ModBoatEntity extends Boat {
         this.zo = z;
     }
 
-    public ModBoatEntity.Type getModBoatEntityType() {
-        return ModBoatEntity.Type.byId(this.entityData.get(BOAT_TYPE));
+    public ModChestBoatEntity.Type getModChestBoatEntityType() {
+        return ModChestBoatEntity.Type.byId(this.entityData.get(BOAT_TYPE));
     }
 
     @Override
     public Item getDropItem() {
-        switch(this.getModBoatEntityType()) {
+        switch(this.getModChestBoatEntityType()) {
             default:
             case CHERRY:
-                return ModItems.CHERRY_BOAT.get();
+                return ModItems.CHERRY_CHEST_BOAT.get();
         }
     }
 
-    public void setBoatType(ModBoatEntity.Type boatType) {
+    public void setBoatType(ModChestBoatEntity.Type boatType) {
         this.entityData.set(BOAT_TYPE, boatType.ordinal());
     }
 
@@ -63,13 +61,13 @@ public class ModBoatEntity extends Boat {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound) {
-        compound.putString("Type", this.getModBoatEntityType().getName());
+        compound.putString("Type", this.getModChestBoatEntityType().getName());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
         if (compound.contains("Type", 8)) {
-            this.setBoatType(ModBoatEntity.Type.getTypeFromString(compound.getString("Type")));
+            this.setBoatType(ModChestBoatEntity.Type.getTypeFromString(compound.getString("Type")));
         }
     }
 
@@ -102,8 +100,8 @@ public class ModBoatEntity extends Boat {
             return this.name;
         }
 
-        public static ModBoatEntity.Type byId(int id) {
-            ModBoatEntity.Type[] aModBoatEntityEntity$type = values();
+        public static ModChestBoatEntity.Type byId(int id) {
+            ModChestBoatEntity.Type[] aModBoatEntityEntity$type = values();
             if (id < 0 || id >= aModBoatEntityEntity$type.length) {
                 id = 0;
             }
@@ -111,8 +109,8 @@ public class ModBoatEntity extends Boat {
             return aModBoatEntityEntity$type[id];
         }
 
-        public static ModBoatEntity.Type getTypeFromString(String nameIn) {
-            ModBoatEntity.Type[] boatTypeArray = values();
+        public static ModChestBoatEntity.Type getTypeFromString(String nameIn) {
+            ModChestBoatEntity.Type[] boatTypeArray = values();
 
             for (Type type : boatTypeArray) {
                 if (type.getName().equals(nameIn)) {

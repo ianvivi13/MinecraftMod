@@ -3,8 +3,10 @@ package com.bic.bit_o_everything.item;
 import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
+import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import com.bic.bit_o_everything.item.custom.ModBoatItem;
 import com.bic.bit_o_everything.item.custom.ModBookItem;
+import com.bic.bit_o_everything.item.custom.ModChestBoatItem;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -43,7 +45,9 @@ public class ModItems {
             () -> new ModBoatItem(ModBoatEntity.Type.CHERRY,
                     (new Item.Properties()).stacksTo(1).tab(ModCreativeModeTab.MODDED)));
 
-
+    public static final RegistryObject<Item> CHERRY_CHEST_BOAT = ITEMS.register("cherry_chest_boat",
+            () -> new ModChestBoatItem(ModChestBoatEntity.Type.CHERRY,
+                    (new Item.Properties()).stacksTo(1).tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

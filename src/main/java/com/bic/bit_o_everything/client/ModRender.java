@@ -2,8 +2,10 @@ package com.bic.bit_o_everything.client;
 
 
 import com.bic.bit_o_everything.client.render.entity.ModBoatEntityRenderer;
+import com.bic.bit_o_everything.client.render.entity.ModChestBoatEntityRenderer;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
+import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import net.minecraft.client.Camera;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
@@ -91,15 +93,21 @@ public class ModRender {
     */
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntityTypes.MOD_CHEST_BOAT.get(), ModChestBoatEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.MOD_BOAT.get(), ModBoatEntityRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerEntityLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+
+        for(ModChestBoatEntity.Type boatType : ModChestBoatEntity.Type.values()) {
+            event.registerLayerDefinition(ModChestBoatEntityRenderer.boatLayer(boatType),
+                    () -> BoatModel.createBodyModel(true));
+        }
+
         for(ModBoatEntity.Type boatType : ModBoatEntity.Type.values()) {
-            event.registerLayerDefinition(ModBoatEntityRenderer.boatLayer(boatType), //BoatModel::createBodyModel,false);
-            () -> BoatModel.createBodyModel(false));
-            // false for no chest
+            event.registerLayerDefinition(ModBoatEntityRenderer.boatLayer(boatType),
+                    () -> BoatModel.createBodyModel(false));
         }
     }
     /*
