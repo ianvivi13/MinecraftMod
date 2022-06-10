@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button_pressed",
   "textures": {
-    "texture": ":block/cherry_planks"
+    "texture": "bit_o_everything:block/cherry_planks"
   }
 }
