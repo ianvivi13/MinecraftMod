@@ -16,6 +16,8 @@
   "item.bit_o_everything.titanium_ingot": "Titanium Ingot",
   "item.bit_o_everything.ruby": "Ruby",
   "item.bit_o_everything.sapphire": "Sapphire",
+  "item.bit_o_everything.cherry_boat": "Cherry Boat",
+  "item.bit_o_everything.cherry_chest_boat": "Cherry Boat with Chest",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
@@ -49,6 +51,24 @@
   "block.bit_o_everything.sapphire_block": "Sapphire Block",
   "block.bit_o_everything.asphalt": "Asphalt",
   "block.bit_o_everything.jump_block": "Jump Block",
+  "block.bit_o_everything.cherry_log": "Cherry Log",
+  "block.bit_o_everything.cherry_planks": "Cherry Planks",
+  "block.bit_o_everything.cherry_wood": "Cherry Wood",
+  "block.bit_o_everything.stripped_cherry_log": "Stripped Cherry Log",
+  "block.bit_o_everything.stripped_cherry_wood": "Stripped Cherry Wood",
+  "block.bit_o_everything.cherry_stairs": "Cherry Stairs",
+  "block.bit_o_everything.cherry_slab": "Cherry Slab",
+  "block.bit_o_everything.cherry_fence": "Cherry Fence",
+  "block.bit_o_everything.cherry_fence_gate": "Cherry Fence Gate",
+  "block.bit_o_everything.cherry_button": "Cherry Button",
+  "block.bit_o_everything.cherry_pressure_plate": "Cherry Pressure Plate",
+  "block.bit_o_everything.cherry_door": "Cherry Door",
+  "block.bit_o_everything.cherry_trapdoor": "Cherry Trapdoor",
+  "block.bit_o_everything.cherry_sign": "Cherry Sign",
+  "block.bit_o_everything.cherry_leaves": "Cherry Leaves",
+  "block.bit_o_everything.cherry_sapling": "Cherry Sapling",
+
+  "entity.bit_o_everything.chest_boat": "Boat with Chest",
 
   "itemGroup.modded": "Modded"
 }
