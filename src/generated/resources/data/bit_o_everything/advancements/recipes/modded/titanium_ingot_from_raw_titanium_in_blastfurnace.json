@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bit_o_everything:titanium_ingot_from_raw_titanium_in_blastfurnace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "hasraw_titanium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bit_o_everything:raw_titanium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "hasraw_titanium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bit_o_everything:titanium_ingot_from_raw_titanium_in_blastfurnace"
+    ]
+  }
+}
