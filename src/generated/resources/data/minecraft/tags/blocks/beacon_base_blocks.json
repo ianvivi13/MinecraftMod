@@ -1,3 +1,8 @@
 {
-  "values": []
+  "values": [
+    "bit_o_everything:silver_block",
+    "bit_o_everything:titanium_block",
+    "bit_o_everything:ruby_block",
+    "bit_o_everything:sapphire_block"
+  ]
 }

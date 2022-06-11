@@ -50,11 +50,41 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RAW_PYRITE_BLOCK.get())
                 .add(ModBlocks.PYRITE_BLOCK.get())
                 .add(ModBlocks.ASPHALT.get())
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ZINC_ORE.get())
+                .add(ModBlocks.RAW_ZINC_BLOCK.get())
+                .add(ModBlocks.ZINC_BLOCK.get())
+                .add(ModBlocks.MAGNESIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_MAGNESIUM_ORE.get())
+                .add(ModBlocks.RAW_MAGNESIUM_BLOCK.get())
+                .add(ModBlocks.MAGNESIUM_BLOCK.get())
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.RAW_SILVER_BLOCK.get())
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
+                .add(ModBlocks.RAW_TIN_BLOCK.get())
+                .add(ModBlocks.TIN_BLOCK.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
+                .add(ModBlocks.TITANIUM_BLOCK.get())
+                .add(ModBlocks.SAPPHIRE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get())
+                .add(ModBlocks.SAPPHIRE_BLOCK.get())
+                .add(ModBlocks.RUBY_ORE.get())
+                .add(ModBlocks.DEEPSLATE_RUBY_ORE.get())
+                .add(ModBlocks.RUBY_BLOCK.get())
         ;
         //endregion
         //region Needs <Level>
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.ASPHALT.get())
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
+                .add(ModBlocks.RAW_TIN_BLOCK.get())
+                .add(ModBlocks.TIN_BLOCK.get())
         ;
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
@@ -62,14 +92,40 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_PYRITE_ORE.get())
                 .add(ModBlocks.PYRITE_BLOCK.get())
                 .add(ModBlocks.RAW_PYRITE_BLOCK.get())
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ZINC_ORE.get())
+                .add(ModBlocks.RAW_ZINC_BLOCK.get())
+                .add(ModBlocks.ZINC_BLOCK.get())
+                .add(ModBlocks.MAGNESIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_MAGNESIUM_ORE.get())
+                .add(ModBlocks.RAW_MAGNESIUM_BLOCK.get())
+                .add(ModBlocks.MAGNESIUM_BLOCK.get())
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.RAW_SILVER_BLOCK.get())
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.SAPPHIRE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get())
+                .add(ModBlocks.SAPPHIRE_BLOCK.get())
+                .add(ModBlocks.RUBY_ORE.get())
+                .add(ModBlocks.DEEPSLATE_RUBY_ORE.get())
+                .add(ModBlocks.RUBY_BLOCK.get())
         ;
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
-
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.RAW_TITANIUM_BLOCK.get())
+                .add(ModBlocks.TITANIUM_BLOCK.get())
         ;
         //endregion
         //region Beacon
-        this.tag(BlockTags.BEACON_BASE_BLOCKS);
+        this.tag(BlockTags.BEACON_BASE_BLOCKS)
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.TITANIUM_BLOCK.get())
+                .add(ModBlocks.RUBY_BLOCK.get())
+                .add(ModBlocks.SAPPHIRE_BLOCK.get())
+        ;
         //endregion
         //region Wood Types
         this.tag(BlockTags.PLANKS)

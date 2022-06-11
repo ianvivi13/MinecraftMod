@@ -4,6 +4,7 @@
     "bit_o_everything:deepslate_pyrite_ore",
     "bit_o_everything:raw_pyrite_block",
     "bit_o_everything:pyrite_block",
+    "bit_o_everything:asphalt",
     "bit_o_everything:zinc_ore",
     "bit_o_everything:deepslate_zinc_ore",
     "bit_o_everything:raw_zinc_block",
@@ -24,12 +25,11 @@
     "bit_o_everything:deepslate_titanium_ore",
     "bit_o_everything:raw_titanium_block",
     "bit_o_everything:titanium_block",
-    "bit_o_everything:ruby_ore",
-    "bit_o_everything:deepslate_ruby_ore",
-    "bit_o_everything:ruby_block",
     "bit_o_everything:sapphire_ore",
     "bit_o_everything:deepslate_sapphire_ore",
     "bit_o_everything:sapphire_block",
-    "bit_o_everything:asphalt"
+    "bit_o_everything:ruby_ore",
+    "bit_o_everything:deepslate_ruby_ore",
+    "bit_o_everything:ruby_block"
   ]
 }

@@ -36,10 +36,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
         this.copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         //endregion
-
         //region Beacon
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS)
-
+                .add(ModItems.SAPPHIRE.get())
+                .add(ModItems.RUBY.get())
+                .add(ModItems.TITANIUM_INGOT.get())
+                .add(ModItems.SILVER_INGOT.get())
         ;
         //endregion
         //region Boats

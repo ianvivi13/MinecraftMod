@@ -10,9 +10,7 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -163,9 +161,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> JUMP_BLOCK = registerBlock("jump_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS).sound(SoundType.WOOL)
-                    .strength(0.4f).jumpFactor(2.0F).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+                    .strength(0.4f).jumpFactor(2.0F)), ModCreativeModeTab.MODDED);
 
-    // cherry wood and stuffs
     public static final RegistryObject<Block> CHERRY_LOG = registerBlock("cherry_log",
             () -> new Wood(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModCreativeModeTab.MODDED);
 
