@@ -82,6 +82,141 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer, baseRecipeName + "smoker");
     }
 
+    // wood style stuffs
+    protected void Door(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 3)
+                .define('#', in)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Trapdoor(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 2)
+                .define('#', in)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Fence(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 3)
+                .define('#', in)
+                .define('I', Items.STICK)
+                .pattern("#I#")
+                .pattern("#I#")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Fencegate(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out)
+                .define('I', in)
+                .define('#', Items.STICK)
+                .pattern("#I#")
+                .pattern("#I#")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Sign(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 3)
+                .define('#', in)
+                .define('I', Items.STICK)
+                .pattern("###")
+                .pattern("###")
+                .pattern(" I ")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Boat(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out)
+                .define('#', in)
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Chestboat(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapelessRecipeBuilder.shapeless(out, 1)
+                .requires(in)
+                .requires(Items.CHEST)
+                .unlockedBy("has_" + out.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(out).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void OneToX(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in, int x) {
+        ShapelessRecipeBuilder.shapeless(out, x)
+                .requires(in)
+                .unlockedBy("has_" + out.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(out).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Pressureplate(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out)
+                .define('#', in)
+                .pattern("##")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Slab(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 6)
+                .define('#', in)
+                .pattern("###")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void Stair(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 4)
+                .define('#', in)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void LogToWood(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike in) {
+        ShapedRecipeBuilder.shaped(out, 3)
+                .define('#', in)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_" + in.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(in).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
+    }
+
+    protected void AllWoodRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike log, ItemLike strippedLog,
+                                  ItemLike wood, ItemLike strippedWood, ItemLike plank, ItemLike stair, ItemLike slab,
+                                  ItemLike fence, ItemLike fenceGate, ItemLike door, ItemLike trapdoor, ItemLike sign,
+                                  ItemLike button, ItemLike pressurePlate, ItemLike boat, ItemLike chestBoat) {
+
+        LogToWood(pFinishedRecipeConsumer, wood, log);
+        LogToWood(pFinishedRecipeConsumer, strippedWood, strippedLog);
+        OneToX(pFinishedRecipeConsumer, plank, log, 4);
+        OneToX(pFinishedRecipeConsumer, plank, strippedLog, 4);
+        OneToX(pFinishedRecipeConsumer, plank, wood, 4);
+        OneToX(pFinishedRecipeConsumer, plank, strippedWood, 4);
+        Stair(pFinishedRecipeConsumer, stair, plank);
+        Slab(pFinishedRecipeConsumer, slab, plank);
+        Fence(pFinishedRecipeConsumer, fence, plank);
+        Fencegate(pFinishedRecipeConsumer, fenceGate, plank);
+        Door(pFinishedRecipeConsumer, door, plank);
+        Trapdoor(pFinishedRecipeConsumer, trapdoor, plank);
+        Sign(pFinishedRecipeConsumer, sign, plank);
+        OneToX(pFinishedRecipeConsumer, button, plank,1);
+        Pressureplate(pFinishedRecipeConsumer, pressurePlate, plank);
+        Boat(pFinishedRecipeConsumer, boat, plank);
+        Chestboat(pFinishedRecipeConsumer, chestBoat, boat);
+    }
+
+
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         /*  crafting recipes are easier
@@ -116,6 +251,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         FurnaceCampSmoke(pFinishedRecipeConsumer, ModItems.FRIED_EGG.get(), 0.35f, Items.EGG);
         FurnaceBlast(pFinishedRecipeConsumer, ModItems.PYRITE.get(),1.0f, ModBlocks.DEEPSLATE_PYRITE_ORE.get(), ModBlocks.PYRITE_ORE.get(), ModItems.RAW_PYRITE.get());
 
-
+        // cherry wood recipes
+        AllWoodRecipes(pFinishedRecipeConsumer, ModBlocks.CHERRY_LOG.get(), ModBlocks.STRIPPED_CHERRY_LOG.get(),
+                ModBlocks.CHERRY_WOOD.get(), ModBlocks.STRIPPED_CHERRY_WOOD.get(), ModBlocks.CHERRY_PLANKS.get(),
+                ModBlocks.CHERRY_STAIRS.get(), ModBlocks.CHERRY_SLAB.get(), ModBlocks.CHERRY_FENCE.get(),
+                ModBlocks.CHERRY_FENCE_GATE.get(), ModBlocks.CHERRY_DOOR.get(), ModBlocks.CHERRY_TRAPDOOR.get(),
+                ModItems.CHERRY_SIGN.get(), ModBlocks.CHERRY_BUTTON.get(), ModBlocks.CHERRY_PRESSURE_PLATE.get(),
+                ModItems.CHERRY_BOAT.get(), ModItems.CHERRY_CHEST_BOAT.get());
     }
 }

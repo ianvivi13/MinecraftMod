@@ -1,13 +1,11 @@
 package com.bic.bit_o_everything.block;
 
 import com.bic.bit_o_everything.BitOEverything;
-import com.bic.bit_o_everything.block.custom.ModStandingSignBlock;
-import com.bic.bit_o_everything.block.custom.ModWallSignBlock;
-import com.bic.bit_o_everything.block.custom.Plank;
-import com.bic.bit_o_everything.block.custom.Wood;
+import com.bic.bit_o_everything.block.custom.*;
 import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.item.ModCreativeModeTab;
 import com.bic.bit_o_everything.item.ModItems;
+import com.bic.bit_o_everything.world.feature.tree.CherryTreeGrower;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -74,10 +72,10 @@ public class ModBlocks {
             () -> new Plank(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> CHERRY_STAIRS = registerBlock("cherry_stairs",
-            () -> new StairBlock(() -> ModBlocks.CHERRY_PLANKS.get().defaultBlockState(),BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)), ModCreativeModeTab.MODDED);
+            () -> new BurnableStair(() -> ModBlocks.CHERRY_PLANKS.get().defaultBlockState(),BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> CHERRY_SLAB = registerBlock("cherry_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)), ModCreativeModeTab.MODDED);
+            () -> new BurnableSlab(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> CHERRY_FENCE = registerBlock("cherry_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)), ModCreativeModeTab.MODDED);
@@ -102,6 +100,12 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CHERRY_SIGN = registerBlockWithoutBlockItem("cherry_sign",
             () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.CHERRY));
+
+    public static final RegistryObject<Block> CHERRY_LEAVES = registerBlock("cherry_leaves",
+            () -> new Leaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> CHERRY_SAPLING = registerBlock("cherry_sapling",
+            () -> new SaplingBlock(new CherryTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModCreativeModeTab.MODDED);
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
