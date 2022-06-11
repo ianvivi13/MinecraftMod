@@ -113,6 +113,22 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
+    public static final RegistryObject<Block> TITANIUM_ORE = registerBlock("titanium_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> DEEPSLATE_TITANIUM_ORE = registerBlock("deepslate_titanium_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> RAW_TITANIUM_BLOCK = registerBlock("raw_titanium_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
     public static final RegistryObject<Block> RUBY_ORE = registerBlock("ruby_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
@@ -140,6 +156,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> ASPHALT = registerBlock("asphalt",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE)
                     .strength(1.5f).speedFactor(1.2F).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+
+    public static final RegistryObject<Block> JUMP_BLOCK = registerBlock("jump_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS).sound(SoundType.WOOL)
+                    .strength(0.4f).jumpFactor(2.0F).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

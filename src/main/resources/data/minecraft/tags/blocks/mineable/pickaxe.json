@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "bit_o_everything:pyrite_ore",
     "bit_o_everything:deepslate_pyrite_ore",
@@ -21,6 +20,10 @@
     "bit_o_everything:deepslate_tin_ore",
     "bit_o_everything:raw_tin_block",
     "bit_o_everything:tin_block",
+    "bit_o_everything:titanium_ore",
+    "bit_o_everything:deepslate_titanium_ore",
+    "bit_o_everything:raw_titanium_block",
+    "bit_o_everything:titanium_block",
     "bit_o_everything:ruby_ore",
     "bit_o_everything:deepslate_ruby_ore",
     "bit_o_everything:ruby_block",

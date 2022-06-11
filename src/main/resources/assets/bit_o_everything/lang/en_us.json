@@ -12,6 +12,8 @@
   "item.bit_o_everything.silver_ingot": "Silver Ingot",
   "item.bit_o_everything.raw_tin": "Raw Tin",
   "item.bit_o_everything.tin_ingot": "Tin Ingot",
+  "item.bit_o_everything.raw_titanium": "Raw Titanium",
+  "item.bit_o_everything.titanium_ingot": "Titanium Ingot",
   "item.bit_o_everything.ruby": "Ruby",
   "item.bit_o_everything.sapphire": "Sapphire",
 
@@ -35,6 +37,10 @@
   "block.bit_o_everything.deepslate_tin_ore": "Deepslate Tin Ore",
   "block.bit_o_everything.tin_block": "Tin Block",
   "block.bit_o_everything.raw_tin_block": "Raw Tin Block",
+  "block.bit_o_everything.titanium_ore": "Titanium Ore",
+  "block.bit_o_everything.deepslate_titanium_ore": "Deepslate Titanium Ore",
+  "block.bit_o_everything.titanium_block": "Titanium Block",
+  "block.bit_o_everything.raw_titanium_block": "Raw Titanium Block",
   "block.bit_o_everything.ruby_ore": "Ruby Ore",
   "block.bit_o_everything.deepslate_ruby_ore": "Deepslate Ruby Ore",
   "block.bit_o_everything.ruby_block": "Ruby Block",
@@ -42,6 +48,7 @@
   "block.bit_o_everything.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
   "block.bit_o_everything.sapphire_block": "Sapphire Block",
   "block.bit_o_everything.asphalt": "Asphalt",
+  "block.bit_o_everything.jump_block": "Jump Block",
 
   "itemGroup.modded": "Modded"
 }

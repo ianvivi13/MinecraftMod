@@ -53,6 +53,12 @@ public class ModItems {
     public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
+    public static final RegistryObject<Item> RAW_TITANIUM = ITEMS.register("raw_titanium",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> TITANIUM_INGOT = ITEMS.register("titanium_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
