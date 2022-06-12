@@ -6,7 +6,6 @@ import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.item.ModCreativeModeTab;
 import com.bic.bit_o_everything.item.ModItems;
 import com.bic.bit_o_everything.world.feature.tree.CherryTreeGrower;
-import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -35,6 +34,7 @@ public class ModBlocks {
     }
 
     // Create blocks here
+    //region Pyrite, Zinc, Magnesium, Titanium, Tin, Silver, Ruby, Sapphire
     public static final RegistryObject<Block> PYRITE_ORE = registerBlock("pyrite_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
@@ -154,6 +154,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SAPPHIRE_BLOCK = registerBlock("sapphire_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL)
                     .strength(3f).requiresCorrectToolForDrops()), ModCreativeModeTab.MODDED);
+    //endregion
 
     public static final RegistryObject<Block> ASPHALT = registerBlock("asphalt",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE)
@@ -163,6 +164,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS).sound(SoundType.WOOL)
                     .strength(0.4f).jumpFactor(2.0F)), ModCreativeModeTab.MODDED);
 
+    //region Cherry Woods
     public static final RegistryObject<Block> CHERRY_LOG = registerBlock("cherry_log",
             () -> new Wood(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModCreativeModeTab.MODDED);
 
@@ -213,6 +215,20 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CHERRY_SAPLING = registerBlock("cherry_sapling",
             () -> new SaplingBlock(new CherryTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModCreativeModeTab.MODDED);
+    //endregion
+
+    //region Concrete Slabs
+
+
+
+
+
+
+
+
+    //endregion
+
+
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
