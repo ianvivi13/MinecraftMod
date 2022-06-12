@@ -92,6 +92,22 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_CONCRETE_SLAB.get())
                 .add(ModBlocks.RED_CONCRETE_SLAB.get())
                 .add(ModBlocks.BLACK_CONCRETE_SLAB.get())
+                .add(ModBlocks.WHITE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.ORANGE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.MAGENTA_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIGHT_BLUE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.YELLOW_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIME_CONCRETE_STAIRS.get())
+                .add(ModBlocks.PINK_CONCRETE_STAIRS.get())
+                .add(ModBlocks.GRAY_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIGHT_GRAY_CONCRETE_STAIRS.get())
+                .add(ModBlocks.CYAN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.PURPLE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BLUE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BROWN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.GREEN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.RED_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BLACK_CONCRETE_STAIRS.get())
         ;
         //endregion
         //region Needs <Level>
@@ -225,6 +241,25 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_CONCRETE_SLAB.get())
                 .add(ModBlocks.RED_CONCRETE_SLAB.get())
                 .add(ModBlocks.BLACK_CONCRETE_SLAB.get())
+        ;
+
+        this.tag(BlockTags.STAIRS)
+                .add(ModBlocks.WHITE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.ORANGE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.MAGENTA_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIGHT_BLUE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.YELLOW_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIME_CONCRETE_STAIRS.get())
+                .add(ModBlocks.PINK_CONCRETE_STAIRS.get())
+                .add(ModBlocks.GRAY_CONCRETE_STAIRS.get())
+                .add(ModBlocks.LIGHT_GRAY_CONCRETE_STAIRS.get())
+                .add(ModBlocks.CYAN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.PURPLE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BLUE_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BROWN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.GREEN_CONCRETE_STAIRS.get())
+                .add(ModBlocks.RED_CONCRETE_STAIRS.get())
+                .add(ModBlocks.BLACK_CONCRETE_STAIRS.get())
         ;
     }
 }

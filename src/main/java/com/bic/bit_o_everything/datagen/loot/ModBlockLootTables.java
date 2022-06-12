@@ -44,6 +44,23 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.CHERRY_WALL_SIGN.get());
         this.dropSelf(ModBlocks.CHERRY_SAPLING.get());
 
+        this.dropSelf(ModBlocks.WHITE_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.ORANGE_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.MAGENTA_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.LIGHT_BLUE_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.YELLOW_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.LIME_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.PINK_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.LIGHT_GRAY_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.CYAN_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.PURPLE_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.BLUE_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.BROWN_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.GREEN_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.RED_CONCRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.BLACK_CONCRETE_STAIRS.get());
+
         this.add(ModBlocks.WHITE_CONCRETE_SLAB.get(), BlockLoot::createSlabItemTable);
         this.add(ModBlocks.ORANGE_CONCRETE_SLAB.get(), BlockLoot::createSlabItemTable);
         this.add(ModBlocks.MAGENTA_CONCRETE_SLAB.get(), BlockLoot::createSlabItemTable);

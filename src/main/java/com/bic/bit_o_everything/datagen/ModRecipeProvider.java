@@ -295,5 +295,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         slab(pFinishedRecipeConsumer, ModBlocks.GREEN_CONCRETE_SLAB.get(), Blocks.GREEN_CONCRETE);
         slab(pFinishedRecipeConsumer, ModBlocks.RED_CONCRETE_SLAB.get(), Blocks.RED_CONCRETE);
         slab(pFinishedRecipeConsumer, ModBlocks.BLACK_CONCRETE_SLAB.get(), Blocks.BLACK_CONCRETE);
+
+        // Concrete Stairs recipes
+        Stair(pFinishedRecipeConsumer, ModBlocks.WHITE_CONCRETE_STAIRS.get(), Blocks.WHITE_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.ORANGE_CONCRETE_STAIRS.get(), Blocks.ORANGE_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.MAGENTA_CONCRETE_STAIRS.get(), Blocks.MAGENTA_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIGHT_BLUE_CONCRETE_STAIRS.get(), Blocks.LIGHT_BLUE_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.YELLOW_CONCRETE_STAIRS.get(), Blocks.YELLOW_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIME_CONCRETE_STAIRS.get(), Blocks.LIME_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.PINK_CONCRETE_STAIRS.get(), Blocks.PINK_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.GRAY_CONCRETE_STAIRS.get(), Blocks.GRAY_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIGHT_GRAY_CONCRETE_STAIRS.get(), Blocks.LIGHT_GRAY_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.CYAN_CONCRETE_STAIRS.get(), Blocks.CYAN_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.PURPLE_CONCRETE_STAIRS.get(), Blocks.PURPLE_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BLUE_CONCRETE_STAIRS.get(), Blocks.BLUE_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BROWN_CONCRETE_STAIRS.get(), Blocks.BROWN_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.GREEN_CONCRETE_STAIRS.get(), Blocks.GREEN_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.RED_CONCRETE_STAIRS.get(), Blocks.RED_CONCRETE);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BLACK_CONCRETE_STAIRS.get(), Blocks.BLACK_CONCRETE);
     }
 }
