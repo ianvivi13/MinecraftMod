@@ -20,7 +20,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //region Copy Block Tags
         // mod tags
         this.copy(ModTags.Blocks.CHERRY_LOGS, ModTags.Items.CHERRY_LOGS);
-
+        
         // minecraft tags
         this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
@@ -35,6 +35,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
         this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
         this.copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
+        this.copy(BlockTags.SLABS, ItemTags.SLABS);
         //endregion
         //region Beacon
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS)

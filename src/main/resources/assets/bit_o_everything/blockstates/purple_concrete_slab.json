@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bit_o_everything:block/purple_concrete_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/purple_concrete"
+    },
+    "type=top": {
+      "model": "bit_o_everything:block/purple_concrete_slab_top"
+    }
+  }
+}

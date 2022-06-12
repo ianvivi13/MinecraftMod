@@ -76,6 +76,22 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RUBY_ORE.get())
                 .add(ModBlocks.DEEPSLATE_RUBY_ORE.get())
                 .add(ModBlocks.RUBY_BLOCK.get())
+                .add(ModBlocks.WHITE_CONCRETE_SLAB.get())
+                .add(ModBlocks.ORANGE_CONCRETE_SLAB.get())
+                .add(ModBlocks.MAGENTA_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIGHT_BLUE_CONCRETE_SLAB.get())
+                .add(ModBlocks.YELLOW_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIME_CONCRETE_SLAB.get())
+                .add(ModBlocks.PINK_CONCRETE_SLAB.get())
+                .add(ModBlocks.GRAY_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIGHT_GRAY_CONCRETE_SLAB.get())
+                .add(ModBlocks.CYAN_CONCRETE_SLAB.get())
+                .add(ModBlocks.PURPLE_CONCRETE_SLAB.get())
+                .add(ModBlocks.BLUE_CONCRETE_SLAB.get())
+                .add(ModBlocks.BROWN_CONCRETE_SLAB.get())
+                .add(ModBlocks.GREEN_CONCRETE_SLAB.get())
+                .add(ModBlocks.RED_CONCRETE_SLAB.get())
+                .add(ModBlocks.BLACK_CONCRETE_SLAB.get())
         ;
         //endregion
         //region Needs <Level>
@@ -192,6 +208,23 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHERRY_WALL_SIGN.get())
         ;
         //endregion
-
+        this.tag(BlockTags.SLABS)
+                .add(ModBlocks.WHITE_CONCRETE_SLAB.get())
+                .add(ModBlocks.ORANGE_CONCRETE_SLAB.get())
+                .add(ModBlocks.MAGENTA_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIGHT_BLUE_CONCRETE_SLAB.get())
+                .add(ModBlocks.YELLOW_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIME_CONCRETE_SLAB.get())
+                .add(ModBlocks.PINK_CONCRETE_SLAB.get())
+                .add(ModBlocks.GRAY_CONCRETE_SLAB.get())
+                .add(ModBlocks.LIGHT_GRAY_CONCRETE_SLAB.get())
+                .add(ModBlocks.CYAN_CONCRETE_SLAB.get())
+                .add(ModBlocks.PURPLE_CONCRETE_SLAB.get())
+                .add(ModBlocks.BLUE_CONCRETE_SLAB.get())
+                .add(ModBlocks.BROWN_CONCRETE_SLAB.get())
+                .add(ModBlocks.GREEN_CONCRETE_SLAB.get())
+                .add(ModBlocks.RED_CONCRETE_SLAB.get())
+                .add(ModBlocks.BLACK_CONCRETE_SLAB.get())
+        ;
     }
 }

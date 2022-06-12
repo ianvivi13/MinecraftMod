@@ -277,5 +277,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModBlocks.CHERRY_FENCE_GATE.get(), ModBlocks.CHERRY_DOOR.get(), ModBlocks.CHERRY_TRAPDOOR.get(),
                 ModItems.CHERRY_SIGN.get(), ModBlocks.CHERRY_BUTTON.get(), ModBlocks.CHERRY_PRESSURE_PLATE.get(),
                 ModItems.CHERRY_BOAT.get(), ModItems.CHERRY_CHEST_BOAT.get());
+
+        // Concrete Slab recipes
+        slab(pFinishedRecipeConsumer, ModBlocks.WHITE_CONCRETE_SLAB.get(), Blocks.WHITE_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.ORANGE_CONCRETE_SLAB.get(), Blocks.ORANGE_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.MAGENTA_CONCRETE_SLAB.get(), Blocks.MAGENTA_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIGHT_BLUE_CONCRETE_SLAB.get(), Blocks.LIGHT_BLUE_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.YELLOW_CONCRETE_SLAB.get(), Blocks.YELLOW_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIME_CONCRETE_SLAB.get(), Blocks.LIME_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.PINK_CONCRETE_SLAB.get(), Blocks.PINK_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.GRAY_CONCRETE_SLAB.get(), Blocks.GRAY_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIGHT_GRAY_CONCRETE_SLAB.get(), Blocks.LIGHT_GRAY_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.CYAN_CONCRETE_SLAB.get(), Blocks.CYAN_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.PURPLE_CONCRETE_SLAB.get(), Blocks.PURPLE_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.BLUE_CONCRETE_SLAB.get(), Blocks.BLUE_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.BROWN_CONCRETE_SLAB.get(), Blocks.BROWN_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.GREEN_CONCRETE_SLAB.get(), Blocks.GREEN_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.RED_CONCRETE_SLAB.get(), Blocks.RED_CONCRETE);
+        slab(pFinishedRecipeConsumer, ModBlocks.BLACK_CONCRETE_SLAB.get(), Blocks.BLACK_CONCRETE);
     }
 }
