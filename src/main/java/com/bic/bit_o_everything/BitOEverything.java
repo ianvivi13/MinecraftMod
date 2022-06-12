@@ -38,7 +38,6 @@ public class BitOEverything  {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-
     public BitOEverything()
     {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
