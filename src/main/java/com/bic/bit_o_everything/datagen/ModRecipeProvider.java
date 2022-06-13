@@ -192,6 +192,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
     }
 
+    protected void Surround(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike center, ItemLike outside, int quantity) {
+        ShapedRecipeBuilder.shaped(out, quantity)
+                .define('#', outside)
+                .define('C', center)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .unlockedBy("has_" + outside.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(outside).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + center.asItem() + "_and_" + outside.asItem());
+    }
+
     protected void AllWoodRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike log, ItemLike strippedLog,
                                   ItemLike wood, ItemLike strippedWood, ItemLike plank, ItemLike stair, ItemLike slab,
                                   ItemLike fence, ItemLike fenceGate, ItemLike door, ItemLike trapdoor, ItemLike sign,
@@ -313,5 +324,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         Stair(pFinishedRecipeConsumer, ModBlocks.GREEN_CONCRETE_STAIRS.get(), Blocks.GREEN_CONCRETE);
         Stair(pFinishedRecipeConsumer, ModBlocks.RED_CONCRETE_STAIRS.get(), Blocks.RED_CONCRETE);
         Stair(pFinishedRecipeConsumer, ModBlocks.BLACK_CONCRETE_STAIRS.get(), Blocks.BLACK_CONCRETE);
+
+        Surround(pFinishedRecipeConsumer, ModItems.EXPLOSIVE_ARROW.get(), Blocks.TNT, Items.ARROW, 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_ONE.get(), Items.STRING, ModItems.EXPLOSIVE_ARROW.get(), 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_TWO.get(), Items.STRING, ModItems.TIMED_ARROW_ONE.get(), 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_THREE.get(), Items.STRING, ModItems.TIMED_ARROW_TWO.get(), 8);
     }
 }
