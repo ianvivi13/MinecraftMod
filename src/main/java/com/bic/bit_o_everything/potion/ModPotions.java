@@ -13,8 +13,6 @@ public class ModPotions {
     //Add potions here
 
 
-
-
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);
     }
