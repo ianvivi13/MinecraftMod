@@ -5,16 +5,21 @@ import com.bic.bit_o_everything.block.entity.ModBlockEntities;
 import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
+import com.bic.bit_o_everything.potion.ModPotions;
+import com.bic.bit_o_everything.util.BetterBrewingRecipe;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -45,6 +50,9 @@ public class BitOEverything  {
         // Register shit here
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+
+        ModPotions.register(eventBus);
+
         ModBlockEntities.register(eventBus);
         ModEntityTypes.register(eventBus);
 
@@ -69,6 +77,11 @@ public class BitOEverything  {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             Sheets.addWoodType(ModWoodTypes.CHERRY);
+
+            //Add potion recipes here
+
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                    Items.POISONOUS_POTATO, Potions.LUCK));
         });
 
     }

@@ -52,6 +52,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.CHEST_BOATS)
                 .add(ModItems.CHERRY_CHEST_BOAT.get())
         ;
+
+        this.tag(ItemTags.ARROWS)
+                .add(ModItems.EXPLOSIVE_ARROW.get())
+                .add(ModItems.TIMED_ARROW_ONE.get())
+                .add(ModItems.TIMED_ARROW_TWO.get())
+                .add(ModItems.TIMED_ARROW_THREE.get())
+        ;
         //endregion
     }
 }

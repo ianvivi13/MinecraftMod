@@ -4,12 +4,7 @@ import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
-import com.bic.bit_o_everything.item.custom.ModBoatItem;
-import com.bic.bit_o_everything.item.custom.ModBookItem;
-import com.bic.bit_o_everything.item.custom.ModChestBoatItem;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.item.BoatItem;
-import net.minecraft.world.item.CreativeModeTab;
+import com.bic.bit_o_everything.item.custom.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -84,6 +79,18 @@ public class ModItems {
 
     public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
+            () -> new ExplosiveArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F));
+
+    public static final RegistryObject<Item> TIMED_ARROW_ONE = ITEMS.register("timed_arrow_one",
+            () -> new TimedArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F, 0.5));
+
+    public static final RegistryObject<Item> TIMED_ARROW_TWO = ITEMS.register("timed_arrow_two",
+            () -> new TimedArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F, 1));
+
+    public static final RegistryObject<Item> TIMED_ARROW_THREE = ITEMS.register("timed_arrow_three",
+            () -> new TimedArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F, 1.5));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

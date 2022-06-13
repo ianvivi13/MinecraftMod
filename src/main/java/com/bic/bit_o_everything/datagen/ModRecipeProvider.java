@@ -192,6 +192,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + in.asItem());
     }
 
+    protected void Surround(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike out, ItemLike center, ItemLike outside, int quantity) {
+        ShapedRecipeBuilder.shaped(out, quantity)
+                .define('#', outside)
+                .define('C', center)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .unlockedBy("has_" + outside.asItem(), inventoryTrigger(ItemPredicate.Builder.item().of(outside).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:" + out.asItem() + "_from_" + center.asItem() + "_and_" + outside.asItem());
+    }
+
     protected void AllWoodRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike log, ItemLike strippedLog,
                                   ItemLike wood, ItemLike strippedWood, ItemLike plank, ItemLike stair, ItemLike slab,
                                   ItemLike fence, ItemLike fenceGate, ItemLike door, ItemLike trapdoor, ItemLike sign,
@@ -277,5 +288,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 ModBlocks.CHERRY_FENCE_GATE.get(), ModBlocks.CHERRY_DOOR.get(), ModBlocks.CHERRY_TRAPDOOR.get(),
                 ModItems.CHERRY_SIGN.get(), ModBlocks.CHERRY_BUTTON.get(), ModBlocks.CHERRY_PRESSURE_PLATE.get(),
                 ModItems.CHERRY_BOAT.get(), ModItems.CHERRY_CHEST_BOAT.get());
+
+        Surround(pFinishedRecipeConsumer, ModItems.EXPLOSIVE_ARROW.get(), Blocks.TNT, Items.ARROW, 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_ONE.get(), Items.STRING, ModItems.EXPLOSIVE_ARROW.get(), 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_TWO.get(), Items.STRING, ModItems.TIMED_ARROW_ONE.get(), 8);
+        Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_THREE.get(), Items.STRING, ModItems.TIMED_ARROW_TWO.get(), 8);
     }
 }

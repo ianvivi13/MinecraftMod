@@ -1,31 +1,22 @@
 package com.bic.bit_o_everything.client;
 
 
+import com.bic.bit_o_everything.client.render.entity.ModExplosiveArrowEntityRenderer;
 import com.bic.bit_o_everything.client.render.entity.ModBoatEntityRenderer;
 import com.bic.bit_o_everything.client.render.entity.ModChestBoatEntityRenderer;
+import com.bic.bit_o_everything.client.render.entity.ModTimedArrowEntityRenderer;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
-import net.minecraft.client.Camera;
-import net.minecraft.client.color.block.BlockColors;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = "bit_o_everything", value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -95,6 +86,8 @@ public class ModRender {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.MOD_CHEST_BOAT.get(), ModChestBoatEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.MOD_BOAT.get(), ModBoatEntityRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.EXPLOSIVE_ARROW.get(), ModExplosiveArrowEntityRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.TIMED_ARROW.get(), ModTimedArrowEntityRenderer::new);
     }
 
     @SubscribeEvent
