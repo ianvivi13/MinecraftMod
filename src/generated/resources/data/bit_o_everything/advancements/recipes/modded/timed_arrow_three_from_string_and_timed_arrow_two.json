@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bit_o_everything:timed_arrow_three_from_string_and_timed_arrow_two"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_timed_arrow_two": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bit_o_everything:timed_arrow_two"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_timed_arrow_two",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bit_o_everything:timed_arrow_three_from_string_and_timed_arrow_two"
+    ]
+  }
+}
