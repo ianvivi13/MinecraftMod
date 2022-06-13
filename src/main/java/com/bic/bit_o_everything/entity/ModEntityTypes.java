@@ -4,6 +4,7 @@ import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import com.bic.bit_o_everything.entity.projectile.ExplosiveArrow;
+import com.bic.bit_o_everything.entity.projectile.SilverArrow;
 import com.bic.bit_o_everything.entity.projectile.TimedArrow;
 import net.minecraft.resources.ResourceLocation;
 
@@ -31,6 +32,7 @@ public class ModEntityTypes {
 
     public static final RegistryObject<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW = ENTITY_TYPES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrow>of(ExplosiveArrow::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build(new ResourceLocation(BitOEverything.MOD_ID, "explosive_arrow").toString()));
     public static final RegistryObject<EntityType<TimedArrow>> TIMED_ARROW = ENTITY_TYPES.register("timed_arrow", () -> EntityType.Builder.<TimedArrow>of(TimedArrow::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build(new ResourceLocation(BitOEverything.MOD_ID, "timed_arrow").toString()));
+    public static final RegistryObject<EntityType<SilverArrow>> SILVER_ARROW = ENTITY_TYPES.register("silver_arrow", () -> EntityType.Builder.<SilverArrow>of(SilverArrow::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build(new ResourceLocation(BitOEverything.MOD_ID, "silver_arrow").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

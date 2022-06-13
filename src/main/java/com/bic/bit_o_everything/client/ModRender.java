@@ -1,10 +1,7 @@
 package com.bic.bit_o_everything.client;
 
 
-import com.bic.bit_o_everything.client.render.entity.ModExplosiveArrowEntityRenderer;
-import com.bic.bit_o_everything.client.render.entity.ModBoatEntityRenderer;
-import com.bic.bit_o_everything.client.render.entity.ModChestBoatEntityRenderer;
-import com.bic.bit_o_everything.client.render.entity.ModTimedArrowEntityRenderer;
+import com.bic.bit_o_everything.client.render.entity.*;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
@@ -88,6 +85,7 @@ public class ModRender {
         event.registerEntityRenderer(ModEntityTypes.MOD_BOAT.get(), ModBoatEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.EXPLOSIVE_ARROW.get(), ModExplosiveArrowEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.TIMED_ARROW.get(), ModTimedArrowEntityRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.SILVER_ARROW.get(), ModSilverArrowEntityRenderer::new);
     }
 
     @SubscribeEvent

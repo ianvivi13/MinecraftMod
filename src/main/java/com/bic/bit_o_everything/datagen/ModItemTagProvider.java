@@ -60,6 +60,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.TIMED_ARROW_ONE.get())
                 .add(ModItems.TIMED_ARROW_TWO.get())
                 .add(ModItems.TIMED_ARROW_THREE.get())
+                .add(ModItems.SILVER_ARROW.get())
         ;
         //endregion
     }

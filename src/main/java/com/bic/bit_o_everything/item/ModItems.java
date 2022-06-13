@@ -92,6 +92,9 @@ public class ModItems {
     public static final RegistryObject<Item> TIMED_ARROW_THREE = ITEMS.register("timed_arrow_three",
             () -> new TimedArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F, 1.5));
 
+    public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
+            () -> new SilverArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

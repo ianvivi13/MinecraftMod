@@ -329,5 +329,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_ONE.get(), Items.STRING, ModItems.EXPLOSIVE_ARROW.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_TWO.get(), Items.STRING, ModItems.TIMED_ARROW_ONE.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_THREE.get(), Items.STRING, ModItems.TIMED_ARROW_TWO.get(), 8);
+        Surround(pFinishedRecipeConsumer, ModItems.SILVER_ARROW.get(), ModItems.SILVER_INGOT.get(), Items.ARROW, 8);
     }
 }
