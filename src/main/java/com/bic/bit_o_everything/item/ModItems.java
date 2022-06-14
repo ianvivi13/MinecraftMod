@@ -5,6 +5,7 @@ import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import com.bic.bit_o_everything.item.custom.*;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -94,6 +95,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
             () -> new SilverArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F));
+
+    public static final RegistryObject<Item> RAINBOW_DYE = ITEMS.register("rainbow_dye",
+            () -> new RainbowDyeItem(DyeColor.WHITE, new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

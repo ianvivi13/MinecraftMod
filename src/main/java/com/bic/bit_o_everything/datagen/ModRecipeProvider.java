@@ -330,5 +330,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_TWO.get(), Items.STRING, ModItems.TIMED_ARROW_ONE.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_THREE.get(), Items.STRING, ModItems.TIMED_ARROW_TWO.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.SILVER_ARROW.get(), ModItems.SILVER_INGOT.get(), Items.ARROW, 8);
+        Surround(pFinishedRecipeConsumer, ModBlocks.RAINBOW_BRICKS.get(), ModItems.RAINBOW_DYE.get(), Blocks.BRICKS, 8);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.RAINBOW_DYE.get(), 6)
+                .requires(Items.RED_DYE)
+                .requires(Items.GREEN_DYE)
+                .requires(Items.BLUE_DYE)
+                .requires(Items.CYAN_DYE)
+                .requires(Items.MAGENTA_DYE)
+                .requires(Items.YELLOW_DYE)
+                .unlockedBy("has_red_dye", inventoryTrigger(ItemPredicate.Builder.item().of(Items.RED_DYE).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:rainbow_dye_from_various_dyes");
     }
 }

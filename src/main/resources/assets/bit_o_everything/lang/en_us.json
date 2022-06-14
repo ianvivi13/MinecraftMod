@@ -23,6 +23,7 @@
   "item.bit_o_everything.timed_arrow_two": "Timed Arrow 1.0s",
   "item.bit_o_everything.timed_arrow_three": "Timed Arrow 1.5s",
   "item.bit_o_everything.silver_arrow": "Silver Arrow",
+  "item.bit_o_everything.rainbow_dye": "Rainbow Dye",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
@@ -104,6 +105,7 @@
   "block.bit_o_everything.green_concrete_stairs": "Green Concrete Stairs",
   "block.bit_o_everything.red_concrete_stairs": "Red Concrete Stairs",
   "block.bit_o_everything.black_concrete_stairs": "Black Concrete Stairs",
+  "block.bit_o_everything.rainbow_bricks": "Rainbow Bricks",
 
   "entity.bit_o_everything.chest_boat": "Boat with Chest",
 

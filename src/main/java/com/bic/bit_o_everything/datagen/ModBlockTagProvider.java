@@ -108,6 +108,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_CONCRETE_STAIRS.get())
                 .add(ModBlocks.RED_CONCRETE_STAIRS.get())
                 .add(ModBlocks.BLACK_CONCRETE_STAIRS.get())
+                .add(ModBlocks.RAINBOW_BRICKS.get())
         ;
         //endregion
         //region Needs <Level>

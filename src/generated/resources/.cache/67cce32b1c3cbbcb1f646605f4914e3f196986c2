@@ -1,4 +1,4 @@
-// 1.19	2022-06-12T18:34:23.1579676	LootTables
+// 1.19	2022-06-13T20:58:51.5000549	LootTables
 84599ebe44ca2eadfeb83d5157fd7db6366a5c7f data/bit_o_everything/loot_tables/blocks/asphalt.json
 8d3618b0c4a893a9c17a5bc09f20b82a9443edd2 data/bit_o_everything/loot_tables/blocks/black_concrete_slab.json
 ef7cd5dfbd8407287b54703c127cd3d3cf849602 data/bit_o_everything/loot_tables/blocks/black_concrete_stairs.json
@@ -54,6 +54,7 @@ d3f0381d3db3461a7cd243112d2d7cedc53826b2 data/bit_o_everything/loot_tables/block
 be4524c8f10c5b278e7a0c6688fad5ba9550df36 data/bit_o_everything/loot_tables/blocks/purple_concrete_stairs.json
 b1a961b56aa76e9f2749c530cc17cb37ce26d902 data/bit_o_everything/loot_tables/blocks/pyrite_block.json
 eb860e319fea38b4ce5ddc453dfeaf231432b237 data/bit_o_everything/loot_tables/blocks/pyrite_ore.json
+ab16c50dfa57d42eae7babcb594e2b170cee4765 data/bit_o_everything/loot_tables/blocks/rainbow_bricks.json
 c836ecdb94a223419b7f735d949076b43cc78d94 data/bit_o_everything/loot_tables/blocks/raw_magnesium_block.json
 30191c83763a4f7ad91f21b6d2052f652f5a88a9 data/bit_o_everything/loot_tables/blocks/raw_pyrite_block.json
 29fb987cd75a8d1610181841c5b36ecbfdc080be data/bit_o_everything/loot_tables/blocks/raw_silver_block.json
