@@ -2,8 +2,10 @@ package com.bic.bit_o_everything.item;
 
 import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.block.ModBlocks;
+import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
+import com.bic.bit_o_everything.entity.projectile.Grenade;
 import com.bic.bit_o_everything.item.custom.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
@@ -91,6 +93,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> TIMED_ARROW_THREE = ITEMS.register("timed_arrow_three",
             () -> new TimedArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F, 1.5));
+
+    public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade",
+            () -> new GrenadeItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
