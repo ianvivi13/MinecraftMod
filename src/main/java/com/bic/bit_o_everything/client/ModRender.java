@@ -8,6 +8,7 @@ import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -86,6 +87,8 @@ public class ModRender {
         event.registerEntityRenderer(ModEntityTypes.EXPLOSIVE_ARROW.get(), ModExplosiveArrowEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.TIMED_ARROW.get(), ModTimedArrowEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.SILVER_ARROW.get(), ModSilverArrowEntityRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.STICKY_GRENADE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.GRENADE.get(), ThrownItemRenderer::new);
     }
 
     @SubscribeEvent

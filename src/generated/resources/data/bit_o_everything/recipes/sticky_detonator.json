@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:stone_button"
+    },
+    "I": {
+      "item": "bit_o_everything:tin_block"
+    },
+    "N": {
+      "item": "minecraft:tnt"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    },
+    "U": {
+      "item": "bit_o_everything:titanium_ingot"
+    }
+  },
+  "pattern": [
+    "ITI",
+    "IBI",
+    "UNU"
+  ],
+  "result": {
+    "item": "bit_o_everything:sticky_detonator"
+  }
+}
