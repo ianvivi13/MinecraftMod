@@ -22,6 +22,9 @@
   "item.bit_o_everything.timed_arrow_one": "Timed Arrow 0.5s",
   "item.bit_o_everything.timed_arrow_two": "Timed Arrow 1.0s",
   "item.bit_o_everything.timed_arrow_three": "Timed Arrow 1.5s",
+  "item.bit_o_everything.grenade": "Grenade",
+  "item.bit_o_everything.sticky_grenade": "Sticky Grenade",
+  "item.bit_o_everything.sticky_detonator": "Detonator",
 
   "block.bit_o_everything.pyrite_ore": "Pyrite Ore",
   "block.bit_o_everything.deepslate_pyrite_ore": "Deepslate Pyrite Ore",

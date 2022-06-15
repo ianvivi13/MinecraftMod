@@ -86,7 +86,7 @@ public class ModRender {
         event.registerEntityRenderer(ModEntityTypes.MOD_BOAT.get(), ModBoatEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.EXPLOSIVE_ARROW.get(), ModExplosiveArrowEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.TIMED_ARROW.get(), ModTimedArrowEntityRenderer::new);
-
+        event.registerEntityRenderer(ModEntityTypes.STICKY_GRENADE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.GRENADE.get(), ThrownItemRenderer::new);
     }
 

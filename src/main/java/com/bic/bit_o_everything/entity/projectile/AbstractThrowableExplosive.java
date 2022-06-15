@@ -11,22 +11,36 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
 public abstract class AbstractThrowableExplosive extends ThrowableItemProjectile {
+    protected int maxTicks = 2400;
 
     public AbstractThrowableExplosive(EntityType<? extends ThrowableItemProjectile> entityType, Level level) {
         super(entityType, level);
+        this.maxTicks = 2400;
     }
 
     public AbstractThrowableExplosive(EntityType<? extends ThrowableItemProjectile> entityType, LivingEntity livingEntity, Level level) {
         super(entityType, livingEntity, level);
+        this.maxTicks = 2400;
     }
 
-
     protected float getExpRadius() {
-        return 4f;
+        return 3f;
     }
 
     protected Explosion.BlockInteraction getBlockInteraction() {
         return Explosion.BlockInteraction.BREAK;
+    }
+
+    @Override
+    public void tick() {
+        this.maxTicks --;
+        if (this.maxTicks <= 0) {
+            this.discard();
+        }
+        if (this.isOnFire()) {
+            explode(this.position());
+        }
+        super.tick();
     }
 
     public void explode(Vec3 location) {

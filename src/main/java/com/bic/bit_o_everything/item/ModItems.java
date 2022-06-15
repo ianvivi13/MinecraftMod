@@ -97,6 +97,12 @@ public class ModItems {
     public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade",
             () -> new GrenadeItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
+    public static final RegistryObject<Item> STICKY_GRENADE = ITEMS.register("sticky_grenade",
+            () -> new StickyGrenadeItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+
+    public static final RegistryObject<Item> STICKY_DETONATOR = ITEMS.register("sticky_detonator",
+            () -> new StickyDetonator(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

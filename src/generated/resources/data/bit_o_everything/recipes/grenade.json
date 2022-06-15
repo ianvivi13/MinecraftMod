@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_nugget"
+    },
+    "N": {
+      "item": "minecraft:tnt"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "INI",
+    "III"
+  ],
+  "result": {
+    "count": 2,
+    "item": "bit_o_everything:grenade"
+  }
+}

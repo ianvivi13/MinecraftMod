@@ -9,6 +9,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.ArrayList;
@@ -329,5 +330,41 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_ONE.get(), Items.STRING, ModItems.EXPLOSIVE_ARROW.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_TWO.get(), Items.STRING, ModItems.TIMED_ARROW_ONE.get(), 8);
         Surround(pFinishedRecipeConsumer, ModItems.TIMED_ARROW_THREE.get(), Items.STRING, ModItems.TIMED_ARROW_TWO.get(), 8);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.STICKY_GRENADE.get())
+                .requires(ModItems.GRENADE.get())
+                .requires(Items.REDSTONE)
+                .requires(Items.SLIME_BALL)
+                .unlockedBy("has_grenade", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.GRENADE.get()).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:sticky_grenade_from_slimeball");
+
+        ShapelessRecipeBuilder.shapeless(ModItems.STICKY_GRENADE.get())
+                .requires(ModItems.GRENADE.get())
+                .requires(Items.REDSTONE)
+                .requires(Items.HONEY_BOTTLE)
+                .unlockedBy("has_grenade", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.GRENADE.get()).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:sticky_grenade_from_honey_bottle");
+
+        ShapedRecipeBuilder.shaped(ModItems.STICKY_DETONATOR.get())
+                .define('N', Blocks.TNT)
+                .define('T', Items.REDSTONE_TORCH)
+                .define('B', Items.STONE_BUTTON)
+                .define('U', ModItems.TITANIUM_INGOT.get())
+                .define('I', ModBlocks.TIN_BLOCK.get())
+                .pattern("ITI")
+                .pattern("IBI")
+                .pattern("UNU")
+                .unlockedBy("has_titanium", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.TITANIUM_INGOT.get()).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(ModItems.GRENADE.get(), 2)
+                .define('N', Blocks.TNT)
+                .define('S', Items.STRING)
+                .define('I', Items.IRON_NUGGET)
+                .pattern("ISI")
+                .pattern("INI")
+                .pattern("III")
+                .unlockedBy("has_tnt", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.TNT).build()))
+                .save(pFinishedRecipeConsumer);
     }
 }
