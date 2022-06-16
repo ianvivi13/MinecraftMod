@@ -306,6 +306,8 @@ public class ModBlocks {
 
     //endregion
 
+    public static final RegistryObject<Block> INDICATOR_LEVER = registerBlock("indicator_lever",
+            () -> new LeverBlock(BlockBehaviour.Properties.copy(Blocks.LEVER)), ModCreativeModeTab.MODDED);
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);

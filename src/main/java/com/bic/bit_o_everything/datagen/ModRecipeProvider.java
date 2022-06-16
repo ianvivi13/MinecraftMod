@@ -378,5 +378,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("III")
                 .unlockedBy("has_tnt", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.TNT).build()))
                 .save(pFinishedRecipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(ModBlocks.INDICATOR_LEVER.get())
+                .requires(Blocks.LEVER)
+                .requires(Blocks.REDSTONE_LAMP)
+                .unlockedBy("has_lever", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.LEVER).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:indicator_lever_from_lever_and_lamp");
     }
 }

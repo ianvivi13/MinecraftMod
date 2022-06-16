@@ -13,6 +13,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class StickyDetonator extends Item {
     final static int radius = 22;
+    final static int maxExplosions = 16;
 
     public StickyDetonator(Properties tab) {
         super(tab);
@@ -23,8 +24,13 @@ public class StickyDetonator extends Item {
         Vec3 start = pPlayer.getPosition(0f).add(-radius,-radius,-radius);
         Vec3 end = pPlayer.getPosition(0f).add(radius,radius,radius);
         AABB aabb = new AABB(start,end);
+        int numExplosions = 0;
         for (StickyGrenade nearby : pLevel.getEntitiesOfClass(StickyGrenade.class, aabb)) {
+            if (numExplosions >= maxExplosions) {
+                break;
+            }
             nearby.explodeSelf();
+            numExplosions ++;
         }
         return super.use(pLevel, pPlayer, pUsedHand);
 }
