@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
 public class PotterBlockEntity extends BlockEntity {
@@ -17,6 +18,11 @@ public class PotterBlockEntity extends BlockEntity {
     public int dirt = -1;
     public int flower = -1;
     public int material = 0;
+    public boolean[] connections = new boolean[] {
+            true, true, true,
+            true, true, true,
+            true, true, true
+    };
 
     public PotterBlockEntity(BlockPos pPos, BlockState pState) {
         super(ModBlockEntities.POTTER.get(), pPos, pState);
@@ -28,6 +34,9 @@ public class PotterBlockEntity extends BlockEntity {
         this.dirt = pTag.getInt("dirt");
         this.flower = pTag.getInt("flower");
         this.material = pTag.getInt("material");
+        for (int i = 0 ; i < connections.length ; i ++) {
+            this.connections[i] = pTag.getBoolean(String.valueOf(i));
+        }
     }
 
     @Override
@@ -36,6 +45,9 @@ public class PotterBlockEntity extends BlockEntity {
         pTag.putInt("dirt",this.dirt);
         pTag.putInt("flower",this.flower);
         pTag.putInt("material",this.material);
+        for (int i = 0 ; i < connections.length ; i ++) {
+            pTag.putBoolean(String.valueOf(i),connections[i]);
+        }
     }
 
     @Override
@@ -45,13 +57,24 @@ public class PotterBlockEntity extends BlockEntity {
         return t;
     }
 
+    @Override
+    public AABB getRenderBoundingBox() {
+        BlockPos pos = this.getBlockPos();
+        return new AABB(pos.offset(-1,0,-1), pos.offset(1,2,1));
+    }
+
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    public void update() {
+        this.requestModelDataUpdate();
+    }
+
     public void updateRender() {
+        update();
         this.setChanged();
         this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
     }

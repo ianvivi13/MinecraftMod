@@ -26,19 +26,35 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
     @Override
     public void render(PotterBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         final BlockRenderDispatcher dispatcher = this.context.getBlockRenderDispatcher();
-        pPackedLight = getProperLight(pBlockEntity);
+        //pPackedLight = getProperLight(pBlockEntity);
+        Block mat = pBlockEntity.getMaterial();
 
-        renderNorthFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderEastFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderSouthFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderWestFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderBottom(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
+        if (pBlockEntity.connections[1]) {
+            renderNorthFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[5]) {
+            renderEastFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[7]) {
+            renderSouthFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[3]) {
+            renderWestFace(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        renderBottom(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
 
-        renderNorthEastCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderSouthEastCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderNorthWestCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-        renderSouthWestCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getMaterial());
-
+        if (pBlockEntity.connections[2]) {
+            renderNorthEastCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[8]) {
+            renderSouthEastCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[0]) {
+            renderNorthWestCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
+        if (pBlockEntity.connections[6]) {
+            renderSouthWestCorner(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, mat);
+        }
         renderDirt(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getDirt());
         renderFlower(dispatcher, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, pBlockEntity.getFlower());
 
@@ -57,8 +73,11 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
     private void renderDirt(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         if (b != null) {
             pPoseStack.pushPose();
-            pPoseStack.scale(1f, 1 / 6400f, 1f);
-            pPoseStack.translate(0, 4000 - 1 / 6400d, 0);
+            //default method - thin line
+            pPoseStack.scale(6399/6400f, 1 / 6400f, 6399/6400f);
+            pPoseStack.translate(1/12798d, 4000 - 1 / 6400d, 1/12798d);
+            //pPoseStack.scale(1279/1280f, 9/16f, 1279/1280f);
+            //pPoseStack.translate(1/2558d, 1/9d, 1/2558d);
             dispatcher.renderSingleBlock(b.defaultBlockState(), pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, EmptyModelData.INSTANCE);
             pPoseStack.popPose();
         }
@@ -84,7 +103,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.popPose();
     }
 
-    private void renderEastFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderWestFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,14/16f);
         pPoseStack.translate(0,0,1/14d);
@@ -100,7 +119,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.popPose();
     }
 
-    private void renderWestFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderEastFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,14/16f);
         pPoseStack.translate(15,0,1/14d);
@@ -110,7 +129,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
     }
 
     // render corners
-    private void renderNorthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderNorthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,1/16f);
         pPoseStack.translate(0,0,0);
@@ -118,7 +137,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.popPose();
     }
 
-    private void renderSouthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderSouthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,1/16f);
         pPoseStack.translate(0,0,15);
@@ -126,7 +145,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.popPose();
     }
 
-    private void renderNorthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderNorthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,1/16f);
         pPoseStack.translate(15,0,0);
@@ -134,7 +153,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.popPose();
     }
 
-    private void renderSouthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
+    private void renderSouthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay, Block b) {
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,12/16f,1/16f);
         pPoseStack.translate(15,0,15);

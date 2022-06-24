@@ -296,7 +296,7 @@ public class ModBlocks {
             () -> new LeverBlock(BlockBehaviour.Properties.copy(Blocks.LEVER)), ModCreativeModeTab.MODDED);
 
     public static final RegistryObject<Block> POTTER = registerBlock("potter",
-            () -> new PotterBlock(BlockBehaviour.Properties.of(Material.DECORATION)), ModCreativeModeTab.MODDED);
+            () -> new PotterBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA).noOcclusion().dynamicShape().instabreak()), ModCreativeModeTab.MODDED);
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);

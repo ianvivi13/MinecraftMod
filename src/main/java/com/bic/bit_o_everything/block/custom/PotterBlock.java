@@ -4,6 +4,11 @@ import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -13,10 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -181,6 +189,28 @@ public class PotterBlock extends BaseEntityBlock{
                     }
                     potterBlockEntity.updateRender();
                     return InteractionResult.SUCCESS;
+                } else if (itemStack.is(Items.WOODEN_HOE)) {
+                    Vec3 v = pHit.getLocation();
+                    v = v.subtract(pPos.getX(), pPos.getY(), pPos.getZ());
+                    int x;
+                    if (v.x < 1/8d) {
+                        x = 0;
+                    } else if (v.x > 7/8d) {
+                        x = 2;
+                    } else {
+                        x = 1;
+                    }
+                    int z;
+                    if (v.z < 1/8d) {
+                        z = 0;
+                    } else if (v.z > 7/8d) {
+                        z = 2;
+                    } else {
+                        z = 1;
+                    }
+                    potterBlockEntity.connections[z*3+x] ^= true;
+                    potterBlockEntity.updateRender();
+                    return InteractionResult.SUCCESS;
                 } else {
                     int i = 0;
                     for (Pair<Supplier<Block>, Supplier<Item>> p : dirtPossibles) {
@@ -262,8 +292,18 @@ public class PotterBlock extends BaseEntityBlock{
     }
 
     @Override
+    public boolean propagatesSkylightDown(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return false;
+    }
+
+    @Override
     public @NotNull RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Override
+    public boolean useShapeForLightOcclusion(BlockState pState) {
+        return true;
     }
 
     @Nullable

@@ -63,7 +63,7 @@ public class BitOEverything  {
         WoodType.register(ModWoodTypes.CHERRY);
         BlockEntityRenderers.register(ModBlockEntities.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
 
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTER.get(), RenderType.cutout());
 
     }
 
