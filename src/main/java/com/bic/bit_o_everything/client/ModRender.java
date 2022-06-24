@@ -1,6 +1,8 @@
 package com.bic.bit_o_everything.client;
 
 
+import com.bic.bit_o_everything.block.entity.ModBlockEntities;
+import com.bic.bit_o_everything.client.render.block.PotterBlockEntityRenderer;
 import com.bic.bit_o_everything.client.render.entity.*;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
@@ -8,6 +10,7 @@ import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -89,6 +92,8 @@ public class ModRender {
         event.registerEntityRenderer(ModEntityTypes.SILVER_ARROW.get(), ModSilverArrowEntityRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.STICKY_GRENADE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.GRENADE.get(), ThrownItemRenderer::new);
+
+        event.registerBlockEntityRenderer(ModBlockEntities.POTTER.get(), PotterBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

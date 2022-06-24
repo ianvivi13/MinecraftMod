@@ -3,6 +3,7 @@ package com.bic.bit_o_everything.block.entity;
 import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.ModSignBlockEntity;
+import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ModSignBlockEntity::new,
                             ModBlocks.CHERRY_WALL_SIGN.get(),
                             ModBlocks.CHERRY_SIGN.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<PotterBlockEntity>> POTTER =
+            BLOCK_ENTITIES.register("potter", () ->
+                    BlockEntityType.Builder.of(PotterBlockEntity::new,
+                            ModBlocks.POTTER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

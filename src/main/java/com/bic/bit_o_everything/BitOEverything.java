@@ -8,6 +8,7 @@ import com.bic.bit_o_everything.item.ModItems;
 import com.bic.bit_o_everything.potion.ModPotions;
 import com.bic.bit_o_everything.util.BetterBrewingRecipe;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
@@ -59,9 +60,11 @@ public class BitOEverything  {
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHERRY_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHERRY_SAPLING.get(), RenderType.cutout());
-
         WoodType.register(ModWoodTypes.CHERRY);
         BlockEntityRenderers.register(ModBlockEntities.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
+
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTER.get(), RenderType.translucent());
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
