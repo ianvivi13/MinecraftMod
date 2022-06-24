@@ -28,6 +28,26 @@ import java.util.function.Supplier;
 public class PotterBlock extends BaseEntityBlock{
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
+    public final static ArrayList<Pair<Supplier<Block>, Supplier<Item>>> materialPossibles = new ArrayList<>() {{
+        add(new Pair<>(() -> Blocks.TERRACOTTA, () -> Items.CLAY_BALL));
+        add(new Pair<>(() -> Blocks.WHITE_TERRACOTTA, () -> Items.WHITE_DYE));
+        add(new Pair<>(() -> Blocks.ORANGE_TERRACOTTA, () -> Items.ORANGE_DYE));
+        add(new Pair<>(() -> Blocks.MAGENTA_TERRACOTTA, () -> Items.MAGENTA_DYE));
+        add(new Pair<>(() -> Blocks.LIGHT_BLUE_TERRACOTTA, () -> Items.LIGHT_BLUE_DYE));
+        add(new Pair<>(() -> Blocks.YELLOW_TERRACOTTA, () -> Items.YELLOW_DYE));
+        add(new Pair<>(() -> Blocks.LIME_TERRACOTTA, () -> Items.LIME_DYE));
+        add(new Pair<>(() -> Blocks.PINK_TERRACOTTA, () -> Items.PINK_DYE));
+        add(new Pair<>(() -> Blocks.GRAY_TERRACOTTA, () -> Items.GRAY_DYE));
+        add(new Pair<>(() -> Blocks.LIGHT_GRAY_TERRACOTTA, () -> Items.LIGHT_GRAY_DYE));
+        add(new Pair<>(() -> Blocks.CYAN_TERRACOTTA, () -> Items.CYAN_DYE));
+        add(new Pair<>(() -> Blocks.PURPLE_TERRACOTTA, () -> Items.PURPLE_DYE));
+        add(new Pair<>(() -> Blocks.BLUE_TERRACOTTA, () -> Items.BLUE_DYE));
+        add(new Pair<>(() -> Blocks.BROWN_TERRACOTTA, () -> Items.BROWN_DYE));
+        add(new Pair<>(() -> Blocks.GREEN_TERRACOTTA, () -> Items.GREEN_DYE));
+        add(new Pair<>(() -> Blocks.RED_TERRACOTTA, () -> Items.RED_DYE));
+        add(new Pair<>(() -> Blocks.BLACK_TERRACOTTA, () -> Items.BLACK_DYE));
+    }};
+
     public final static ArrayList<Pair<Supplier<Block>, Supplier<Item>>> flowerPossibles = new ArrayList<>() {{
         add(new Pair<>(() -> Blocks.DANDELION, () -> Blocks.DANDELION.asItem()));
         add(new Pair<>(() -> Blocks.POPPY, () -> Blocks.POPPY.asItem()));
@@ -115,6 +135,14 @@ public class PotterBlock extends BaseEntityBlock{
         }
     }
 
+    public static Block getMaterialBlock(int i) {
+        if (i < 0) {
+            return materialPossibles.get(0).getFirst().get();
+        } else {
+            return materialPossibles.get(i).getFirst().get();
+        }
+    }
+
     public static Item getDirtItem(int i) {
         if (i < 0) {
             return null;
@@ -183,6 +211,19 @@ public class PotterBlock extends BaseEntityBlock{
                             }
                             j ++;
                         }
+                    }
+                    int k = 0;
+                    for (Pair<Supplier<Block>, Supplier<Item>> p : materialPossibles) {
+                        if (itemStack.is(p.getSecond().get())) {
+                            if (k == potterBlockEntity.material) {
+                                return InteractionResult.SUCCESS;
+                            }
+                            potterBlockEntity.material = k;
+                            itemStack.shrink(1);
+                            potterBlockEntity.updateRender();
+                            return InteractionResult.SUCCESS;
+                        }
+                        k ++;
                     }
                 }
 

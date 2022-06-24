@@ -8,7 +8,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -17,19 +16,18 @@ public class PotterBlockEntity extends BlockEntity {
 
     public int dirt = -1;
     public int flower = -1;
-    public Block material = Blocks.LIME_TERRACOTTA;
+    public int material = 0;
 
     public PotterBlockEntity(BlockPos pPos, BlockState pState) {
         super(ModBlockEntities.POTTER.get(), pPos, pState);
     }
-
-    // getUpdateTag / handleUpdateTag / getUpdatePacket / onDataPacket
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.dirt = pTag.getInt("dirt");
         this.flower = pTag.getInt("flower");
+        this.material = pTag.getInt("material");
     }
 
     @Override
@@ -37,6 +35,7 @@ public class PotterBlockEntity extends BlockEntity {
         super.saveAdditional(pTag);
         pTag.putInt("dirt",this.dirt);
         pTag.putInt("flower",this.flower);
+        pTag.putInt("material",this.material);
     }
 
     @Override
@@ -66,7 +65,7 @@ public class PotterBlockEntity extends BlockEntity {
     }
 
     public Block getMaterial() {
-        return this.material;
+        return PotterBlock.getMaterialBlock(this.material);
     }
 
 }
