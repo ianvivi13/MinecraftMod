@@ -4,11 +4,6 @@ import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +27,10 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class PotterBlock extends BaseEntityBlock{
-    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+    protected static final VoxelShape TALL = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+    protected static final VoxelShape SHORT = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
+    protected static final VoxelShape FULL = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+
 
     public final static ArrayList<Pair<Supplier<Block>, Supplier<Item>>> materialPossibles = new ArrayList<>() {{
         add(new Pair<>(() -> Blocks.TERRACOTTA, () -> Items.CLAY_BALL));
@@ -99,6 +95,35 @@ public class PotterBlock extends BaseEntityBlock{
         add(new Pair<>(() -> Blocks.LARGE_AMETHYST_BUD, () -> Blocks.LARGE_AMETHYST_BUD.asItem()));
         add(new Pair<>(() -> Blocks.AMETHYST_CLUSTER, () -> Blocks.AMETHYST_CLUSTER.asItem()));
         add(new Pair<>(() -> ModBlocks.CHERRY_SAPLING.get(), () -> ModBlocks.CHERRY_SAPLING.get().asItem()));
+        add(new Pair<>(() -> Blocks.LILY_PAD, () -> Blocks.LILY_PAD.asItem()));
+        add(new Pair<>(() -> Blocks.FIRE, () -> Items.TORCH));
+        add(new Pair<>(() -> Blocks.SOUL_FIRE, () -> Items.SOUL_TORCH));
+        add(new Pair<>(() -> Blocks.FIRE_CORAL_FAN, () -> Blocks.FIRE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_FIRE_CORAL_FAN, () -> Blocks.DEAD_FIRE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.FIRE_CORAL, () -> Blocks.FIRE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_FIRE_CORAL, () -> Blocks.DEAD_FIRE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.HORN_CORAL_FAN, () -> Blocks.HORN_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_HORN_CORAL_FAN, () -> Blocks.DEAD_HORN_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.HORN_CORAL, () -> Blocks.HORN_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_HORN_CORAL, () -> Blocks.DEAD_HORN_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.BRAIN_CORAL_FAN, () -> Blocks.BRAIN_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BRAIN_CORAL_FAN, () -> Blocks.DEAD_BRAIN_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.BRAIN_CORAL, () -> Blocks.BRAIN_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BRAIN_CORAL, () -> Blocks.DEAD_BRAIN_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.TUBE_CORAL_FAN, () -> Blocks.TUBE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_TUBE_CORAL_FAN, () -> Blocks.DEAD_TUBE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.TUBE_CORAL, () -> Blocks.TUBE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_TUBE_CORAL, () -> Blocks.DEAD_TUBE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.BUBBLE_CORAL_FAN, () -> Blocks.BUBBLE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BUBBLE_CORAL_FAN, () -> Blocks.DEAD_BUBBLE_CORAL_FAN.asItem()));
+        add(new Pair<>(() -> Blocks.BUBBLE_CORAL, () -> Blocks.BUBBLE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BUBBLE_CORAL, () -> Blocks.DEAD_BUBBLE_CORAL.asItem()));
+        add(new Pair<>(() -> Blocks.PUMPKIN, () -> Blocks.PUMPKIN.asItem()));
+        add(new Pair<>(() -> Blocks.JACK_O_LANTERN, () -> Blocks.JACK_O_LANTERN.asItem()));
+        add(new Pair<>(() -> Blocks.MELON, () -> Blocks.MELON.asItem()));
+        add(new Pair<>(() -> Blocks.CHORUS_FLOWER, () -> Blocks.CHORUS_FLOWER.asItem()));
+        add(new Pair<>(() -> Blocks.CARVED_PUMPKIN, () -> Blocks.CARVED_PUMPKIN.asItem()));
+        add(new Pair<>(() -> Blocks.HAY_BLOCK, () -> Blocks.HAY_BLOCK.asItem()));
     }};
 
     public final static ArrayList<Pair<Supplier<Block>, Supplier<Item>>> dirtPossibles = new ArrayList<>() {{
@@ -122,8 +147,21 @@ public class PotterBlock extends BaseEntityBlock{
         add(new Pair<>(() -> Blocks.SCULK, () -> Blocks.SCULK.asItem()));
         add(new Pair<>(() -> Blocks.NETHERRACK, () -> Blocks.NETHERRACK.asItem()));
         add(new Pair<>(() -> Blocks.PACKED_MUD, () -> Blocks.PACKED_MUD.asItem()));
-        add(new Pair<>(() -> Blocks.DIRT_PATH, () -> Blocks.DIRT_PATH.asItem()));
-        add(new Pair<>(() -> Blocks.FARMLAND, () -> Blocks.FARMLAND.asItem()));
+        add(new Pair<>(() -> Blocks.END_STONE, () -> Blocks.END_STONE.asItem()));
+        add(new Pair<>(() -> Blocks.MAGMA_BLOCK, () -> Blocks.MAGMA_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.ICE, () -> Blocks.ICE.asItem()));
+        add(new Pair<>(() -> Blocks.PACKED_ICE, () -> Blocks.PACKED_ICE.asItem()));
+        add(new Pair<>(() -> Blocks.BLUE_ICE, () -> Blocks.BLUE_ICE.asItem()));
+        add(new Pair<>(() -> Blocks.BUBBLE_CORAL_BLOCK, () -> Blocks.BUBBLE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BUBBLE_CORAL_BLOCK, () -> Blocks.DEAD_BUBBLE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.BRAIN_CORAL_BLOCK, () -> Blocks.BRAIN_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BRAIN_CORAL_BLOCK, () -> Blocks.DEAD_BRAIN_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.FIRE_CORAL_BLOCK, () -> Blocks.FIRE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_FIRE_CORAL_BLOCK, () -> Blocks.DEAD_FIRE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.HORN_CORAL_BLOCK, () -> Blocks.HORN_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_HORN_CORAL_BLOCK, () -> Blocks.DEAD_HORN_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.TUBE_CORAL_BLOCK, () -> Blocks.TUBE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_TUBE_CORAL_BLOCK, () -> Blocks.DEAD_TUBE_CORAL_BLOCK.asItem()));
     }};
 
     public PotterBlock(Properties p_49795_) {
@@ -132,7 +170,11 @@ public class PotterBlock extends BaseEntityBlock{
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        if (blockentity instanceof PotterBlockEntity potterBlockEntity) {
+            return potterBlockEntity.connections[4] ? SHORT : TALL;
+        }
+        return FULL;
     }
 
     public static Block getDirtBlock(int i) {

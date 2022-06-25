@@ -1,0 +1,2 @@
+        add(new Pair<>(() -> Blocks.BUBBLE_CORAL_BLOCK, () -> Blocks.BUBBLE_CORAL_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.DEAD_BUBBLE_CORAL_BLOCK, () -> Blocks.DEAD_BUBBLE_CORAL_BLOCK.asItem()));

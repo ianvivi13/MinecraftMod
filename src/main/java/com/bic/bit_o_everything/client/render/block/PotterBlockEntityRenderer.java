@@ -31,33 +31,38 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         Level pBELevel = pBlockEntity.getLevel();
         RandomSource pBERandom = pBELevel.getRandom();
 
+        int height = 12;
+        if (pBlockEntity.connections[4]) {
+            height = 6;
+        }
+
         BlockState mat = pBlockEntity.getMaterial().defaultBlockState();
         for(RenderType t : RenderType.chunkBufferLayers()) {
             if (ItemBlockRenderTypes.canRenderInLayer(mat,t)) {
                 VertexConsumer VC = pBufferSource.getBuffer(t);
                 if (pBlockEntity.connections[1]) {
-                    renderNorthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderNorthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[5]) {
-                    renderEastFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderEastFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[7]) {
-                    renderSouthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderSouthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[3]) {
-                    renderWestFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderWestFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[2]) {
-                    renderNorthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderNorthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[8]) {
-                    renderSouthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderSouthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[0]) {
-                    renderNorthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderNorthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 if (pBlockEntity.connections[6]) {
-                    renderSouthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+                    renderSouthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
                 }
                 renderBottom(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
                 break;
@@ -69,7 +74,32 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
             BlockState dirtState = dirt.defaultBlockState();
             for(RenderType t : RenderType.chunkBufferLayers()) {
                 if (ItemBlockRenderTypes.canRenderInLayer(dirtState,t)) {
-                    renderDirt(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t));
+                    VertexConsumer VC = pBufferSource.getBuffer(t);
+                    renderDirt(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height);
+                    if (!pBlockEntity.connections[1]) {
+                        renderNorthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[5]) {
+                        renderEastFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[7]) {
+                        renderSouthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[3]) {
+                        renderWestFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[2]) {
+                        renderNorthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[8]) {
+                        renderSouthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[0]) {
+                        renderNorthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
+                    if (!pBlockEntity.connections[6]) {
+                        renderSouthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+                    }
                     break;
                 }
             }
@@ -80,7 +110,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
             BlockState flowerState = flower.defaultBlockState();
             for(RenderType t : RenderType.chunkBufferLayers()) {
                 if (ItemBlockRenderTypes.canRenderInLayer(flowerState, t)) {
-                    renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t));
+                    renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t), height);
                 }
             }
         }
@@ -88,20 +118,20 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
 
 
     // render dirt
-    private void renderDirt(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderDirt(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
         pPoseStack.scale(6399/6400f, 1 / 6400f, 6399/6400f);
-        pPoseStack.translate(1/12798d, 4000 - 1 / 6400d, 1/12798d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        pPoseStack.translate(1/12798d, (400*(h-2)) - 1 / 6400d, 1/12798d);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
     // render flower
-    private void renderFlower(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderFlower(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
         pPoseStack.scale(14 / 16f, 14 / 16f, 14 / 16f);
-        pPoseStack.translate(1 / 14d, 10 / 14d, 1 / 14d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        pPoseStack.translate(1 / 14d, (h-2) / 14d, 1 / 14d);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
@@ -111,74 +141,74 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(14/16f,1/16f,14/16f);
         pPoseStack.translate(1/14d,0,1/14d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
     // render faces
-    private void renderNorthFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderNorthFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(14/16f,12/16f,1/16f);
+        pPoseStack.scale(14/16f,h/16f,1/16f);
         pPoseStack.translate(1/14d,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderWestFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderWestFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,14/16f);
+        pPoseStack.scale(1/16f,h/16f,14/16f);
         pPoseStack.translate(0,0,1/14d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderSouthFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderSouthFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(14/16f,12/16f,1/16f);
+        pPoseStack.scale(14/16f,h/16f,1/16f);
         pPoseStack.translate(1/14d,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderEastFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderEastFace(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,14/16f);
+        pPoseStack.scale(1/16f,h/16f,14/16f);
         pPoseStack.translate(15,0,1/14d);
 
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
     // render corners
-    private void renderNorthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderNorthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,1/16f);
+        pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(0,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderSouthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderSouthWestCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,1/16f);
+        pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(0,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderNorthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderNorthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,1/16f);
+        pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(15,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
 
-    private void renderSouthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc) {
+    private void renderSouthEastCorner(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
         pPoseStack.pushPose();
-        pPoseStack.scale(1/16f,12/16f,1/16f);
+        pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(15,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, true, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }
     //endregion

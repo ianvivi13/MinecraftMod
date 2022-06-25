@@ -17,13 +17,20 @@ colors = (
 )
 
 seperator = "\n"
-search = 'white'
+search = 'bubble'
+
+corals = {
+    "brain",
+    "fire",
+    "tube",
+    "horn"
+}
 
 with open('duplicate.txt','r') as file:
     data = file.read()
 
 with open('duplicate.txt','a') as file:
-    for single in colors:
+    for single in corals:
         newdata = data.replace(search, single)
         newdata = newdata.replace(search.upper(), single.upper())
         newdata = newdata.replace(search.capitalize(), single.capitalize())

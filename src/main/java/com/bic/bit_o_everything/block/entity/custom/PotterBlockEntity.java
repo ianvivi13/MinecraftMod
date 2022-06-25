@@ -20,7 +20,7 @@ public class PotterBlockEntity extends BlockEntity {
     public int material = 0;
     public boolean[] connections = new boolean[] {
             true, true, true,
-            true, true, true,
+            true, false, true,
             true, true, true
     };
 
