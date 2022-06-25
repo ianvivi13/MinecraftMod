@@ -1,4 +1,4 @@
-// 1.19	2022-06-15T21:49:08.4808734	LootTables
+// 1.19	2022-06-25T14:46:14.0079147	LootTables
 84599ebe44ca2eadfeb83d5157fd7db6366a5c7f data/bit_o_everything/loot_tables/blocks/asphalt.json
 8d3618b0c4a893a9c17a5bc09f20b82a9443edd2 data/bit_o_everything/loot_tables/blocks/black_concrete_slab.json
 ef7cd5dfbd8407287b54703c127cd3d3cf849602 data/bit_o_everything/loot_tables/blocks/black_concrete_stairs.json
@@ -51,6 +51,7 @@ cde76a95dac3c57677850fdc003e60b9f7832892 data/bit_o_everything/loot_tables/block
 1725e117bed1b8438004009809ed23f603d3f487 data/bit_o_everything/loot_tables/blocks/orange_concrete_stairs.json
 804cd9fe16c7f9f3f1fbab7584ff05c7b61abf8d data/bit_o_everything/loot_tables/blocks/pink_concrete_slab.json
 d3f0381d3db3461a7cd243112d2d7cedc53826b2 data/bit_o_everything/loot_tables/blocks/pink_concrete_stairs.json
+1c391c3e8a3416e1f2dc34ee58fb35ad0e62e9b8 data/bit_o_everything/loot_tables/blocks/potter.json
 5c9e6e3b01ade2a99b09eef5f306d4331b76a5bc data/bit_o_everything/loot_tables/blocks/purple_concrete_slab.json
 be4524c8f10c5b278e7a0c6688fad5ba9550df36 data/bit_o_everything/loot_tables/blocks/purple_concrete_stairs.json
 b1a961b56aa76e9f2749c530cc17cb37ce26d902 data/bit_o_everything/loot_tables/blocks/pyrite_block.json

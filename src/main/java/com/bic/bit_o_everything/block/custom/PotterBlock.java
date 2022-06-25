@@ -3,10 +3,14 @@ package com.bic.bit_o_everything.block.custom;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +20,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class PotterBlock extends BaseEntityBlock{
@@ -209,12 +216,65 @@ public class PotterBlock extends BaseEntityBlock{
         }
     }
 
+    public static void playPlaceSound(Block block, Player player, BlockPos pos) {
+        SoundType s = block.getSoundType(block.defaultBlockState(), player.getLevel(), pos , player);
+        player.getLevel().playSound(null, pos, s.getPlaceSound(), SoundSource.BLOCKS, s.getVolume(), s.getPitch());
+    }
+
+    public static void playHitSound(Block block, Player player, BlockPos pos) {
+        SoundType s = block.getSoundType(block.defaultBlockState(), player.getLevel(), pos , player);
+        player.getLevel().playSound(null, pos, s.getHitSound(), SoundSource.BLOCKS, s.getVolume(), s.getPitch());
+    }
+
+    public static void playBreakSound(Block block, Player player, BlockPos pos) {
+        SoundType s = block.getSoundType(block.defaultBlockState(), player.getLevel(), pos , player);
+        player.getLevel().playSound(null, pos, s.getBreakSound(), SoundSource.BLOCKS, s.getVolume(), s.getPitch());
+    }
+
     public static Item getFlowerItem(int i) {
         if (i < 0) {
             return null;
         } else {
             return flowerPossibles.get(i).getSecond().get();
         }
+    }
+
+    public static float lock45(float r) {
+        double pi = Math.PI;
+        while (r < 0) {
+            r += 2 * pi;
+        }
+        if (r < pi/6) {
+            return 0;
+        } else if(r < pi/3) {
+            return (float) (pi/4);
+        } else if (r < 2*pi/3) {
+            return (float) (pi/2);
+        } else if (r < 5*pi/6) {
+            return (float) (3*pi/4);
+        } else if (r < 7*pi/6) {
+            return (float) (pi);
+        } else if (r < 4*pi/3) {
+            return (float) (5*pi/4);
+        } else if (r < 5*pi/3) {
+            return (float) (3*pi/2);
+        } else if (r < 11*pi/6) {
+            return (float) (7*pi/4);
+        } else {
+            return 0;
+        }
+
+    }
+
+    public static float getAngle(BlockPos pPos, Player pPlayer) {
+        Vec3 hitLoc = new Vec3(pPos.getX()+0.5,pPos.getY()+0.5, pPos.getZ()+0.5);
+        Vec3 playPos = new Vec3(pPlayer.getX(), pPlayer.getY(), pPlayer.getZ());
+        Vec3 maybe = hitLoc.subtract(playPos);
+        float angle = (float) Math.atan2(maybe.x,maybe.z);
+        if (hitLoc.distanceTo(playPos) <= 2) {
+            angle = lock45(angle);
+        }
+        return angle;
     }
 
     @Override
@@ -225,11 +285,14 @@ public class PotterBlock extends BaseEntityBlock{
             if (blockentity instanceof PotterBlockEntity potterBlockEntity) {
                 if (itemStack.isEmpty()) {
                     if (potterBlockEntity.flower >= 0) {
+                        playBreakSound(Objects.requireNonNull(getFlowerBlock(potterBlockEntity.flower)), pPlayer, pPos);
                         dropFlower(pLevel, pPos);
-                    } else {
+                        potterBlockEntity.updateRender();
+                    } else if (potterBlockEntity.dirt >= 0) {
+                        playBreakSound(Objects.requireNonNull(getDirtBlock(potterBlockEntity.dirt)), pPlayer, pPos);
                         dropDirt(pLevel, pPos);
+                        potterBlockEntity.updateRender();
                     }
-                    potterBlockEntity.updateRender();
                     return InteractionResult.SUCCESS;
                 } else if (itemStack.is(Items.WOODEN_HOE)) {
                     Vec3 v = pHit.getLocation();
@@ -252,6 +315,7 @@ public class PotterBlock extends BaseEntityBlock{
                     }
                     potterBlockEntity.connections[z*3+x] ^= true;
                     potterBlockEntity.updateRender();
+                    playHitSound(potterBlockEntity.getMaterial(), pPlayer, pPos);
                     return InteractionResult.SUCCESS;
                 } else {
                     int i = 0;
@@ -262,6 +326,7 @@ public class PotterBlock extends BaseEntityBlock{
                             }
                             dropDirt(pLevel, pPos);
                             potterBlockEntity.dirt = i;
+                            playPlaceSound(p.getFirst().get(), pPlayer, pPos);
                             itemStack.shrink(1);
                             potterBlockEntity.updateRender();
                             return InteractionResult.SUCCESS;
@@ -273,10 +338,14 @@ public class PotterBlock extends BaseEntityBlock{
                         for (Pair<Supplier<Block>, Supplier<Item>> p : flowerPossibles) {
                             if (itemStack.is(p.getSecond().get())) {
                                 if (j == potterBlockEntity.flower) {
+                                    potterBlockEntity.flowerRotation = getAngle(pPos,pPlayer);
+                                    potterBlockEntity.updateRender();
                                     return InteractionResult.SUCCESS;
                                 }
+                                potterBlockEntity.flowerRotation = getAngle(pPos,pPlayer);
                                 dropFlower(pLevel, pPos);
                                 potterBlockEntity.flower = j;
+                                playPlaceSound(p.getFirst().get(), pPlayer, pPos);
                                 itemStack.shrink(1);
                                 potterBlockEntity.updateRender();
                                 return InteractionResult.SUCCESS;

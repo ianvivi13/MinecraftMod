@@ -18,6 +18,7 @@ public class PotterBlockEntity extends BlockEntity {
     public int dirt = -1;
     public int flower = -1;
     public int material = 0;
+    public float flowerRotation = 0;
     public boolean[] connections = new boolean[] {
             true, true, true,
             true, false, true,
@@ -34,6 +35,7 @@ public class PotterBlockEntity extends BlockEntity {
         this.dirt = pTag.getInt("dirt");
         this.flower = pTag.getInt("flower");
         this.material = pTag.getInt("material");
+        this.flowerRotation = pTag.getFloat("flowerRotation");
         for (int i = 0 ; i < connections.length ; i ++) {
             this.connections[i] = pTag.getBoolean(String.valueOf(i));
         }
@@ -45,6 +47,7 @@ public class PotterBlockEntity extends BlockEntity {
         pTag.putInt("dirt",this.dirt);
         pTag.putInt("flower",this.flower);
         pTag.putInt("material",this.material);
+        pTag.putFloat("flowerRotation",this.flowerRotation);
         for (int i = 0 ; i < connections.length ; i ++) {
             pTag.putBoolean(String.valueOf(i),connections[i]);
         }
@@ -90,5 +93,6 @@ public class PotterBlockEntity extends BlockEntity {
     public Block getMaterial() {
         return PotterBlock.getMaterialBlock(this.material);
     }
+
 
 }

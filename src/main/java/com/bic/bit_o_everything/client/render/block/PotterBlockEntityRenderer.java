@@ -3,6 +3,7 @@ package com.bic.bit_o_everything.client.render.block;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Quaternion;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -14,6 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.model.data.EmptyModelData;
 
 public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBlockEntity> {
@@ -110,7 +112,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
             BlockState flowerState = flower.defaultBlockState();
             for(RenderType t : RenderType.chunkBufferLayers()) {
                 if (ItemBlockRenderTypes.canRenderInLayer(flowerState, t)) {
-                    renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t), height);
+                    renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t), height, pBlockEntity.flowerRotation);
                 }
             }
         }
@@ -127,10 +129,13 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
     }
 
     // render flower
-    private void renderFlower(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h) {
+    private void renderFlower(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h, float rot) {
+        //rot = (float) Math.toRadians(rot);
+        Vec3 v = new Vec3(-1/2d,-1/2d,-1/2d).yRot(rot).subtract(-1/2d,-1/2d,-1/2d).add(1/14d, (h-2)/14d, 1/14d);
         pPoseStack.pushPose();
         pPoseStack.scale(14 / 16f, 14 / 16f, 14 / 16f);
-        pPoseStack.translate(1 / 14d, (h-2) / 14d, 1 / 14d);
+        pPoseStack.translate(v.x, v.y, v.z);
+        pPoseStack.mulPose(Quaternion.fromXYZ(0f,rot,0f));
         dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
         pPoseStack.popPose();
     }

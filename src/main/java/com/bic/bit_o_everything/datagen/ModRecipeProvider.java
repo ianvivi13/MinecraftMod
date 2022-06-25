@@ -384,5 +384,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Blocks.REDSTONE_LAMP)
                 .unlockedBy("has_lever", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.LEVER).build()))
                 .save(pFinishedRecipeConsumer, "bit_o_everything:indicator_lever_from_lever_and_lamp");
+
+        ShapedRecipeBuilder.shaped(ModBlocks.POTTER.get())
+                .define('N', Blocks.TERRACOTTA)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .unlockedBy("has_terracotta", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.TERRACOTTA).build()))
+                .save(pFinishedRecipeConsumer);
     }
 }
