@@ -23,7 +23,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<PotterBlockEntity>> POTTER =
             BLOCK_ENTITIES.register("potter", () ->
                     BlockEntityType.Builder.of(PotterBlockEntity::new,
-                            ModBlocks.POTTER.get()).build(null));
+                            ModBlocks.POTTER.get(), ModBlocks.CONCRETE_POTTER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

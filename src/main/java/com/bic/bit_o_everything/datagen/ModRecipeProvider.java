@@ -5,6 +5,7 @@ import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -386,11 +387,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer, "bit_o_everything:indicator_lever_from_lever_and_lamp");
 
         ShapedRecipeBuilder.shaped(ModBlocks.POTTER.get())
-                .define('N', Blocks.TERRACOTTA)
+                .define('N', ItemTags.TERRACOTTA)
                 .pattern("N N")
                 .pattern("N N")
                 .pattern("NNN")
-                .unlockedBy("has_terracotta", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.TERRACOTTA).build()))
+                .unlockedBy("has_terracotta", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.TERRACOTTA).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(ModBlocks.CONCRETE_POTTER.get())
+                .define('N', ModTags.Items.CONCRETES)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .unlockedBy("has_concrete", inventoryTrigger(ItemPredicate.Builder.item().of(ModTags.Items.CONCRETES).build()))
                 .save(pFinishedRecipeConsumer);
     }
 }

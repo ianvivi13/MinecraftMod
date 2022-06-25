@@ -299,6 +299,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> POTTER = registerBlock("potter",
             () -> new PotterBlock(BlockBehaviour.Properties.of(Material.STONE).noOcclusion().dynamicShape().instabreak()), ModCreativeModeTab.MODDED);
 
+    public static final RegistryObject<Block> CONCRETE_POTTER = registerBlock("concrete_potter",
+            () -> new ConcretePotterBlock(BlockBehaviour.Properties.of(Material.STONE).noOcclusion().dynamicShape().instabreak()), ModCreativeModeTab.MODDED);
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }

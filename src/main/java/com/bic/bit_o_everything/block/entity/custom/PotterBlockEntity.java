@@ -1,5 +1,6 @@
 package com.bic.bit_o_everything.block.entity.custom;
 
+import com.bic.bit_o_everything.block.custom.ConcretePotterBlock;
 import com.bic.bit_o_everything.block.custom.PotterBlock;
 import com.bic.bit_o_everything.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
@@ -19,6 +21,7 @@ public class PotterBlockEntity extends BlockEntity {
     public int flower = -1;
     public int material = 0;
     public float flowerRotation = 0;
+    public boolean concrete = false;
     public boolean[] connections = new boolean[] {
             true, true, true,
             true, false, true,
@@ -39,6 +42,7 @@ public class PotterBlockEntity extends BlockEntity {
         for (int i = 0 ; i < connections.length ; i ++) {
             this.connections[i] = pTag.getBoolean(String.valueOf(i));
         }
+        this.concrete = pTag.getBoolean("concrete");
     }
 
     @Override
@@ -51,6 +55,7 @@ public class PotterBlockEntity extends BlockEntity {
         for (int i = 0 ; i < connections.length ; i ++) {
             pTag.putBoolean(String.valueOf(i),connections[i]);
         }
+        pTag.putBoolean("concrete", this.concrete);
     }
 
     @Override
@@ -86,12 +91,17 @@ public class PotterBlockEntity extends BlockEntity {
         return PotterBlock.getDirtBlock(this.dirt);
     }
 
+    @Override
+    public BlockEntityType<?> getType() {
+        return super.getType();
+    }
+
     public Block getFlower() {
         return PotterBlock.getFlowerBlock(this.flower);
     }
 
     public Block getMaterial() {
-        return PotterBlock.getMaterialBlock(this.material);
+        return this.concrete ? ConcretePotterBlock.getMaterialBlock(this.material) : PotterBlock.getMaterialBlock(this.material);
     }
 
 

@@ -1,4 +1,4 @@
-// 1.19	2022-06-25T14:46:14.0079147	LootTables
+// 1.19	2022-06-25T17:35:19.500581	LootTables
 84599ebe44ca2eadfeb83d5157fd7db6366a5c7f data/bit_o_everything/loot_tables/blocks/asphalt.json
 8d3618b0c4a893a9c17a5bc09f20b82a9443edd2 data/bit_o_everything/loot_tables/blocks/black_concrete_slab.json
 ef7cd5dfbd8407287b54703c127cd3d3cf849602 data/bit_o_everything/loot_tables/blocks/black_concrete_stairs.json
@@ -21,6 +21,7 @@ d0a1c07b22abb9c89e342b7f9938fed4e641a93a data/bit_o_everything/loot_tables/block
 8cbb158716987b656ba1cd6fe64b29d0c3b9fc15 data/bit_o_everything/loot_tables/blocks/cherry_trapdoor.json
 66514833e8895cdae722426569c949b656c4a0cd data/bit_o_everything/loot_tables/blocks/cherry_wall_sign.json
 0aae5976c62fcdee6e8b787b55597c760f0e562c data/bit_o_everything/loot_tables/blocks/cherry_wood.json
+325649d0edefd859209dbd6a37b0b9787ceb3f67 data/bit_o_everything/loot_tables/blocks/concrete_potter.json
 3853ba8152e3a320324b477328180786e93dff36 data/bit_o_everything/loot_tables/blocks/cyan_concrete_slab.json
 bfcc90d2e969c313f73b4ea9cfb9afee69e5e119 data/bit_o_everything/loot_tables/blocks/cyan_concrete_stairs.json
 3b1df3f11655052ee07dd0d5282dddac9b441c7c data/bit_o_everything/loot_tables/blocks/deepslate_magnesium_ore.json

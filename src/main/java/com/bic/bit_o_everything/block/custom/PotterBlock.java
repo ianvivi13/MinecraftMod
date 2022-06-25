@@ -3,14 +3,11 @@ package com.bic.bit_o_everything.block.custom;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,9 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -200,6 +195,10 @@ public class PotterBlock extends BaseEntityBlock{
         }
     }
 
+    public ArrayList<Pair<Supplier<Block>, Supplier<Item>>> getMaterialPossibles() {
+        return materialPossibles;
+    }
+
     public static Item getDirtItem(int i) {
         if (i < 0) {
             return null;
@@ -354,7 +353,7 @@ public class PotterBlock extends BaseEntityBlock{
                         }
                     }
                     int k = 0;
-                    for (Pair<Supplier<Block>, Supplier<Item>> p : materialPossibles) {
+                    for (Pair<Supplier<Block>, Supplier<Item>> p : getMaterialPossibles()) {
                         if (itemStack.is(p.getSecond().get())) {
                             if (k == potterBlockEntity.material) {
                                 return InteractionResult.SUCCESS;
@@ -420,6 +419,8 @@ public class PotterBlock extends BaseEntityBlock{
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new PotterBlockEntity(pPos, pState);
+        PotterBlockEntity t =  new PotterBlockEntity(pPos, pState);
+        t.concrete = false;
+        return t;
     }
 }

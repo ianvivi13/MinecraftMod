@@ -101,6 +101,7 @@ public class ModBlockLootTables extends BlockLoot {
         this.add(ModBlocks.SAPPHIRE_ORE.get(), (block) -> createOreDrop(ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
 
         this.dropSelf(ModBlocks.POTTER.get());
+        this.dropSelf(ModBlocks.CONCRETE_POTTER.get());
         this.dropSelf(ModBlocks.INDICATOR_LEVER.get());
     }
 
