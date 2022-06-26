@@ -103,6 +103,42 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.POTTER.get());
         this.dropSelf(ModBlocks.CONCRETE_POTTER.get());
         this.dropSelf(ModBlocks.INDICATOR_LEVER.get());
+
+        this.add(ModBlocks.TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.WHITE_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.ORANGE_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.MAGENTA_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.LIGHT_BLUE_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.YELLOW_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.LIME_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.PINK_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.GRAY_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.LIGHT_GRAY_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.CYAN_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.PURPLE_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.BLUE_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.BROWN_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.GREEN_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.RED_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+        this.add(ModBlocks.BLACK_TERRACOTTA_SLAB.get(), BlockLoot::createSlabItemTable);
+
+        this.dropSelf(ModBlocks.TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.WHITE_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.ORANGE_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.MAGENTA_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.LIGHT_BLUE_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.YELLOW_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.LIME_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.PINK_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.LIGHT_GRAY_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.CYAN_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.PURPLE_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.BLUE_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.BROWN_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.GREEN_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.RED_TERRACOTTA_STAIRS.get());
+        this.dropSelf(ModBlocks.BLACK_TERRACOTTA_STAIRS.get());
     }
 
     @Override

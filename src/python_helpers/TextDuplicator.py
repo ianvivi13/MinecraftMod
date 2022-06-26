@@ -1,23 +1,24 @@
 colors = (
-    "orange",
-    "magenta",
-    "light_blue",
-    "yellow",
-    "lime",
-    "pink",
-    "gray",
-    "light_gray",
-    "cyan",
-    "purple",
-    "blue",
-    "brown",
-    "green",
-    "red",
-    "black"
+    "white terracotta",
+    "orange terracotta",
+    "magenta terracotta",
+    "light blue terracotta",
+    "yellow terracotta",
+    "lime terracotta",
+    "pink terracotta",
+    "gray terracotta",
+    "light gray terracotta",
+    "cyan terracotta",
+    "purple terracotta",
+    "blue terracotta",
+    "brown terracotta",
+    "green terracotta",
+    "red terracotta",
+    "black terracotta"
 )
 
 seperator = "\n"
-search = 'white'
+search = 'terracotta'
 
 corals = {
     "brain",

@@ -70,21 +70,22 @@ class dup:
 
 
 colors = (
-    "orange",
-    "magenta",
-    "light_blue",
-    "yellow",
-    "lime",
-    "pink",
-    "gray",
-    "light_gray",
-    "cyan",
-    "purple",
-    "blue",
-    "brown",
-    "green",
-    "red",
-    "black"
+    "white_terracotta",
+    "orange_terracotta",
+    "magenta_terracotta",
+    "light_blue_terracotta",
+    "yellow_terracotta",
+    "lime_terracotta",
+    "pink_terracotta",
+    "gray_terracotta",
+    "light_gray_terracotta",
+    "cyan_terracotta",
+    "purple_terracotta",
+    "blue_terracotta",
+    "brown_terracotta",
+    "green_terracotta",
+    "red_terracotta",
+    "black_terracotta"
 )
 
 
@@ -105,11 +106,18 @@ test = (
 )
 
 f = (
-    ItemModels + "asphalt.json",
-    BlockModels + "asphalt.json"
+    Blockstates + "terracotta_slab.json",
+    BlockModels + "terracotta_slab.json",
+    BlockModels + "terracotta_slab_top.json",
+    ItemModels + "terracotta_slab.json",
+    Blockstates + "terracotta_stairs.json",
+    BlockModels + "terracotta_stairs.json",
+    BlockModels + "terracotta_stairs_inner.json",
+    BlockModels + "terracotta_stairs_outer.json",
+    ItemModels + "terracotta_stairs.json"
 )
 
-dup.DuplicateFile(f, "asphalt", test)
+dup.DuplicateFile(f, "terracotta", colors)
 
 #dup.DuplicateFile(files, "white", colors)
 #dup.Undo()
