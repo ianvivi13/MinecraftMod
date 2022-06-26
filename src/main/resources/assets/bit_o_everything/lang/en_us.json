@@ -113,5 +113,8 @@
 
   "entity.bit_o_everything.chest_boat": "Boat with Chest",
 
+  "block.bit_o_everything.potter": "Terracotta Planter",
+  "block.bit_o_everything.concrete_potter": "Concrete Planter",
+
   "itemGroup.modded": "Modded"
 }

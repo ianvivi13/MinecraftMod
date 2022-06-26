@@ -126,6 +126,10 @@ public class PotterBlock extends BaseEntityBlock{
         add(new Pair<>(() -> Blocks.CHORUS_FLOWER, () -> Blocks.CHORUS_FLOWER.asItem()));
         add(new Pair<>(() -> Blocks.CARVED_PUMPKIN, () -> Blocks.CARVED_PUMPKIN.asItem()));
         add(new Pair<>(() -> Blocks.HAY_BLOCK, () -> Blocks.HAY_BLOCK.asItem()));
+        add(new Pair<>(() -> Blocks.WHEAT, () -> Blocks.WHEAT.asItem()));
+        add(new Pair<>(() -> Blocks.CARROTS, () -> Blocks.CARROTS.asItem()));
+        add(new Pair<>(() -> Blocks.BEETROOTS, () -> Blocks.BEETROOTS.asItem()));
+        add(new Pair<>(() -> Blocks.POTATOES, () -> Blocks.POTATOES.asItem()));
     }};
 
     public final static ArrayList<Pair<Supplier<Block>, Supplier<Item>>> dirtPossibles = new ArrayList<>() {{
@@ -275,6 +279,8 @@ public class PotterBlock extends BaseEntityBlock{
         }
         return angle;
     }
+
+
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {

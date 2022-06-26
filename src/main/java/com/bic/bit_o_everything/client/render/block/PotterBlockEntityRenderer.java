@@ -12,9 +12,14 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.model.data.EmptyModelData;
 
@@ -110,6 +115,9 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         Block flower = pBlockEntity.getFlower();
         if (flower != null) {
             BlockState flowerState = flower.defaultBlockState();
+            if (flower instanceof CropBlock) {
+                flowerState = flowerState.setValue(((CropBlock) flower).getAgeProperty(),((CropBlock) flower).getMaxAge());
+            }
             for(RenderType t : RenderType.chunkBufferLayers()) {
                 if (ItemBlockRenderTypes.canRenderInLayer(flowerState, t)) {
                     renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t), height, pBlockEntity.flowerRotation);
@@ -130,7 +138,6 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
 
     // render flower
     private void renderFlower(BlockRenderDispatcher dispatcher, PoseStack pPoseStack, BlockState b, BlockPos p, Level level, RandomSource RS, VertexConsumer Vc, int h, float rot) {
-        //rot = (float) Math.toRadians(rot);
         Vec3 v = new Vec3(-1/2d,-1/2d,-1/2d).yRot(rot).subtract(-1/2d,-1/2d,-1/2d).add(1/14d, (h-2)/14d, 1/14d);
         pPoseStack.pushPose();
         pPoseStack.scale(14 / 16f, 14 / 16f, 14 / 16f);
