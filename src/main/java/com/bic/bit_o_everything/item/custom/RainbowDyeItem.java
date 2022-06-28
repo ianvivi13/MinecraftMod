@@ -7,17 +7,18 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.util.Random;
 
-public class RainbowDyeItem extends DyeItem {
+public class RainbowDyeItem extends Item {
 
-    public RainbowDyeItem(DyeColor pDyeColor, Properties pProperties) {
-        super(pDyeColor, pProperties);
+
+    public RainbowDyeItem(Properties pProperties) {
+        super(pProperties);
     }
 
     public static DyeColor generateDyeColor() {
@@ -29,12 +30,24 @@ public class RainbowDyeItem extends DyeItem {
     public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pTarget, InteractionHand pHand) {
         DyeColor randColor = generateDyeColor();
         if (pTarget instanceof Sheep sheep) {
-            if (sheep.isAlive() && !sheep.isSheared() && sheep.getColor() != randColor) {
+            if (sheep.isAlive() && !sheep.isSheared() && randColor != sheep.getColor()) {
                 sheep.level.playSound(pPlayer, sheep, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!pPlayer.level.isClientSide) {
                     sheep.setColor(randColor);
                     pStack.shrink(1);
                     sheep.setCustomName(Component.nullToEmpty("jeb_"));
+                }
+
+                return InteractionResult.sidedSuccess(pPlayer.level.isClientSide);
+            }
+        }
+
+        if (pTarget instanceof Wolf wolf) {
+            if (wolf.isTame() && wolf.isOwnedBy(pPlayer) && wolf.isAlive() && randColor != wolf.getCollarColor()) {
+                wolf.level.playSound(pPlayer, wolf, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                if (!pPlayer.level.isClientSide) {
+                    wolf.setCollarColor(randColor);
+                    pStack.shrink(1);
                 }
 
                 return InteractionResult.sidedSuccess(pPlayer.level.isClientSide);

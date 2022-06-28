@@ -97,7 +97,7 @@ public class ModItems {
             () -> new SilverArrowItem(new Item.Properties().tab(ModCreativeModeTab.MODDED), 1.5F));
 
     public static final RegistryObject<Item> RAINBOW_DYE = ITEMS.register("rainbow_dye",
-            () -> new RainbowDyeItem(DyeColor.WHITE, new Item.Properties().tab(ModCreativeModeTab.MODDED)));
+            () -> new RainbowDyeItem(new Item.Properties().tab(ModCreativeModeTab.MODDED)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
