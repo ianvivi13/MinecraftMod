@@ -139,6 +139,8 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.GREEN_TERRACOTTA_STAIRS.get());
         this.dropSelf(ModBlocks.RED_TERRACOTTA_STAIRS.get());
         this.dropSelf(ModBlocks.BLACK_TERRACOTTA_STAIRS.get());
+
+        this.dropPottedContents(ModBlocks.POTTED_CHERRY_SAPLING.get());
     }
 
     @Override

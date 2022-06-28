@@ -1,4 +1,4 @@
-// 1.19	2022-06-26T16:07:39.5943573	LootTables
+// 1.19	2022-06-28T12:15:54.9281303	LootTables
 84599ebe44ca2eadfeb83d5157fd7db6366a5c7f data/bit_o_everything/loot_tables/blocks/asphalt.json
 8d3618b0c4a893a9c17a5bc09f20b82a9443edd2 data/bit_o_everything/loot_tables/blocks/black_concrete_slab.json
 ef7cd5dfbd8407287b54703c127cd3d3cf849602 data/bit_o_everything/loot_tables/blocks/black_concrete_stairs.json
@@ -76,6 +76,7 @@ f34ed58597afbf6510be530b3f74568bc13b0b41 data/bit_o_everything/loot_tables/block
 d3f0381d3db3461a7cd243112d2d7cedc53826b2 data/bit_o_everything/loot_tables/blocks/pink_concrete_stairs.json
 8e4c0284a498c34ec8ab9106eda01cde3fbb48c6 data/bit_o_everything/loot_tables/blocks/pink_terracotta_slab.json
 14557d6479f648d446ddab76d5ea2ec79b8b8dae data/bit_o_everything/loot_tables/blocks/pink_terracotta_stairs.json
+4caf696f3813df15aa697a5232e8d1c19820162f data/bit_o_everything/loot_tables/blocks/potted_cherry_sapling.json
 1c391c3e8a3416e1f2dc34ee58fb35ad0e62e9b8 data/bit_o_everything/loot_tables/blocks/potter.json
 5c9e6e3b01ade2a99b09eef5f306d4331b76a5bc data/bit_o_everything/loot_tables/blocks/purple_concrete_slab.json
 be4524c8f10c5b278e7a0c6688fad5ba9550df36 data/bit_o_everything/loot_tables/blocks/purple_concrete_stairs.json

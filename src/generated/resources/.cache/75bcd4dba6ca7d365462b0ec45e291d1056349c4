@@ -1,7 +1,8 @@
-// 1.19	2022-06-26T16:07:39.6018497	Tags for minecraft:block
+// 1.19	2022-06-28T12:26:18.0383652	Tags for minecraft:block
 b7af7a48840696dd4f915f7204177d03be42fff2 data/bit_o_everything/tags/blocks/cherry_logs.json
 a0e45e5fb3ff187e01992ad498b075286b3bcaa7 data/minecraft/tags/blocks/beacon_base_blocks.json
 a89e0fdcaba781e611ac3eb2af9f1d51551f5966 data/minecraft/tags/blocks/fence_gates.json
+8dc4b85808c759909a07c3094e3946620135fb44 data/minecraft/tags/blocks/flower_pots.json
 9317cbed5a827d7208602ff24834f46ba0eb098f data/minecraft/tags/blocks/leaves.json
 773385419d9d4ec0f65c2970d6a1e7034cba3e2e data/minecraft/tags/blocks/logs_that_burn.json
 d09b3b461b0645d51c917368ce61d484ccb8a7a4 data/minecraft/tags/blocks/mineable/axe.json

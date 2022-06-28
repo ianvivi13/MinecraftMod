@@ -278,6 +278,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.BLACK_CONCRETE_SLAB.get())
         ;
 
+        this.tag(BlockTags.FLOWER_POTS)
+                .add(ModBlocks.POTTED_CHERRY_SAPLING.get())
+        ;
+
         this.tag(BlockTags.STAIRS)
                 .add(ModBlocks.WHITE_CONCRETE_STAIRS.get())
                 .add(ModBlocks.ORANGE_CONCRETE_STAIRS.get())
