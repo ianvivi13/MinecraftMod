@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "N": {
+      "tag": "minecraft:terracotta"
+    }
+  },
+  "pattern": [
+    "N N",
+    "N N",
+    "NNN"
+  ],
+  "result": {
+    "item": "bit_o_everything:potter"
+  }
+}

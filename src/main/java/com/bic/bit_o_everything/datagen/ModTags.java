@@ -24,7 +24,7 @@ public class ModTags {
 
     public static final class Items {
         public static final TagKey<Item> CHERRY_LOGS = tag("cherry_logs");
-
+        public static final TagKey<Item> CONCRETES = tag("concretes");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(BitOEverything.MOD_ID, name));

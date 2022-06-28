@@ -7,6 +7,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,5 +64,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SILVER_ARROW.get())
         ;
         //endregion
+        this.tag(ModTags.Items.CONCRETES)
+                .add(Items.WHITE_CONCRETE)
+                .add(Items.ORANGE_CONCRETE)
+                .add(Items.MAGENTA_CONCRETE)
+                .add(Items.LIGHT_BLUE_CONCRETE)
+                .add(Items.YELLOW_CONCRETE)
+                .add(Items.LIME_CONCRETE)
+                .add(Items.PINK_CONCRETE)
+                .add(Items.GRAY_CONCRETE)
+                .add(Items.LIGHT_GRAY_CONCRETE)
+                .add(Items.CYAN_CONCRETE)
+                .add(Items.PURPLE_CONCRETE)
+                .add(Items.BLUE_CONCRETE)
+                .add(Items.BROWN_CONCRETE)
+                .add(Items.GREEN_CONCRETE)
+                .add(Items.RED_CONCRETE)
+                .add(Items.BLACK_CONCRETE)
+        ;
     }
 }

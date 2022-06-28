@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:lever"
+    },
+    {
+      "item": "minecraft:redstone_lamp"
+    }
+  ],
+  "result": {
+    "item": "bit_o_everything:indicator_lever"
+  }
+}

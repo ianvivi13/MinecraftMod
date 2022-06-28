@@ -5,10 +5,12 @@ import com.bic.bit_o_everything.item.ModItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.ArrayList;
@@ -341,5 +343,99 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.YELLOW_DYE)
                 .unlockedBy("has_red_dye", inventoryTrigger(ItemPredicate.Builder.item().of(Items.RED_DYE).build()))
                 .save(pFinishedRecipeConsumer, "bit_o_everything:rainbow_dye_from_various_dyes");
+
+        ShapelessRecipeBuilder.shapeless(ModItems.STICKY_GRENADE.get())
+                .requires(ModItems.GRENADE.get())
+                .requires(Items.REDSTONE)
+                .requires(Items.SLIME_BALL)
+                .unlockedBy("has_grenade", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.GRENADE.get()).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:sticky_grenade_from_slimeball");
+
+        ShapelessRecipeBuilder.shapeless(ModItems.STICKY_GRENADE.get())
+                .requires(ModItems.GRENADE.get())
+                .requires(Items.REDSTONE)
+                .requires(Items.HONEY_BOTTLE)
+                .unlockedBy("has_grenade", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.GRENADE.get()).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:sticky_grenade_from_honey_bottle");
+
+        ShapedRecipeBuilder.shaped(ModItems.STICKY_DETONATOR.get())
+                .define('N', Blocks.TNT)
+                .define('T', Items.REDSTONE_TORCH)
+                .define('B', Items.STONE_BUTTON)
+                .define('U', ModItems.TITANIUM_INGOT.get())
+                .define('I', ModBlocks.TIN_BLOCK.get())
+                .pattern("ITI")
+                .pattern("IBI")
+                .pattern("UNU")
+                .unlockedBy("has_titanium", inventoryTrigger(ItemPredicate.Builder.item().of(ModItems.TITANIUM_INGOT.get()).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(ModItems.GRENADE.get(), 2)
+                .define('N', Blocks.TNT)
+                .define('S', Items.STRING)
+                .define('I', Items.IRON_NUGGET)
+                .pattern("ISI")
+                .pattern("INI")
+                .pattern("III")
+                .unlockedBy("has_tnt", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.TNT).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(ModBlocks.INDICATOR_LEVER.get())
+                .requires(Blocks.LEVER)
+                .requires(Blocks.REDSTONE_LAMP)
+                .unlockedBy("has_lever", inventoryTrigger(ItemPredicate.Builder.item().of(Blocks.LEVER).build()))
+                .save(pFinishedRecipeConsumer, "bit_o_everything:indicator_lever_from_lever_and_lamp");
+
+        ShapedRecipeBuilder.shaped(ModBlocks.POTTER.get())
+                .define('N', ItemTags.TERRACOTTA)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .unlockedBy("has_terracotta", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.TERRACOTTA).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(ModBlocks.CONCRETE_POTTER.get())
+                .define('N', ModTags.Items.CONCRETES)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .unlockedBy("has_concrete", inventoryTrigger(ItemPredicate.Builder.item().of(ModTags.Items.CONCRETES).build()))
+                .save(pFinishedRecipeConsumer);
+
+        slab(pFinishedRecipeConsumer, ModBlocks.TERRACOTTA_SLAB.get(), Blocks.TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.WHITE_TERRACOTTA_SLAB.get(), Blocks.WHITE_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.ORANGE_TERRACOTTA_SLAB.get(), Blocks.ORANGE_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.MAGENTA_TERRACOTTA_SLAB.get(), Blocks.MAGENTA_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIGHT_BLUE_TERRACOTTA_SLAB.get(), Blocks.LIGHT_BLUE_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.YELLOW_TERRACOTTA_SLAB.get(), Blocks.YELLOW_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIME_TERRACOTTA_SLAB.get(), Blocks.LIME_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.PINK_TERRACOTTA_SLAB.get(), Blocks.PINK_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.GRAY_TERRACOTTA_SLAB.get(), Blocks.GRAY_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.LIGHT_GRAY_TERRACOTTA_SLAB.get(), Blocks.LIGHT_GRAY_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.CYAN_TERRACOTTA_SLAB.get(), Blocks.CYAN_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.PURPLE_TERRACOTTA_SLAB.get(), Blocks.PURPLE_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.BLUE_TERRACOTTA_SLAB.get(), Blocks.BLUE_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.BROWN_TERRACOTTA_SLAB.get(), Blocks.BROWN_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.GREEN_TERRACOTTA_SLAB.get(), Blocks.GREEN_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.RED_TERRACOTTA_SLAB.get(), Blocks.RED_TERRACOTTA);
+        slab(pFinishedRecipeConsumer, ModBlocks.BLACK_TERRACOTTA_SLAB.get(), Blocks.BLACK_TERRACOTTA);
+
+        Stair(pFinishedRecipeConsumer, ModBlocks.TERRACOTTA_STAIRS.get(), Blocks.TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.WHITE_TERRACOTTA_STAIRS.get(), Blocks.WHITE_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.ORANGE_TERRACOTTA_STAIRS.get(), Blocks.ORANGE_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.MAGENTA_TERRACOTTA_STAIRS.get(), Blocks.MAGENTA_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIGHT_BLUE_TERRACOTTA_STAIRS.get(), Blocks.LIGHT_BLUE_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.YELLOW_TERRACOTTA_STAIRS.get(), Blocks.YELLOW_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIME_TERRACOTTA_STAIRS.get(), Blocks.LIME_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.PINK_TERRACOTTA_STAIRS.get(), Blocks.PINK_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.GRAY_TERRACOTTA_STAIRS.get(), Blocks.GRAY_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.LIGHT_GRAY_TERRACOTTA_STAIRS.get(), Blocks.LIGHT_GRAY_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.CYAN_TERRACOTTA_STAIRS.get(), Blocks.CYAN_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.PURPLE_TERRACOTTA_STAIRS.get(), Blocks.PURPLE_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BLUE_TERRACOTTA_STAIRS.get(), Blocks.BLUE_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BROWN_TERRACOTTA_STAIRS.get(), Blocks.BROWN_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.GREEN_TERRACOTTA_STAIRS.get(), Blocks.GREEN_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.RED_TERRACOTTA_STAIRS.get(), Blocks.RED_TERRACOTTA);
+        Stair(pFinishedRecipeConsumer, ModBlocks.BLACK_TERRACOTTA_STAIRS.get(), Blocks.BLACK_TERRACOTTA);
     }
 }
