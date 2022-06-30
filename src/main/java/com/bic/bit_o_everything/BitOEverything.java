@@ -6,6 +6,7 @@ import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
 import com.bic.bit_o_everything.potion.ModPotions;
+import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.util.BetterBrewingRecipe;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -46,6 +47,7 @@ public class BitOEverything  {
 
         ModBlockEntities.register(eventBus);
         ModEntityTypes.register(eventBus);
+        ModSounds.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

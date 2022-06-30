@@ -1,5 +1,6 @@
 package com.bic.bit_o_everything.item.custom;
 
+import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.spells.AbstractSpell;
 import com.bic.bit_o_everything.spells.SpellList;
 import net.minecraft.ChatFormatting;
@@ -7,6 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.SlotAccess;
@@ -152,8 +155,10 @@ public class MagicCastingItem extends Item {
         if (pOther.getItem() instanceof SpellItem spellItem) {
             if (this.addSpell(pStack, spellItem.RS)) {
                 pOther.shrink(1);
+                playSoundPlayer(pPlayer.getLevel(), pPlayer, ModSounds.INCANTATION_SUCCESS.get());
                 return true;
             } else {
+                playSoundPlayer(pPlayer.getLevel(), pPlayer, ModSounds.INCANTATION_FAILED.get());
                 return false;
             }
         } else {
@@ -188,6 +193,15 @@ public class MagicCastingItem extends Item {
         }
     }
 
+
+    public void playSoundPlayer(Level pLevel, Player pPlayer, SoundEvent sound) {
+        pLevel.playSound(pPlayer, pPlayer.blockPosition(), sound, SoundSource.PLAYERS, 1, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
+    }
+
+    public void playSoundServer(Level pLevel, Player pPlayer, SoundEvent sound) {
+        pLevel.playSound(null, pPlayer.blockPosition(), sound, SoundSource.PLAYERS, 1, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide()) {
@@ -205,9 +219,11 @@ public class MagicCastingItem extends Item {
                     if (pPlayer.totalExperience >= totXp) {
                         spell.castSpell(pLevel, pPlayer, pUsedHand);
                         pPlayer.giveExperiencePoints(-totXp);
+                        playSoundServer(pLevel, pPlayer, spell.getSound());
                         pPlayer.getCooldowns().addCooldown(this, (int) (this.COOLDOWN_MOD * spell.cooldownTime()));
                     } else {
                         TextColor tc = TextColor.fromRgb(spell.spellColor());
+                        playSoundServer(pLevel, pPlayer, ModSounds.CAST_FAILED.get());
                         pPlayer.sendSystemMessage(Component.literal("Not enough experience to cast ").append(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc))));
                     }
                 }

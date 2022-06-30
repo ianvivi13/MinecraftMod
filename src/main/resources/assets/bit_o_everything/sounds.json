@@ -1,0 +1,32 @@
+{
+  "cast_failed": {
+    "subtitle": "sounds.bit_o_everything.cast_failed",
+    "sounds": [
+      "bit_o_everything:cast_failed"
+    ]
+  },
+  "incantation_failed": {
+    "subtitle": "sounds.bit_o_everything.incantation_failed",
+    "sounds": [
+      "bit_o_everything:incantation_failed"
+    ]
+  },
+  "incantation_success": {
+    "subtitle": "sounds.bit_o_everything.incantation_success",
+    "sounds": [
+      "bit_o_everything:incantation_success"
+    ]
+  },
+  "spell_fireball": {
+    "subtitle": "sounds.bit_o_everything.spell_fireball",
+    "sounds": [
+      "bit_o_everything:spell_fireball"
+    ]
+  },
+  "spell_slowfalling": {
+    "subtitle": "sounds.bit_o_everything.spell_slowfalling",
+    "sounds": [
+      "bit_o_everything:spell_slowfalling"
+    ]
+  }
+}

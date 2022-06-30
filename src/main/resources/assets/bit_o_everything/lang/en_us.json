@@ -152,5 +152,11 @@
   "block.bit_o_everything.potter": "Terracotta Planter",
   "block.bit_o_everything.concrete_potter": "Concrete Planter",
 
+  "sounds.bit_o_everything.cast_failed": "Spell cast Failed",
+  "sounds.bit_o_everything.incantation_failed": "Incantation Failed",
+  "sounds.bit_o_everything.incantation_success": "Incantation Success",
+  "sounds.bit_o_everything.spell_fireball": "Spell casted: Fireball",
+  "sounds.bit_o_everything.spell_slowfalling": "Spell casted: Slowfalling",
+
   "itemGroup.modded": "Modded"
 }
