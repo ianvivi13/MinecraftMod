@@ -2,12 +2,9 @@ package com.bic.bit_o_everything.item;
 
 import com.bic.bit_o_everything.BitOEverything;
 import com.bic.bit_o_everything.block.ModBlocks;
-import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
-import com.bic.bit_o_everything.entity.projectile.Grenade;
 import com.bic.bit_o_everything.item.custom.*;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -108,6 +105,16 @@ public class ModItems {
 
     public static final RegistryObject<Item> STICKY_DETONATOR = ITEMS.register("sticky_detonator",
             () -> new StickyDetonator(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1)));
+
+    public static final RegistryObject<Item> AACAST = ITEMS.register("aacast",
+            () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 2, 1, 1));
+
+    public static final RegistryObject<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell",
+            () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 0));
+
+    public static final RegistryObject<Item> SLOWFALLING_SPELL = ITEMS.register("slowfalling_spell",
+            () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 1));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
