@@ -28,7 +28,7 @@ public class AbstractSpell{
         return null;
     }
 
-    public void castSpell(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public void castSpell(Level pLevel, Player pPlayer) {
         System.out.println("this is the abstract spell");
     }
 }

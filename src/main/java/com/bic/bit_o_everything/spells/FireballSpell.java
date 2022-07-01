@@ -37,7 +37,7 @@ public class FireballSpell extends AbstractSpell{
     }
 
     @Override
-    public void castSpell(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public void castSpell(Level pLevel, Player pPlayer) {
         pPlayer.sendSystemMessage(Component.literal("Casting: " + spellName()));
     }
 }
