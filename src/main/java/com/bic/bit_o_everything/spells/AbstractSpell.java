@@ -1,9 +1,12 @@
 package com.bic.bit_o_everything.spells;
 
 import com.bic.bit_o_everything.sound.ModSounds;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class AbstractSpell{
@@ -25,10 +28,18 @@ public class AbstractSpell{
     }
 
     public String spellName() {
-        return null;
+        return "Abstract";
     }
 
-    public void castSpell(Level pLevel, Player pPlayer) {
-        System.out.println("this is the abstract spell");
+    public void castSpellEmpty(Level level, Player player) {
+        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEmpty"));
+    }
+
+    public void castSpellEntity(Player player, LivingEntity livingEntity) {
+        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEntity"));
+    }
+
+    public void castSpellBlock(UseOnContext useOnContext) {
+        useOnContext.getPlayer().sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellBlock"));
     }
 }

@@ -42,8 +42,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     textures
     particles
     optimize
-    Add support for clicking entity and onFirstUse and block and stopUsing
-    Weird left click block stuff happens
+    Left click block does not switch spells (scroll) because it is called too fast
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
@@ -261,17 +260,18 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         return -100F;
     }
     //endregion
-
-    public void castSpell(Level pLevel, Player pPlayer) {
-        if (!pLevel.isClientSide()) {
-            AbstractSpell spell = getCurrentSpellObject(pPlayer.getMainHandItem());
+    //region Casting Spell
+    // returns the spell object if it can be cast - otherwise returns null - also handles sounds, xp, and cooldown
+    public AbstractSpell castSpell(Level pLevel, Player pPlayer, ItemStack usedStack) {
+        if (!pPlayer.getCooldowns().isOnCooldown(this)) {
+            AbstractSpell spell = getCurrentSpellObject(usedStack);
             if (spell != null) {
                 int totXp = (int) (this.XP_MOD * spell.xpConsumed());
                 if (pPlayer.totalExperience >= totXp) {
-                    spell.castSpell(pLevel, pPlayer);
                     pPlayer.giveExperiencePoints(-totXp);
                     playSoundServer(pLevel, pPlayer, spell.getSound());
                     pPlayer.getCooldowns().addCooldown(this, (int) (this.COOLDOWN_MOD * spell.cooldownTime()));
+                    return spell;
                 } else {
                     TextColor tc = TextColor.fromRgb(spell.spellColor());
                     playSoundServer(pLevel, pPlayer, ModSounds.CAST_FAILED.get());
@@ -279,14 +279,20 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
                 }
             }
         }
+        return null;
     }
-
-
 
     @Override // use on entity
     public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
-        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
-            pPlayer.sendSystemMessage(Component.literal("Use Entity"));
+        ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
+        Level level = pPlayer.getLevel();
+        if (itemStack.getItem() instanceof MagicCastingItem) {
+            if (!level.isClientSide()) {
+                AbstractSpell spell = castSpell(level, pPlayer, itemStack);
+                if (spell != null) {
+                    spell.castSpellEntity(pPlayer, pInteractionTarget);
+                }
+            }
             return InteractionResult.CONSUME;
         }
         return super.interactLivingEntity(pStack, pPlayer, pInteractionTarget, pUsedHand);
@@ -295,9 +301,15 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     @Override // use on block
     public InteractionResult useOn(UseOnContext pContext) {
         Player pPlayer = pContext.getPlayer();
-        InteractionHand pUsedHand = pContext.getHand();
-        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
-            pPlayer.sendSystemMessage(Component.literal("Use Block"));
+        ItemStack itemStack = pPlayer.getItemInHand(pContext.getHand());
+        Level level = pPlayer.getLevel();
+        if (itemStack.getItem() instanceof MagicCastingItem) {
+            if (!level.isClientSide()) {
+                AbstractSpell spell = castSpell(level, pPlayer, itemStack);
+                if (spell != null) {
+                    spell.castSpellBlock(pContext);
+                }
+            }
             return InteractionResult.CONSUME;
         }
         return super.useOn(pContext);
@@ -305,10 +317,17 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
 
     @Override // use on air
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
-            pPlayer.sendSystemMessage(Component.literal("Use Air"));
+        ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
+        if (itemStack.getItem() instanceof MagicCastingItem) {
+            if (!pLevel.isClientSide()) {
+                AbstractSpell spell = castSpell(pLevel, pPlayer, itemStack);
+                if (spell != null) {
+                    spell.castSpellEmpty(pLevel, pPlayer);
+                }
+            }
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
         }
         return super.use(pLevel, pPlayer, pUsedHand);
     }
+    //endregion
 }
