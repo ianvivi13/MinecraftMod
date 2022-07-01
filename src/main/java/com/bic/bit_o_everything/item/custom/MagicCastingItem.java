@@ -41,8 +41,8 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     /*
     textures
     particles
-    optimize
     Left click block does not switch spells (scroll) because it is called too fast
+    Spell tool tips / explanation
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
@@ -261,25 +261,39 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
     //endregion
     //region Casting Spell
-    // returns the spell object if it can be cast - otherwise returns null - also handles sounds, xp, and cooldown
-    public AbstractSpell castSpell(Level pLevel, Player pPlayer, ItemStack usedStack) {
-        if (!pPlayer.getCooldowns().isOnCooldown(this)) {
-            AbstractSpell spell = getCurrentSpellObject(usedStack);
-            if (spell != null) {
-                int totXp = (int) (this.XP_MOD * spell.xpConsumed());
-                if (pPlayer.totalExperience >= totXp) {
-                    pPlayer.giveExperiencePoints(-totXp);
-                    playSoundServer(pLevel, pPlayer, spell.getSound());
-                    pPlayer.getCooldowns().addCooldown(this, (int) (this.COOLDOWN_MOD * spell.cooldownTime()));
-                    return spell;
-                } else {
-                    TextColor tc = TextColor.fromRgb(spell.spellColor());
-                    playSoundServer(pLevel, pPlayer, ModSounds.CAST_FAILED.get());
-                    pPlayer.sendSystemMessage(Component.literal("Not enough experience to cast ").append(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc))));
-                }
+    public int getXp(AbstractSpell spell) {
+        return (int) (this.XP_MOD * spell.xpConsumed());
+    }
+
+    public int getCooldown(AbstractSpell spell) {
+        return (int) (this.COOLDOWN_MOD * spell.cooldownTime());
+    }
+
+    public void doSpellFailed(Level pLevel, Player pPlayer, AbstractSpell spell, String reason) {
+        TextColor tc = TextColor.fromRgb(spell.spellColor());
+        playSoundServer(pLevel, pPlayer, ModSounds.CAST_FAILED.get());
+        pPlayer.sendSystemMessage(Component.literal(reason).append(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc))));
+    }
+
+    public void doSpellFailed(Level pLevel, Player pPlayer, AbstractSpell spell) {
+        doSpellFailed(pLevel, pPlayer, spell, "Cannot cast the following spell here: ");
+    }
+
+    public void doSpellSuccess(Level pLevel, Player pPlayer, AbstractSpell spell) {
+        pPlayer.giveExperiencePoints(-getXp(spell));
+        playSoundServer(pLevel, pPlayer, spell.getSound());
+        pPlayer.getCooldowns().addCooldown(this, getCooldown(spell));
+    }
+
+    public boolean canCastSpell(Level pLevel, Player pPlayer, AbstractSpell spell) {
+        if ((!pPlayer.getCooldowns().isOnCooldown(this)) && (spell != null)) {
+            if (pPlayer.totalExperience >= getXp(spell)) {
+                return true;
+            } else {
+                doSpellFailed(pLevel, pPlayer, spell, "Not enough experience to cast ");
             }
         }
-        return null;
+        return false;
     }
 
     @Override // use on entity
@@ -288,9 +302,13 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         Level level = pPlayer.getLevel();
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!level.isClientSide()) {
-                AbstractSpell spell = castSpell(level, pPlayer, itemStack);
-                if (spell != null) {
-                    spell.castSpellEntity(pPlayer, pInteractionTarget);
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(level, pPlayer, spell)) {
+                    if (spell.castSpellEntity(pPlayer, pInteractionTarget)) {
+                        doSpellSuccess(level, pPlayer, spell);
+                    } else {
+                        doSpellFailed(level, pPlayer, spell);
+                    }
                 }
             }
             return InteractionResult.CONSUME;
@@ -305,9 +323,13 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         Level level = pPlayer.getLevel();
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!level.isClientSide()) {
-                AbstractSpell spell = castSpell(level, pPlayer, itemStack);
-                if (spell != null) {
-                    spell.castSpellBlock(pContext);
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(level, pPlayer, spell)) {
+                    if (spell.castSpellBlock(pContext)) {
+                        doSpellSuccess(level, pPlayer, spell);
+                    } else {
+                        doSpellFailed(level, pPlayer, spell);
+                    }
                 }
             }
             return InteractionResult.CONSUME;
@@ -320,9 +342,13 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!pLevel.isClientSide()) {
-                AbstractSpell spell = castSpell(pLevel, pPlayer, itemStack);
-                if (spell != null) {
-                    spell.castSpellEmpty(pLevel, pPlayer);
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(pLevel, pPlayer, spell)) {
+                    if (spell.castSpellEmpty(pLevel, pPlayer)) {
+                        doSpellSuccess(pLevel, pPlayer, spell);
+                    } else {
+                        doSpellFailed(pLevel, pPlayer, spell);
+                    }
                 }
             }
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));

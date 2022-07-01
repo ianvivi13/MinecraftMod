@@ -19,17 +19,17 @@ public class SlowfallingSpell extends AbstractSpell{
     }
 
     @Override
-    public final int spellColor() {
+    public int spellColor() {
         return color;
     }
 
     @Override
-    public final int cooldownTime() {
+    public int cooldownTime() {
         return 2;
     }
 
     @Override
-    public final int xpConsumed() {
+    public int xpConsumed() {
         return 1;
     }
 
@@ -39,17 +39,17 @@ public class SlowfallingSpell extends AbstractSpell{
     }
 
     @Override
-    public void castSpellEmpty(Level level, Player player) {
-        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEmpty"));
+    public boolean castSpellEmpty(Level level, Player player) {
+        return true;
     }
 
     @Override
-    public void castSpellEntity(Player player, LivingEntity livingEntity) {
-        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEntity"));
+    public boolean castSpellEntity(Player player, LivingEntity livingEntity) {
+        return true;
     }
 
     @Override
-    public void castSpellBlock(UseOnContext useOnContext) {
-        useOnContext.getPlayer().sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellBlock"));
+    public boolean castSpellBlock(UseOnContext useOnContext) {
+        return true;
     }
 }

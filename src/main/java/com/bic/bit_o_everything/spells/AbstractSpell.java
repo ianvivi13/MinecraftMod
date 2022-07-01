@@ -31,15 +31,15 @@ public class AbstractSpell{
         return "Abstract";
     }
 
-    public void castSpellEmpty(Level level, Player player) {
-        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEmpty"));
+    public boolean castSpellEmpty(Level level, Player player) {
+        return false;
     }
 
-    public void castSpellEntity(Player player, LivingEntity livingEntity) {
-        player.sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellEntity"));
+    public boolean castSpellEntity(Player player, LivingEntity livingEntity) {
+        return false;
     }
 
-    public void castSpellBlock(UseOnContext useOnContext) {
-        useOnContext.getPlayer().sendSystemMessage(Component.literal("This is " + spellName() + " from castSpellBlock"));
+    public boolean castSpellBlock(UseOnContext useOnContext) {
+        return false;
     }
 }
