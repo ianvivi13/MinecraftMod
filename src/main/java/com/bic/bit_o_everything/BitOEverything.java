@@ -5,6 +5,7 @@ import com.bic.bit_o_everything.block.entity.ModBlockEntities;
 import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
+import com.bic.bit_o_everything.network.ModPacketHandler;
 import com.bic.bit_o_everything.potion.ModPotions;
 import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.util.BetterBrewingRecipe;
@@ -79,6 +80,7 @@ public class BitOEverything  {
             BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
                     Items.POISONOUS_POTATO, Potions.LUCK));
         });
+        event.enqueueWork(ModPacketHandler::init);
 
     }
 

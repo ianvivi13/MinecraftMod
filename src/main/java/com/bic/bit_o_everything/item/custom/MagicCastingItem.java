@@ -1,5 +1,6 @@
 package com.bic.bit_o_everything.item.custom;
 
+import com.bic.bit_o_everything.item.custom.fancyTypes.EmptyLeftClick;
 import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.spells.AbstractSpell;
 import com.bic.bit_o_everything.spells.SpellList;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,17 +21,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class MagicCastingItem extends Item {
+public class MagicCastingItem extends Item implements EmptyLeftClick {
     public static final String SPELL_TAG = "StoredSpells";
     public static final String CURRENT_TAG = "CurrentSpell";
 
@@ -41,7 +42,8 @@ public class MagicCastingItem extends Item {
     textures
     particles
     optimize
-    prevent onEntitySwing being called so much. Add support for clicking entity and onFirstUse and block and stopUsing
+    Add support for clicking entity and onFirstUse and block and stopUsing
+    Weird left click block stuff happens
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
@@ -232,26 +234,16 @@ public class MagicCastingItem extends Item {
         }
     }
     //endregion
-
+    //region Adding Left Click & Fixing Block Breaking / Entity Hitting
     @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
-        // try getting swing duration instead?
-        entity.getTicksUsingItem();
-
-        if (entity instanceof Player player){
-            scroll(stack, player);
-        }
-        return true;
+    public void emptyLeftClick(Player player, ItemStack itemStack) {
+        scroll(itemStack, player);
     }
 
     @Override
-    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pMiningEntity) {
-        return false;
-    }
-
-    @Override//test more
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        return super.onLeftClickEntity(stack, player, entity);
+        scroll(stack, player);
+        return true;
     }
 
     @Override
@@ -259,11 +251,16 @@ public class MagicCastingItem extends Item {
         return false;
     }
 
+    @Override
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
+        return true;
+    }
 
     @Override
-    public int getUseDuration(ItemStack pStack) {
-        return super.getUseDuration(pStack);
+    public float getDestroySpeed(ItemStack pStack, BlockState pState) {
+        return -100F;
     }
+    //endregion
 
     public void castSpell(Level pLevel, Player pPlayer) {
         if (!pLevel.isClientSide()) {
@@ -284,9 +281,34 @@ public class MagicCastingItem extends Item {
         }
     }
 
-    @Override
+
+
+    @Override // use on entity
+    public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
+        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
+            pPlayer.sendSystemMessage(Component.literal("Use Entity"));
+            return InteractionResult.CONSUME;
+        }
+        return super.interactLivingEntity(pStack, pPlayer, pInteractionTarget, pUsedHand);
+    }
+
+    @Override // use on block
+    public InteractionResult useOn(UseOnContext pContext) {
+        Player pPlayer = pContext.getPlayer();
+        InteractionHand pUsedHand = pContext.getHand();
+        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
+            pPlayer.sendSystemMessage(Component.literal("Use Block"));
+            return InteractionResult.CONSUME;
+        }
+        return super.useOn(pContext);
+    }
+
+    @Override // use on air
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        castSpell(pLevel, pPlayer);
+        if (pPlayer.getItemInHand(pUsedHand).getItem() instanceof MagicCastingItem) {
+            pPlayer.sendSystemMessage(Component.literal("Use Air"));
+            return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
+        }
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 }
