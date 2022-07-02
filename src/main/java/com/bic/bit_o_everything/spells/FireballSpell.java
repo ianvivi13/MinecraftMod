@@ -1,6 +1,8 @@
 package com.bic.bit_o_everything.spells;
 
+import com.bic.bit_o_everything.particle.ModParticles;
 import com.bic.bit_o_everything.sound.ModSounds;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -36,6 +38,11 @@ public class FireballSpell extends AbstractSpell{
     @Override
     public String spellName() {
         return "Fireball";
+    }
+
+    @Override
+    public SimpleParticleType getParticles() {
+        return ModParticles.FAILED_SPELL_PARTICLES.get();
     }
 
     @Override

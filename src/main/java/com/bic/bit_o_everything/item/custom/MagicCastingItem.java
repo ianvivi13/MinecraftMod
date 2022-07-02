@@ -1,10 +1,12 @@
 package com.bic.bit_o_everything.item.custom;
 
 import com.bic.bit_o_everything.item.custom.fancyTypes.EmptyLeftClick;
+import com.bic.bit_o_everything.particle.ModParticles;
 import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.spells.AbstractSpell;
 import com.bic.bit_o_everything.spells.SpellList;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -24,6 +26,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -59,6 +62,26 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
 
     public void playSoundServer(Level pLevel, Player pPlayer, SoundEvent sound) {
         pLevel.playSound(null, pPlayer.blockPosition(), sound, SoundSource.PLAYERS, 1, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
+    }
+
+    public void spawnParticles(Level level, Player player, SimpleParticleType particle) {
+        Vec3 ne = player.getViewVector(0).normalize().multiply(2.5,2.5,2.5);
+
+        for (int i = 0 ; i < 5 ; i ++) {
+            level.addAlwaysVisibleParticle(particle,
+                    player.getX()+ne.x, player.getEyeHeight() + player.getY()+ne.y, player.getZ()+ne.z,
+                    (Math.random()-0.5)*0.25, (Math.random()-0.5)*0.25, (Math.random()-0.5)*0.25);
+        }
+    }
+
+    public void spawnFailedParticles(Level level, Player player) {
+        spawnParticles(level, player, ModParticles.FAILED_SPELL_PARTICLES.get());
+    }
+
+    public void spawnSpellParticles(Level level, Player player, AbstractSpell spell) {
+        if (spell != null) {
+            spawnParticles(level, player, spell.getParticles());
+        }
     }
     //endregion
     //region Inventory Looks
@@ -285,11 +308,11 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         pPlayer.getCooldowns().addCooldown(this, getCooldown(spell));
     }
 
-    public boolean canCastSpell(Level pLevel, Player pPlayer, AbstractSpell spell) {
+    public boolean canCastSpell(Level pLevel, Player pPlayer, AbstractSpell spell, boolean shouldFailSpell) {
         if ((!pPlayer.getCooldowns().isOnCooldown(this)) && (spell != null)) {
             if (pPlayer.totalExperience >= getXp(spell)) {
                 return true;
-            } else {
+            } else if (shouldFailSpell) {
                 doSpellFailed(pLevel, pPlayer, spell, "Not enough experience to cast ");
             }
         }
@@ -303,12 +326,19 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!level.isClientSide()) {
                 AbstractSpell spell = getCurrentSpellObject(itemStack);
-                if (canCastSpell(level, pPlayer, spell)) {
+                if (canCastSpell(level, pPlayer, spell, true)) {
                     if (spell.castSpellEntity(pPlayer, pInteractionTarget)) {
                         doSpellSuccess(level, pPlayer, spell);
                     } else {
                         doSpellFailed(level, pPlayer, spell);
                     }
+                }
+            } else {
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(level, pPlayer, spell, false)) {
+                    spawnSpellParticles(level, pPlayer, spell);
+                } else {
+                    spawnFailedParticles(level, pPlayer);
                 }
             }
             return InteractionResult.CONSUME;
@@ -324,12 +354,19 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!level.isClientSide()) {
                 AbstractSpell spell = getCurrentSpellObject(itemStack);
-                if (canCastSpell(level, pPlayer, spell)) {
+                if (canCastSpell(level, pPlayer, spell, true)) {
                     if (spell.castSpellBlock(pContext)) {
                         doSpellSuccess(level, pPlayer, spell);
                     } else {
                         doSpellFailed(level, pPlayer, spell);
                     }
+                }
+            } else {
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(level, pPlayer, spell, false)) {
+                    spawnSpellParticles(level, pPlayer, spell);
+                } else {
+                    spawnFailedParticles(level, pPlayer);
                 }
             }
             return InteractionResult.CONSUME;
@@ -343,12 +380,19 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!pLevel.isClientSide()) {
                 AbstractSpell spell = getCurrentSpellObject(itemStack);
-                if (canCastSpell(pLevel, pPlayer, spell)) {
+                if (canCastSpell(pLevel, pPlayer, spell, true)) {
                     if (spell.castSpellEmpty(pLevel, pPlayer)) {
                         doSpellSuccess(pLevel, pPlayer, spell);
                     } else {
                         doSpellFailed(pLevel, pPlayer, spell);
                     }
+                }
+            } else {
+                AbstractSpell spell = getCurrentSpellObject(itemStack);
+                if (canCastSpell(pLevel, pPlayer, spell, false)) {
+                    spawnSpellParticles(pLevel, pPlayer, spell);
+                } else {
+                    spawnFailedParticles(pLevel, pPlayer);
                 }
             }
             return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));

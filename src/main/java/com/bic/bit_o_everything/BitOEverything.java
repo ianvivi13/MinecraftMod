@@ -6,6 +6,7 @@ import com.bic.bit_o_everything.block.entity.ModWoodTypes;
 import com.bic.bit_o_everything.entity.ModEntityTypes;
 import com.bic.bit_o_everything.item.ModItems;
 import com.bic.bit_o_everything.network.ModPacketHandler;
+import com.bic.bit_o_everything.particle.ModParticles;
 import com.bic.bit_o_everything.potion.ModPotions;
 import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.util.BetterBrewingRecipe;
@@ -36,8 +37,7 @@ public class BitOEverything  {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public BitOEverything()
-    {
+    public BitOEverything() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register shit here
@@ -49,6 +49,8 @@ public class BitOEverything  {
         ModBlockEntities.register(eventBus);
         ModEntityTypes.register(eventBus);
         ModSounds.register(eventBus);
+
+        ModParticles.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
