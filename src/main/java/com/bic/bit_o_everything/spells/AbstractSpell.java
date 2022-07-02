@@ -33,6 +33,10 @@ public class AbstractSpell{
         return "Abstract";
     }
 
+    public String getDescription() {
+        return "the abstract spell";
+    }
+
     public SimpleParticleType getParticles() {
         return ModParticles.FAILED_SPELL_PARTICLES.get();
     }

@@ -43,9 +43,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
 
     /*
     textures
-    particles
     Left click block does not switch spells (scroll) because it is called too fast
-    Spell tool tips / explanation
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
