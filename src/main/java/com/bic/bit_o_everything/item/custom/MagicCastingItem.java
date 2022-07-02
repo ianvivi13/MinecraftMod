@@ -4,7 +4,6 @@ import com.bic.bit_o_everything.item.custom.fancyTypes.EmptyLeftClick;
 import com.bic.bit_o_everything.particle.ModParticles;
 import com.bic.bit_o_everything.sound.ModSounds;
 import com.bic.bit_o_everything.spells.AbstractSpell;
-import com.bic.bit_o_everything.spells.SpellList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
@@ -117,7 +116,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         int[] spells = getSpells(pStack);
         for (int i: spells) {
-            AbstractSpell spell = SpellList.SPELLS.get(i).get();
+            AbstractSpell spell = AbstractSpell.SPELLS.get(i).get();
             TextColor tc = TextColor.fromRgb(spell.spellColor());
             pTooltipComponents.add(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc)));
         }
@@ -176,7 +175,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
             return null;
         } else {
             int[] spells = getSpells(spellCaster);
-            return SpellList.SPELLS.get(spells[getCurrentSpell(spellCaster)]).get();
+            return AbstractSpell.SPELLS.get(spells[getCurrentSpell(spellCaster)]).get();
         }
     }
 
@@ -235,7 +234,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
 
     // return true if can add spell, false if not
     public boolean addSpell(ItemStack spellCaster, Supplier<? extends AbstractSpell> spell) {
-        int newSpellId = SpellList.SPELLS.indexOf(spell);
+        int newSpellId = AbstractSpell.SPELLS.indexOf(spell);
         int[] spells = getSpells(spellCaster);
         int currentNumberSpells = spells.length;
         for (int i: spells) { // determines if spell is already on the casting item - if so, returns that it can't be put on

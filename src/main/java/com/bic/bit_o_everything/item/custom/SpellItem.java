@@ -1,7 +1,6 @@
 package com.bic.bit_o_everything.item.custom;
 
 import com.bic.bit_o_everything.spells.AbstractSpell;
-import com.bic.bit_o_everything.spells.SpellList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.Item;
@@ -9,16 +8,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
 import java.util.function.Supplier;
 
 public class SpellItem extends Item {
     public Supplier<? extends AbstractSpell> RS;
 
-    public SpellItem(Properties pProperties, int relatedSpell) {
+    public SpellItem(Properties pProperties, Supplier<? extends AbstractSpell> relatedSpell) {
         super(pProperties);
-        this.RS = SpellList.SPELLS.get(relatedSpell);
+        this.RS = relatedSpell;
     }
 
     @Override
