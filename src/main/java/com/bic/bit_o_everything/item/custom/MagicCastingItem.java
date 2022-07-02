@@ -41,6 +41,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     /*
     textures
     Left click block does not switch spells (scroll) because it is called too fast
+    Consider using a byte[] instead of ints
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
@@ -61,7 +62,6 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
 
     public void spawnParticles(Level level, Player player, SimpleParticleType particle) {
         Vec3 ne = player.getViewVector(0).normalize().multiply(2.5,2.5,2.5);
-
         for (int i = 0 ; i < 5 ; i ++) {
             level.addAlwaysVisibleParticle(particle,
                     player.getX()+ne.x, player.getEyeHeight() + player.getY()+ne.y, player.getZ()+ne.z,

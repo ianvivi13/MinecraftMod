@@ -8,9 +8,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import java.util.ArrayList;
-import java.util.function.Supplier;
 
 public interface AbstractSpell {
+
     /**
      * @return Name of this spell
      */
@@ -74,4 +74,5 @@ public interface AbstractSpell {
         add(FireballSpell.FIREBALL);
         add(SlowfallingSpell.SLOWFALLING);
     }};
+
 }
