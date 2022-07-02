@@ -27,10 +27,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 public class MagicCastingItem extends Item implements EmptyLeftClick {
     public static final String SPELL_TAG = "StoredSpells";
@@ -116,7 +114,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         int[] spells = getSpells(pStack);
         for (int i: spells) {
-            AbstractSpell spell = AbstractSpell.SPELLS.get(i).get();
+            AbstractSpell spell = AbstractSpell.SPELLS.get(i);
             TextColor tc = TextColor.fromRgb(spell.spellColor());
             pTooltipComponents.add(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc)));
         }
@@ -175,7 +173,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
             return null;
         } else {
             int[] spells = getSpells(spellCaster);
-            return AbstractSpell.SPELLS.get(spells[getCurrentSpell(spellCaster)]).get();
+            return AbstractSpell.SPELLS.get(spells[getCurrentSpell(spellCaster)]);
         }
     }
 
@@ -209,7 +207,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     // Allows for putting spells onto a magic item
     public boolean stacked(ItemStack meStack, ItemStack otherStack, Player pPlayer) {
         if (otherStack.getItem() instanceof SpellItem spellItem) {
-            if (this.addSpell(meStack, spellItem.RS)) {
+            if (this.addSpell(meStack, spellItem.SPELL)) {
                 otherStack.shrink(1);
                 playSoundPlayer(pPlayer.getLevel(), pPlayer, ModSounds.INCANTATION_SUCCESS.get());
                 return true;
@@ -233,7 +231,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     // return true if can add spell, false if not
-    public boolean addSpell(ItemStack spellCaster, Supplier<? extends AbstractSpell> spell) {
+    public boolean addSpell(ItemStack spellCaster, AbstractSpell spell) {
         int newSpellId = AbstractSpell.SPELLS.indexOf(spell);
         int[] spells = getSpells(spellCaster);
         int currentNumberSpells = spells.length;

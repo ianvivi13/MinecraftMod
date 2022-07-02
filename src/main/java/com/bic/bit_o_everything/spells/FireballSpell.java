@@ -9,10 +9,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import java.util.function.Supplier;
 
 public class FireballSpell implements AbstractSpell {
-    public static final Supplier<? extends AbstractSpell> FIREBALL = FireballSpell::new;
+    public static final AbstractSpell FIREBALL = new FireballSpell();
 
     private static final int color = Mth.color(230,76,0);
 

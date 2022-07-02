@@ -9,21 +9,19 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class SpellItem extends Item {
-    public Supplier<? extends AbstractSpell> RS;
+    public AbstractSpell SPELL;
 
-    public SpellItem(Properties pProperties, Supplier<? extends AbstractSpell> relatedSpell) {
+    public SpellItem(Properties pProperties, AbstractSpell relatedSpell) {
         super(pProperties);
-        this.RS = relatedSpell;
+        this.SPELL = relatedSpell;
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        AbstractSpell spell = RS.get();
-        pTooltipComponents.add(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(spell.spellColor())));
-        pTooltipComponents.add(Component.literal(spell.getDescription()));
+        pTooltipComponents.add(Component.literal(SPELL.spellName()).setStyle(Style.EMPTY.withColor(SPELL.spellColor())));
+        pTooltipComponents.add(Component.literal(SPELL.getDescription()));
     }
 
     @Override

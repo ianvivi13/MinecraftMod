@@ -117,7 +117,6 @@ public class ModItems {
     public static final RegistryObject<Item> SLOWFALLING_SPELL = ITEMS.register("slowfalling_spell",
             () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), SlowfallingSpell.SLOWFALLING));
 
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

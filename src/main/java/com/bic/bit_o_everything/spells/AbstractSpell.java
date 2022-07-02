@@ -66,11 +66,11 @@ public interface AbstractSpell {
     boolean castSpellEmpty(Level level, Player player);
 
     /**
-     * Current list of spells suppliers. Used as indexes by {@link com.bic.bit_o_everything.item.custom.MagicCastingItem castingItems} to determine spells
+     * Current list of spells instances. Used as indexes by {@link com.bic.bit_o_everything.item.custom.MagicCastingItem castingItems} to determine spells
      * <br>
      * Reference {@link FireballSpell#FIREBALL FIREBALL} for an example
      */
-    ArrayList<Supplier<? extends AbstractSpell>> SPELLS = new ArrayList<>(){{
+    ArrayList<AbstractSpell> SPELLS = new ArrayList<>(){{
         add(FireballSpell.FIREBALL);
         add(SlowfallingSpell.SLOWFALLING);
     }};
