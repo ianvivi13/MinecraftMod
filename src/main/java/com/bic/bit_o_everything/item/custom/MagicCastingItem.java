@@ -41,7 +41,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     /*
     textures
     Left click block does not switch spells (scroll) because it is called too fast
-    Consider using a byte[] instead of ints
+    Consider using a byte[] instead of ints if problems occur
      */
 
     public MagicCastingItem(Properties pProperties, int maxSpells, float xpModifier, float cooldownModifier) {
@@ -230,7 +230,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         return stacked(pStack, pSlot.getItem(), pPlayer);
     }
 
-    // return true if can add spell, false if not
+    // return true if it can add spell, false if not
     public boolean addSpell(ItemStack spellCaster, AbstractSpell spell) {
         int newSpellId = AbstractSpell.SPELLS.indexOf(spell);
         int[] spells = getSpells(spellCaster);

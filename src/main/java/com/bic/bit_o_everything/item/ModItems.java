@@ -5,6 +5,7 @@ import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import com.bic.bit_o_everything.item.custom.*;
+import com.bic.bit_o_everything.spells.AbstractSpell;
 import com.bic.bit_o_everything.spells.FireballSpell;
 import com.bic.bit_o_everything.spells.SlowfallingSpell;
 import net.minecraft.world.item.*;
@@ -16,6 +17,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, BitOEverything.MOD_ID);
+
+    private static RegistryObject<Item> registerSpell(String name, AbstractSpell spell) {
+        AbstractSpell.SPELLS.add(spell);
+        return ITEMS.register(name,
+                () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), spell));
+    }
 
     // Create items here
     public static final RegistryObject<Item> RAW_PYRITE = ITEMS.register("raw_pyrite",
@@ -111,11 +118,9 @@ public class ModItems {
     public static final RegistryObject<Item> AACAST = ITEMS.register("aacast",
             () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 2, 1, 1));
 
-    public static final RegistryObject<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell",
-            () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), FireballSpell.FIREBALL));
+    public static final RegistryObject<Item> FIREBALL_SPELL = registerSpell("fireball_spell", FireballSpell.FIREBALL);
 
-    public static final RegistryObject<Item> SLOWFALLING_SPELL = ITEMS.register("slowfalling_spell",
-            () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), SlowfallingSpell.SLOWFALLING));
+    public static final RegistryObject<Item> SLOWFALLING_SPELL = registerSpell("slowfalling_spell", SlowfallingSpell.SLOWFALLING);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

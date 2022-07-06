@@ -68,11 +68,8 @@ public interface AbstractSpell {
     /**
      * Current list of spells instances. Used as indexes by {@link com.bic.bit_o_everything.item.custom.MagicCastingItem castingItems} to determine spells
      * <br>
-     * Reference {@link FireballSpell#FIREBALL FIREBALL} for an example
+     * Auto added when {@link com.bic.bit_o_everything.item.ModItems#registerSpell(String, AbstractSpell) registering} a spell as an Item
      */
-    ArrayList<AbstractSpell> SPELLS = new ArrayList<>(){{
-        add(FireballSpell.FIREBALL);
-        add(SlowfallingSpell.SLOWFALLING);
-    }};
+    ArrayList<AbstractSpell> SPELLS = new ArrayList<>();
 
 }
