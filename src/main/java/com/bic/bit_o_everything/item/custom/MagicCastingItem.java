@@ -376,7 +376,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
             if (!pLevel.isClientSide()) {
                 AbstractSpell spell = getCurrentSpellObject(itemStack);
                 if (canCastSpell(pLevel, pPlayer, spell, true)) {
-                    if (spell.castSpellEmpty(pLevel, pPlayer)) {
+                    if (spell.castSpellEmpty(pLevel, pPlayer, pUsedHand)) {
                         doSpellSuccess(pLevel, pPlayer, spell);
                     } else {
                         doSpellFailed(pLevel, pPlayer, spell);

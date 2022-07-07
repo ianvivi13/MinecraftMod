@@ -8,6 +8,7 @@ import com.bic.bit_o_everything.item.custom.*;
 import com.bic.bit_o_everything.spells.AbstractSpell;
 import com.bic.bit_o_everything.spells.FireballSpell;
 import com.bic.bit_o_everything.spells.SlowfallingSpell;
+import com.bic.bit_o_everything.spells.TorchSpell;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +19,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, BitOEverything.MOD_ID);
 
-    private static RegistryObject<Item> registerSpell(String name, AbstractSpell spell) {
+    public static RegistryObject<Item> registerSpell(String name, AbstractSpell spell) {
         AbstractSpell.SPELLS.add(spell);
         return ITEMS.register(name,
                 () -> new SpellItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), spell));
@@ -119,8 +120,10 @@ public class ModItems {
             () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 2, 1, 1));
 
     public static final RegistryObject<Item> FIREBALL_SPELL = registerSpell("fireball_spell", FireballSpell.FIREBALL);
-
+    
     public static final RegistryObject<Item> SLOWFALLING_SPELL = registerSpell("slowfalling_spell", SlowfallingSpell.SLOWFALLING);
+
+    public static final RegistryObject<Item> TORCH_SPELL = registerSpell("torch_spell", TorchSpell.TORCHSPELL);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -19,6 +19,11 @@ public class SpellItem extends Item {
     }
 
     @Override
+    public boolean isDamageable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.literal(SPELL.spellName()).setStyle(Style.EMPTY.withColor(SPELL.spellColor())));
         pTooltipComponents.add(Component.literal(SPELL.getDescription()));

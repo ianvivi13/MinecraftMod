@@ -7,6 +7,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.commands.SummonCommand;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -52,7 +53,7 @@ public class SlowfallingSpell implements AbstractSpell{
         return ParticleTypes.EFFECT;
     }
 
-    public boolean castSpellEmpty(Level level, Player player) {
+    public boolean castSpellEmpty(Level level, Player player, InteractionHand pUsedHand) {
         // give player slowfalling
         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 0, false, false, false));
         return true;

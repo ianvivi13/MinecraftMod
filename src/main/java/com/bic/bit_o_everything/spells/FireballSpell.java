@@ -10,6 +10,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -62,7 +63,7 @@ public class FireballSpell implements AbstractSpell {
         return ParticleTypes.SMALL_FLAME;
     }
 
-    public boolean castSpellEmpty(Level level, Player player) {
+    public boolean castSpellEmpty(Level level, Player player, InteractionHand pUsedHand) {
         Vec3 vec3 = player.getViewVector(1.0F);
         LargeFireball largefireball = new LargeFireball(level, player, vec3.x, vec3.y, vec3.z, 2);
         largefireball.setPos(player.getEyePosition().x + vec3.x, player.getEyePosition().y + vec3.y, player.getEyePosition().z + vec3.z);
