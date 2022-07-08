@@ -26,8 +26,19 @@ public final class ModUtils {
         }
     }
 
+    /**
+     * Class pertaining to some advanced random functions
+     */
+    public static class advancedRandom {
 
+        public static boolean randomTrue(double d) {
+            return Math.random() < d;
+        }
 
+        public static int randomRange(int min, int max) {
+            return (int) ((Math.random() * (max - min)) + min);
+        }
+    }
 
 
 

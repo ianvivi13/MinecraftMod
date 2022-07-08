@@ -5,15 +5,14 @@ import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.entity.custom.ModBoatEntity;
 import com.bic.bit_o_everything.entity.custom.ModChestBoatEntity;
 import com.bic.bit_o_everything.item.custom.*;
-import com.bic.bit_o_everything.spells.AbstractSpell;
-import com.bic.bit_o_everything.spells.FireballSpell;
-import com.bic.bit_o_everything.spells.SlowfallingSpell;
-import com.bic.bit_o_everything.spells.TorchSpell;
+import com.bic.bit_o_everything.spells.*;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import javax.swing.text.html.parser.Entity;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -116,14 +115,19 @@ public class ModItems {
     public static final RegistryObject<Item> STICKY_DETONATOR = ITEMS.register("sticky_detonator",
             () -> new StickyDetonator(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1)));
 
-    public static final RegistryObject<Item> AACAST = ITEMS.register("aacast",
-            () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 2, 1, 1));
+    public static final RegistryObject<Item> WAND = ITEMS.register("wand",
+            () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 2, 1, 3));
+
+    public static final RegistryObject<Item> SPELL_BOOK = ITEMS.register("spell_book",
+            () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 4, 2, 2));
+
+    public static final RegistryObject<Item> STAFF = ITEMS.register("staff",
+            () -> new MagicCastingItem(new Item.Properties().tab(ModCreativeModeTab.MODDED).stacksTo(1), 6, 3, 1));
 
     public static final RegistryObject<Item> FIREBALL_SPELL = registerSpell("fireball_spell", FireballSpell.FIREBALL);
-    
     public static final RegistryObject<Item> SLOWFALLING_SPELL = registerSpell("slowfalling_spell", SlowfallingSpell.SLOWFALLING);
-
     public static final RegistryObject<Item> TORCH_SPELL = registerSpell("torch_spell", TorchSpell.TORCHSPELL);
+    public static final RegistryObject<Item> WEATHER_SPELL = registerSpell("weather_spell", WeatherSpell.WEATHER);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

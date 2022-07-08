@@ -19,6 +19,7 @@ public class ClientRegistryEvents {
         regSpellColor(event, ModItems.SLOWFALLING_SPELL.get());
         regSpellColor(event, ModItems.TORCH_SPELL.get());
         regSpellColor(event, ModItems.FIREBALL_SPELL.get());
+        regSpellColor(event, ModItems.WEATHER_SPELL.get());
     }
 
 

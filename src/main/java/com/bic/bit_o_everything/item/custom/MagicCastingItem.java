@@ -1,5 +1,6 @@
 package com.bic.bit_o_everything.item.custom;
 
+import com.bic.bit_o_everything.item.ModItems;
 import com.bic.bit_o_everything.item.custom.fancyTypes.EmptyLeftClick;
 import com.bic.bit_o_everything.particle.ModParticles;
 import com.bic.bit_o_everything.sound.ModSounds;
@@ -287,8 +288,15 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
         return (int) (this.COOLDOWN_MOD * spell.cooldownTime());
     }
 
+    public void addCooldowns(Player player, int ticks) {
+        player.getCooldowns().addCooldown(ModItems.WAND.get(), ticks);
+        player.getCooldowns().addCooldown(ModItems.SPELL_BOOK.get(), ticks);
+        player.getCooldowns().addCooldown(ModItems.STAFF.get(), ticks);
+    }
+
     public void doSpellFailed(Level pLevel, Player pPlayer, AbstractSpell spell, String reason) {
         TextColor tc = TextColor.fromRgb(spell.spellColor());
+        addCooldowns(pPlayer, 5);
         playSoundServer(pLevel, pPlayer, ModSounds.CAST_FAILED.get());
         pPlayer.sendSystemMessage(Component.literal(reason).append(Component.literal(spell.spellName()).setStyle(Style.EMPTY.withColor(tc))));
     }
@@ -300,7 +308,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     public void doSpellSuccess(Level pLevel, Player pPlayer, AbstractSpell spell) {
         pPlayer.giveExperiencePoints(-getXp(spell));
         playSoundServer(pLevel, pPlayer, spell.getSound());
-        pPlayer.getCooldowns().addCooldown(this, getCooldown(spell));
+        addCooldowns(pPlayer, getCooldown(spell));
     }
 
     public boolean canCastSpell(Level pLevel, Player pPlayer, AbstractSpell spell, boolean shouldFailSpell) {
