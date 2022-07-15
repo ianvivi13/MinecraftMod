@@ -26,6 +26,30 @@ public final class ModUtils {
         }
     }
 
+    public static class advancedMath {
+        /**
+         * scales a value according to the algorithm: [<b>val</b> % in range (<b>min</b> -> <b>max</b>)]<sup><b>power</b></sup><br>
+         * Refer to this <a href="https://www.desmos.com/calculator/cgixul5oxs">graph</a>
+         * @param min smallest value in range
+         * @param max largest value in range
+         * @param val value to scale
+         * @param power value to scale by: x/1 will be exponential, x/1 will be logarithmic, 1 will be linear. A negative power, will result in the return going down as <b>val</b> approaches <b>max</b>
+         * @return 0 -> 1
+         */
+        public static double scale(float min, float max, float val, double power) {
+            if (power == 0) return 0;
+            if (min >= max) return 0;
+            double signPower = Math.signum(power);
+            return signPower * Math.pow((clamp(val, min, max)-max) / (min-max), Math.abs(power)) + Math.abs((signPower - 1)/2);
+        }
+
+        public static float clamp(float val, float min, float max) {
+            return val > max ? max : min > val ? min : val;
+        }
+
+
+    }
+
     /**
      * Class pertaining to some advanced random functions
      */
@@ -40,6 +64,28 @@ public final class ModUtils {
         }
     }
 
+    public static class advancedRotation {
+        /**
+         * simplifies a radian (r) to a value between 0 (inclusive) and 2&pi; (exclusive) according to this <a href="https://www.desmos.com/calculator/invrphnxlq">graph</a>
+         */
+        public static float simplify0To2Pi(float r) {
+            return (float) (r - (2 * Math.PI * Math.floor(r/(2 * Math.PI))));
+        }
 
+        /**
+         * simplifies a radian (r) to a value between -&pi; (inclusive) and &pi; (exclusive) according to this <a href="https://www.desmos.com/calculator/kancjmicjx">graph</a>
+         */
+        public static float simplifyNegPiToPi(float r) {
+            return (float) (r - (2 * Math.PI * Math.floor(r/(2 * Math.PI) + 1/2d)));
+        }
+
+        /**
+         * locks a radian (val) to increments (step) in a circle. Defined by this <a href="https://www.desmos.com/calculator/3ia9iujqcn">graph</a>
+         */
+        public static float step(float val, double step) {
+            return (float) (Math.floor(val/step + 1/2d)*step);
+        }
+
+    }
 
 }

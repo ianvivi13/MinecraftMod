@@ -40,7 +40,6 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     public final float XP_MOD;
 
     /*
-    textures
     Left click block does not switch spells (scroll) because it is called too fast
     Consider using a byte[] instead of ints if problems occur
      */

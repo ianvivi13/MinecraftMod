@@ -1,5 +1,6 @@
 package com.bic.bit_o_everything.block.custom;
 
+import com.bic.bit_o_everything.ModUtils;
 import com.bic.bit_o_everything.block.ModBlocks;
 import com.bic.bit_o_everything.block.entity.custom.PotterBlockEntity;
 import com.mojang.datafixers.util.Pair;
@@ -242,40 +243,13 @@ public class PotterBlock extends BaseEntityBlock{
         }
     }
 
-    public static float lock45(float r) {
-        double pi = Math.PI;
-        while (r < 0) {
-            r += 2 * pi;
-        }
-        if (r < pi/6) {
-            return 0;
-        } else if(r < pi/3) {
-            return (float) (pi/4);
-        } else if (r < 2*pi/3) {
-            return (float) (pi/2);
-        } else if (r < 5*pi/6) {
-            return (float) (3*pi/4);
-        } else if (r < 7*pi/6) {
-            return (float) (pi);
-        } else if (r < 4*pi/3) {
-            return (float) (5*pi/4);
-        } else if (r < 5*pi/3) {
-            return (float) (3*pi/2);
-        } else if (r < 11*pi/6) {
-            return (float) (7*pi/4);
-        } else {
-            return 0;
-        }
-
-    }
-
     public static float getAngle(BlockPos pPos, Player pPlayer) {
         Vec3 hitLoc = new Vec3(pPos.getX()+0.5,pPos.getY()+0.5, pPos.getZ()+0.5);
         Vec3 playPos = new Vec3(pPlayer.getX(), pPlayer.getY(), pPlayer.getZ());
         Vec3 maybe = hitLoc.subtract(playPos);
         float angle = (float) Math.atan2(maybe.x,maybe.z);
         if (hitLoc.distanceTo(playPos) <= 2) {
-            angle = lock45(angle);
+            angle = ModUtils.advancedRotation.step(angle, Math.PI/4);
         }
         return angle;
     }

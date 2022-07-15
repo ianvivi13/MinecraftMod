@@ -10,4 +10,11 @@ public class ModCreativeModeTab {
             return new ItemStack(ModItems.PYRITE.get());
         }
     };
+
+    public static final CreativeModeTab MAGIC = new CreativeModeTab("magic") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItems.STAFF.get());
+        }
+    };
 }
