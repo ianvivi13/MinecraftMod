@@ -27,9 +27,12 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class MagicCastingItem extends Item implements EmptyLeftClick {
     public static final String SPELL_TAG = "StoredSpells";
@@ -81,7 +84,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     //endregion
     //region Inventory Looks
     @Override
-    public boolean isBarVisible(ItemStack pStack) {
+    public boolean isBarVisible(@NotNull ItemStack pStack) {
         return true;
     }
 
@@ -91,12 +94,12 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
     }
 
     @Override
-    public int getBarColor(ItemStack pStack) {
+    public int getBarColor(@NotNull ItemStack pStack) {
         AbstractSpell spell = getCurrentSpellObject(pStack);
         if (spell != null) {
             return spell.spellColor();
@@ -106,12 +109,12 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override
-    public int getBarWidth(ItemStack pStack) {
+    public int getBarWidth(@NotNull ItemStack pStack) {
         return Math.round(13* (((float)getCurrentSpell(pStack)+1)/((float)getSpells(pStack).length)));
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         int[] spells = getSpells(pStack);
         for (int i: spells) {
             AbstractSpell spell = AbstractSpell.SPELLS.get(i);
@@ -221,12 +224,12 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override
-    public boolean overrideOtherStackedOnMe(ItemStack pStack, ItemStack pOther, Slot pSlot, ClickAction pAction, Player pPlayer, SlotAccess pAccess) {
+    public boolean overrideOtherStackedOnMe(@NotNull ItemStack pStack, @NotNull ItemStack pOther, @NotNull Slot pSlot, @NotNull ClickAction pAction, @NotNull Player pPlayer, @NotNull SlotAccess pAccess) {
         return stacked(pStack, pOther, pPlayer);
     }
 
     @Override
-    public boolean overrideStackedOnOther(ItemStack pStack, Slot pSlot, ClickAction pAction, Player pPlayer) {
+    public boolean overrideStackedOnOther(@NotNull ItemStack pStack, Slot pSlot, @NotNull ClickAction pAction, @NotNull Player pPlayer) {
         return stacked(pStack, pSlot.getItem(), pPlayer);
     }
 
@@ -264,7 +267,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override
-    public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
+    public boolean canAttackBlock(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer) {
         return false;
     }
 
@@ -274,7 +277,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override
-    public float getDestroySpeed(ItemStack pStack, BlockState pState) {
+    public float getDestroySpeed(@NotNull ItemStack pStack, @NotNull BlockState pState) {
         return -100F;
     }
     //endregion
@@ -322,7 +325,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override // use on entity
-    public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
+    public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack pStack, Player pPlayer, @NotNull LivingEntity pInteractionTarget, @NotNull InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         Level level = pPlayer.getLevel();
         if (itemStack.getItem() instanceof MagicCastingItem) {
@@ -349,7 +352,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override // use on block
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @NotNull InteractionResult useOn(UseOnContext pContext) {
         Player pPlayer = pContext.getPlayer();
         ItemStack itemStack = pPlayer.getItemInHand(pContext.getHand());
         Level level = pPlayer.getLevel();
@@ -377,7 +380,7 @@ public class MagicCastingItem extends Item implements EmptyLeftClick {
     }
 
     @Override // use on air
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         if (itemStack.getItem() instanceof MagicCastingItem) {
             if (!pLevel.isClientSide()) {

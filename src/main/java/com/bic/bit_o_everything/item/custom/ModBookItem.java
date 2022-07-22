@@ -12,6 +12,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 
+import net.minecraft.world.item.Item.Properties;
+
 public class ModBookItem extends Item {
     public ModBookItem(Properties pProperties) {
         super(pProperties);

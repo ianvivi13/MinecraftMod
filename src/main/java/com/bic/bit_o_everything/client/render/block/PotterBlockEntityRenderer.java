@@ -12,16 +12,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.model.data.EmptyModelData;
 
 public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBlockEntity> {
     private final BlockEntityRendererProvider.Context context;
@@ -44,71 +39,62 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         }
 
         BlockState mat = pBlockEntity.getMaterial().defaultBlockState();
-        for(RenderType t : RenderType.chunkBufferLayers()) {
-            if (ItemBlockRenderTypes.canRenderInLayer(mat,t)) {
-                VertexConsumer VC = pBufferSource.getBuffer(t);
-                if (pBlockEntity.connections[1]) {
-                    renderNorthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[5]) {
-                    renderEastFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[7]) {
-                    renderSouthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[3]) {
-                    renderWestFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[2]) {
-                    renderNorthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[8]) {
-                    renderSouthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[0]) {
-                    renderNorthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                if (pBlockEntity.connections[6]) {
-                    renderSouthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
-                }
-                renderBottom(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
-                break;
-            }
+        VertexConsumer VC = pBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(mat, false));
+        if (pBlockEntity.connections[1]) {
+            renderNorthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
         }
+        if (pBlockEntity.connections[5]) {
+            renderEastFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[7]) {
+            renderSouthFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[3]) {
+            renderWestFace(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[2]) {
+            renderNorthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[8]) {
+            renderSouthEastCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[0]) {
+            renderNorthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        if (pBlockEntity.connections[6]) {
+            renderSouthWestCorner(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC, height);
+        }
+        renderBottom(dispatcher, pPoseStack, mat, pos, pBELevel, pBERandom, VC);
+
 
         Block dirt = pBlockEntity.getDirt();
         if (dirt != null) {
             BlockState dirtState = dirt.defaultBlockState();
-            for(RenderType t : RenderType.chunkBufferLayers()) {
-                if (ItemBlockRenderTypes.canRenderInLayer(dirtState,t)) {
-                    VertexConsumer VC = pBufferSource.getBuffer(t);
-                    renderDirt(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height);
-                    if (!pBlockEntity.connections[1]) {
-                        renderNorthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[5]) {
-                        renderEastFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[7]) {
-                        renderSouthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[3]) {
-                        renderWestFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[2]) {
-                        renderNorthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[8]) {
-                        renderSouthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[0]) {
-                        renderNorthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    if (!pBlockEntity.connections[6]) {
-                        renderSouthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
-                    }
-                    break;
-                }
+            VC = pBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(dirtState, false));
+            renderDirt(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height);
+            if (!pBlockEntity.connections[1]) {
+                renderNorthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[5]) {
+                renderEastFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[7]) {
+                renderSouthFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[3]) {
+                renderWestFace(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[2]) {
+                renderNorthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[8]) {
+                renderSouthEastCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[0]) {
+                renderNorthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
+            }
+            if (!pBlockEntity.connections[6]) {
+                renderSouthWestCorner(dispatcher, pPoseStack, dirtState, pos, pBELevel, pBERandom, VC, height - 2);
             }
         }
 
@@ -118,11 +104,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
             if (flower instanceof CropBlock) {
                 flowerState = flowerState.setValue(((CropBlock) flower).getAgeProperty(),((CropBlock) flower).getMaxAge());
             }
-            for(RenderType t : RenderType.chunkBufferLayers()) {
-                if (ItemBlockRenderTypes.canRenderInLayer(flowerState, t)) {
-                    renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(t), height, pBlockEntity.flowerRotation);
-                }
-            }
+            renderFlower(dispatcher, pPoseStack, flowerState, pos, pBELevel, pBERandom, pBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(flowerState, false)), height, pBlockEntity.flowerRotation);
         }
     }
 
@@ -132,7 +114,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(6399/6400f, 1 / 6400f, 6399/6400f);
         pPoseStack.translate(1/12798d, (400*(h-2)) - 1 / 6400d, 1/12798d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -143,7 +125,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.scale(14 / 16f, 14 / 16f, 14 / 16f);
         pPoseStack.translate(v.x, v.y, v.z);
         pPoseStack.mulPose(Quaternion.fromXYZ(0f,rot,0f));
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -153,7 +135,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(14/16f,1/16f,14/16f);
         pPoseStack.translate(1/14d,0,1/14d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -162,7 +144,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(14/16f,h/16f,1/16f);
         pPoseStack.translate(1/14d,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -170,7 +152,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,h/16f,14/16f);
         pPoseStack.translate(0,0,1/14d);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -178,7 +160,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(14/16f,h/16f,1/16f);
         pPoseStack.translate(1/14d,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -187,7 +169,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.scale(1/16f,h/16f,14/16f);
         pPoseStack.translate(15,0,1/14d);
 
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -196,7 +178,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(0,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -204,7 +186,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(0,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -212,7 +194,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(15,0,0);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
 
@@ -220,7 +202,7 @@ public class PotterBlockEntityRenderer implements BlockEntityRenderer<PotterBloc
         pPoseStack.pushPose();
         pPoseStack.scale(1/16f,h/16f,1/16f);
         pPoseStack.translate(15,0,15);
-        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS, EmptyModelData.INSTANCE);
+        dispatcher.renderBatched(b, p, level, pPoseStack, Vc, false, RS);
         pPoseStack.popPose();
     }
     //endregion

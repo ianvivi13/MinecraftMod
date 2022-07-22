@@ -10,6 +10,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class SpellItem extends Item {
     public AbstractSpell SPELL;
 
@@ -30,7 +32,7 @@ public class SpellItem extends Item {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
     }
 }

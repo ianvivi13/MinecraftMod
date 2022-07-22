@@ -11,6 +11,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 
+import net.minecraft.world.item.Item.Properties;
+
 public class StickyDetonator extends Item {
     final static int radius = 22;
     final static int maxExplosions = 16;

@@ -14,6 +14,8 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.util.Random;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class RainbowDyeItem extends Item {
 
 

@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class PotterBlock extends BaseEntityBlock{
     protected static final VoxelShape TALL = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
     protected static final VoxelShape SHORT = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
