@@ -59,6 +59,9 @@ public final class ModUtils {
             return Math.random() < d;
         }
 
+        /**
+         * @return a random int between min and max
+         */
         public static int randomRange(int min, int max) {
             return (int) ((Math.random() * (max - min)) + min);
         }
